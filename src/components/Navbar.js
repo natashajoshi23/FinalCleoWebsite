@@ -17,7 +17,7 @@ export default function Navbar() {
   const [themeHovered, setThemeHovered] = useState(false)
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 1200)
+    const check = () => setIsMobile(window.innerWidth <= 1050)
     check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
@@ -113,7 +113,7 @@ export default function Navbar() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
-          height: isMobile ? '100px' : '170px',
+          height: isMobile ? '100px' : '155px',
           transition: 'background 0.5s, backdrop-filter 0.5s',
           background: scrolled
             ? (isDark ? 'rgba(0,18,41,0.95)' : 'rgba(253,250,244,0.95)')
@@ -138,8 +138,8 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop nav — hidden on mobile via CSS */}
-        <ul className="nav-desktop-links" style={{ display: 'flex', alignItems: 'center', gap: '2.25rem', listStyle: 'none', margin: 0, padding: 0 }}>
+        {/* Desktop nav — hidden on mobile via CSS. Right padding reserves room for the pinned toggle. */}
+        <ul className="nav-desktop-links" style={{ display: 'flex', alignItems: 'center', gap: '2.25rem', listStyle: 'none', margin: 0, padding: '0 3.5rem 0 0' }}>
           <li><Link href="/" style={linkStyle(pathname === '/', '/')} onMouseEnter={() => setHoveredLink('/')} onMouseLeave={() => setHoveredLink(null)}>Home</Link></li>
           <li
             style={{ position: 'relative' }}
@@ -180,8 +180,12 @@ export default function Navbar() {
               <Link href="/apply" className="apply-cta-link" style={{ padding: '0.6rem 2rem', background: 'var(--gold)', border: '1px solid var(--gold)', fontSize: '0.9rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink)', textDecoration: 'none', fontWeight: 750, transition: 'all 0.3s', whiteSpace: 'nowrap' }}>Apply Now</Link>
             </div>
           </li>
-          <li style={{ flexShrink: 0 }}><ThemeButton /></li>
         </ul>
+
+        {/* Theme toggle — pinned absolutely so it's out of the flex row and can never be clipped (desktop only) */}
+        <div className="nav-theme-pin" style={{ position: 'absolute', right: '1.5rem', top: '50%', transform: 'translateY(-50%)' }}>
+          <ThemeButton />
+        </div>
 
         {/* Mobile controls — hidden on desktop via CSS */}
         <div className="nav-mobile-controls" style={{ display: 'none', alignItems: 'center', gap: '0.75rem' }}>
@@ -238,7 +242,7 @@ export default function Navbar() {
         }}>
 
         {/* Sidebar header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '150px', padding: '0 1.5rem', borderBottom: drawerBorder }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '138px', padding: '0 1.5rem', borderBottom: drawerBorder }}>
           <Link href="/" onClick={() => setMenuOpen(false)}>
             <img src={isDark ? '/images/logo-dark.webp' : '/images/logo-light.webp'} alt="Cleo Consulting" style={{ height: isDark ? '115px' : '144px', width: 'auto', marginTop: isDark ? '0' : '-8px', marginLeft: isDark ? '-9px' : '-2px' }} />
           </Link>

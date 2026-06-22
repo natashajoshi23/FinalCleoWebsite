@@ -879,6 +879,9 @@ textarea:focus-visible,
 /* Desktop: show desktop nav, hide hamburger controls */
 .nav-desktop-links { display: flex !important; }
 .nav-mobile-controls { display: none !important; }
+/* Pinned desktop theme toggle: shown on desktop, hidden on mobile (mobile has its own) */
+.nav-theme-pin { display: flex !important; }
+@media (max-width: 1050px) { .nav-theme-pin { display: none !important; } }
 
 /* Gradually shrink desktop nav as screen narrows */
 nav { overflow: visible !important; }
@@ -900,36 +903,59 @@ nav { overflow: visible !important; }
 }
 
 @media (max-width: 1400px) {
-  nav { padding: 0.75rem 1.75rem !important; }
-  .nav-desktop-links { gap: 1.4rem !important; }
+  nav { padding: 0.75rem 1.5rem !important; }
+  .nav-desktop-links { gap: 1.7rem !important; }
   .nav-desktop-links a[href="/contact"],
-  .nav-desktop-links a[href="/apply"] { padding-left: 1.4rem !important; padding-right: 1.4rem !important; }
+  .nav-desktop-links a[href="/apply"] { padding-left: 1.3rem !important; padding-right: 1.3rem !important; }
+  /* Logo stays full size in this band — pinned toggle leaves room */
 }
 
 @media (max-width: 1350px) {
-  nav { padding: 0.75rem 1.5rem !important; }
-  .nav-desktop-links { gap: 1.15rem !important; }
+  nav { padding: 0.75rem 1.25rem !important; }
+  .nav-desktop-links { gap: 1.3rem !important; }
   .nav-desktop-links a[href="/contact"],
   .nav-desktop-links a[href="/apply"] { padding-left: 1.1rem !important; padding-right: 1.1rem !important; }
+  /* Logo stays full size here too */
 }
 
 @media (max-width: 1300px) {
-  nav { padding: 0.75rem 1.5rem !important; }
-  .nav-desktop-links { gap: 1.9rem !important; }
+  nav { padding: 0.75rem 1.25rem !important; }
+  .nav-desktop-links { gap: 1.1rem !important; }
   .nav-desktop-links a,
-  .nav-desktop-links span { font-size: 1rem !important; letter-spacing: 0.14em !important; }
+  .nav-desktop-links span { font-size: 1rem !important; letter-spacing: 0.13em !important; }
   .nav-desktop-links a[href="/contact"],
-  .nav-desktop-links a[href="/apply"] { padding-left: 1.1rem !important; padding-right: 1.1rem !important; font-size: 1rem !important; }
-  /* Single, one-time logo decrease (stays this size down to hamburger) */
-  .nav-logo img { height: 120px !important; width: auto !important; }
-  [data-theme="light"] .nav-logo img { height: 150px !important; }
+  .nav-desktop-links a[href="/apply"] { padding-left: 1rem !important; padding-right: 1rem !important; font-size: 1rem !important; }
+  .nav-logo img { height: 130px !important; width: auto !important; }
+  [data-theme="light"] .nav-logo img { height: 162px !important; }
 }
 
 @media (max-width: 1200px) {
+  nav { padding: 0.75rem 1rem !important; }
+  .nav-desktop-links { gap: 1.05rem !important; }
+  .nav-desktop-links a,
+  .nav-desktop-links span { font-size: 1rem !important; letter-spacing: 0.12em !important; }
+  .nav-desktop-links a[href="/contact"],
+  .nav-desktop-links a[href="/apply"] { padding-left: 0.95rem !important; padding-right: 0.95rem !important; font-size: 1rem !important; }
+  .nav-logo img { height: 126px !important; width: auto !important; }
+  [data-theme="light"] .nav-logo img { height: 158px !important; }
+}
+
+@media (max-width: 1100px) {
+  nav { padding: 0.75rem 0.9rem !important; }
+  .nav-desktop-links { gap: 0.9rem !important; }
+  .nav-desktop-links a,
+  .nav-desktop-links span { font-size: 0.95rem !important; letter-spacing: 0.1em !important; }
+  .nav-desktop-links a[href="/contact"],
+  .nav-desktop-links a[href="/apply"] { padding-left: 0.8rem !important; padding-right: 0.8rem !important; font-size: 0.95rem !important; }
+  .nav-logo img { height: 116px !important; width: auto !important; }
+  [data-theme="light"] .nav-logo img { height: 145px !important; }
+}
+
+@media (max-width: 1050px) {
 
   /* ── Nav ── */
   nav {
-    height: 120px !important;
+    height: 140px !important;
     padding: 0 2rem !important;
   }
   .nav-desktop-links { display: none !important; }
@@ -939,12 +965,12 @@ nav { overflow: visible !important; }
     gap: 0.75rem;
   }
   .nav-logo img {
-    height: 113px !important;
+    height: 120px !important;
     width: auto !important;
     margin-left: -26px !important;
     margin-top: 7px !important;
   }
-  [data-theme="light"] .nav-logo img { height: 130px !important; margin-left: -19px !important; margin-top: 1px !important; }
+  [data-theme="light"] .nav-logo img { height: 150px !important; margin-left: -19px !important; margin-top: -1px !important; }
   .hamburger {
     background: none;
     border: 1px solid var(--ghost);
@@ -996,7 +1022,7 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    padding: 140px 0 3rem;
+    padding: 164px 0 3rem;
     min-height: auto;
   }
   .hero-content { padding: 0 1.25rem; }
@@ -1016,7 +1042,7 @@ nav { overflow: visible !important; }
 
   /* ── Inner banner ── */
   .inner-banner {
-    margin-top: 130px !important;
+    margin-top: 143px !important;
     padding: 3rem 1.25rem 2.5rem;
     min-height: auto;
   }
@@ -1104,11 +1130,11 @@ nav { overflow: visible !important; }
   nav { overflow: visible !important; }
   /* Logo on actual small mobile — match the larger hamburger size */
   .nav-logo img {
-    height: 113px !important;
+    height: 120px !important;
     width: auto !important;
     margin: 7px 0 0 -26px !important;
   }
-  [data-theme="light"] .nav-logo img { height: 130px !important; margin-left: -19px !important; margin-top: 1px !important; }
+  [data-theme="light"] .nav-logo img { height: 150px !important; margin-left: -19px !important; margin-top: -1px !important; }
 }
 
 .hero-badge-panel { display: none; }
