@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 
-// Public routes: no unsafe-eval, no unsafe-inline on script-src.
-// NOTE: If you use Next.js <script> tags that need inline execution, add a nonce instead.
+// Next.js dev server uses webpack eval() for hot reloading and source maps.
+// unsafe-eval is required in development but can be removed in production builds.
+const isDev = process.env.NODE_ENV === 'development'
+
 const publicCsp = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline';
+  script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''};
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com;
   img-src 'self' blob: data: https://cdn.sanity.io;
@@ -16,8 +18,7 @@ const publicCsp = `
   upgrade-insecure-requests;
 `
 
-// Sanity Studio requires unsafe-eval and unsafe-inline for its live editor.
-// Scope this looser policy only to /studio routes.
+// Sanity Studio always requires unsafe-eval for its live editor.
 const studioCsp = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval';
@@ -35,26 +36,11 @@ function compact(csp) {
 }
 
 const sharedHeaders = [
-  {
-    key: 'X-Frame-Options',
-    value: 'DENY',
-  },
-  {
-    key: 'X-Content-Type-Options',
-    value: 'nosniff',
-  },
-  {
-    key: 'Referrer-Policy',
-    value: 'strict-origin-when-cross-origin',
-  },
-  {
-    key: 'Strict-Transport-Security',
-    value: 'max-age=31536000; includeSubDomains; preload',
-  },
-  {
-    key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=()',
-  },
+  { key: 'X-Frame-Options', value: 'DENY' },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+  { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
+  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
 ]
 
 const nextConfig = {
@@ -64,20 +50,19 @@ const nextConfig = {
 
   async headers() {
     return [
-      // Looser CSP scoped to Sanity Studio only
+      // Apply public CSP to all routes
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'Content-Security-Policy', value: compact(publicCsp) },
+          ...sharedHeaders,
+        ],
+      },
+      // Override CSP for Studio routes only (runs after catch-all, overrides it)
       {
         source: '/studio/:path*',
         headers: [
           { key: 'Content-Security-Policy', value: compact(studioCsp) },
-          ...sharedHeaders,
-        ],
-      },
-      // Tighter CSP for all public routes (no unsafe-eval)
-      {
-        source: '/((?!studio).*)',
-        headers: [
-          { key: 'Content-Security-Policy', value: compact(publicCsp) },
-          ...sharedHeaders,
         ],
       },
     ]

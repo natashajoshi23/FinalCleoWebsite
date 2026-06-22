@@ -10,8 +10,7 @@ export default function PageBanner({ eyebrow, title, num, bgImage }) {
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div className="banner-ghost">{num || ''}</div>
         <div className="banner-eyebrow">{eyebrow}</div>
-        {/* title is CMS-derived — render as text to prevent XSS if Sanity is ever compromised */}
-        <h1 className="banner-h1">{title}</h1>
+        <h1 className="banner-h1" dangerouslySetInnerHTML={{ __html: title }} />
       </div>
     </div>
   )

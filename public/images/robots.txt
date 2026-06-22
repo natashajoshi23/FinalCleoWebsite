@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block all crawlers from API routes
+Disallow: /api/
+
+Sitemap: https://www.cleoconsult.com/sitemap.xml

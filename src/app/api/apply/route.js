@@ -4,7 +4,7 @@ function getResend() {
   return new Resend(process.env.RESEND_API_KEY)
 }
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+const MAX_FILE_SIZE = 2 * 1024 * 1024 // 2MB
 
 const ALLOWED_MIME_TYPES = [
   'application/pdf',
@@ -75,7 +75,7 @@ export async function POST(req) {
 
     if (resumeFile.size > MAX_FILE_SIZE) {
       return new Response(
-        JSON.stringify({ error: 'Resume must be under 5MB.' }),
+        JSON.stringify({ error: 'Resume must be under 2MB.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       )
     }
