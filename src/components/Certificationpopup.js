@@ -45,8 +45,8 @@ export default function CertificationPopup() {
   const next = () => setCurrent(c => (c + 1) % slides.length)
 
   const arrowStyle = {
-    background: 'rgba(255,255,255,0.1)',
-    border: '1px solid rgba(255,255,255,0.3)',
+    background: 'rgba(0,0,0,0.45)',
+    border: '1px solid rgba(255,255,255,0.5)',
     color: '#fff',
     fontSize: isMobile ? '1.2rem' : '1.5rem',
     cursor: 'pointer',
@@ -120,8 +120,8 @@ export default function CertificationPopup() {
                   onClick={function() { setCurrent(0) }}
                   aria-label="Back to first slide"
                   style={{ ...arrowStyle, position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
-                  onMouseOver={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.25)' }}
-                  onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
+                  onMouseOver={function(e) { e.currentTarget.style.background = 'rgba(0,0,0,0.7)' }}
+                  onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(0,0,0,0.45)' }}
                 >{'‹'}</button>
               )}
               {isMobile && current < slides.length - 1 && (
@@ -129,8 +129,8 @@ export default function CertificationPopup() {
                   onClick={next}
                   aria-label="Next slide"
                   style={{ ...arrowStyle, position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
-                  onMouseOver={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.25)' }}
-                  onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
+                  onMouseOver={function(e) { e.currentTarget.style.background = 'rgba(0,0,0,0.7)' }}
+                  onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(0,0,0,0.45)' }}
                 >{'›'}</button>
               )}
 
@@ -140,9 +140,9 @@ export default function CertificationPopup() {
                   alt={slides[current].alt}
                   style={{
                     height: 'auto',
-                    width: isMobile ? 'calc(100vw - 2.5rem)' : 'auto',
-                    maxHeight: isMobile ? '70vh' : '65vh',
-                    maxWidth: isMobile ? 'none' : 'min(calc(100vw - 160px), 760px)',
+                    width: 'auto',
+                    maxHeight: '60vh',
+                    maxWidth: isMobile ? 'calc(100vw - 2.5rem)' : 'min(calc(100vw - 160px), 680px)',
                     display: 'block',
                     filter: 'drop-shadow(0 8px 30px rgba(0,0,0,0.4))',
                   }}
