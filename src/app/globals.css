@@ -1257,12 +1257,15 @@ img, video, iframe, embed, object {
   }
 }
 
-/* 4. Body/html: hard-stop horizontal scroll on all screen sizes */
-html, body {
+/* 4. Hard-stop horizontal scroll — only on body, not html (html overflow:hidden breaks IntersectionObserver on iOS) */
+html {
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
   overflow-x: hidden !important;
   width: 100% !important;
   max-width: 100vw !important;
-  -webkit-text-size-adjust: 100%;
 }
 
 /* 5. Sections: constrain width but don't clip overflow — that kills animations */
