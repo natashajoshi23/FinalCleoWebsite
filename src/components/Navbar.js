@@ -242,7 +242,7 @@ export default function Navbar() {
         onClick={() => setMenuOpen(false)}
         style={{
           position: 'fixed', inset: 0, zIndex: 9997,
-          background: 'rgba(0,0,0,0.25)',
+          background: 'rgba(0,0,0,0.08)',
           opacity: menuOpen ? 1 : 0,
           pointerEvents: menuOpen ? 'auto' : 'none',
           transition: 'opacity 0.35s ease',
