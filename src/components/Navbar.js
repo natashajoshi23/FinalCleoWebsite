@@ -111,7 +111,7 @@ export default function Navbar() {
         style={{
           position: 'fixed',
           top: 0, left: 0, right: 0,
-          zIndex: 9999,
+          zIndex: menuOpen ? 9996 : 9999,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
