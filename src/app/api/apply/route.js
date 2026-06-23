@@ -22,6 +22,7 @@ function isValidEmail(email) {
 function sanitize(str, maxLen = 500) {
   if (!str) return ''
   return String(str)
+    .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, '') // drop script/style blocks AND their contents
     .replace(/<[^>]*>/g, '')
     .replace(/[\r\n]+/g, ' ')
     .trim()
@@ -128,13 +129,14 @@ export async function POST(req) {
     await resend.emails.send({
       from: 'Cleo Consulting <usa@cleoconsult.com>',
       to: email,
-      subject: 'We received your application — Cleo Consulting',
+      subject: 'Application received — Cleo Consulting',
       html: `
-        <h2>Thank you, ${name}!</h2>
-        <p>We've received your application for <strong>${position}</strong> and our recruitment team will review your profile shortly.</p>
-        <p>If there's a match, we'll be in touch within 48 hours.</p>
+        <h2>Thank you for applying, ${name}!</h2>
+        <p>We've successfully received your application for the <strong>${position}</strong> position at Cleo Consulting. Our team is reviewing your qualifications and will contact you if there is a match. We will make every effort to get back to you as soon as possible. In the meantime, feel free to directly reply to this email if you have any questions, or explore our open roles and insights at <a href="https://cleoconsult.com">cleoconsult.com</a></p>
+        <p>We appreciate your interest in Cleo Consulting and wish you the best of luck in your job search.</p>
+        <p>Sincerely,<br/>The Cleo Consulting Recruitment Team</p>
         <br/>
-        <p style="color: #999; font-size: 0.85rem;">Cleo Consulting — We Sniff Out the Best Talent</p>
+        <p style="font-size: 0.85rem;"><span style="color: #001229;">Cleo Consulting — We Sniff Out the Best Talent &nbsp;•&nbsp;</span> <a href="https://www.linkedin.com/company/cleo-consulting-inc-/" style="color: #C8991F; font-weight: bold;">LinkedIn</a></p>
       `,
     })
 

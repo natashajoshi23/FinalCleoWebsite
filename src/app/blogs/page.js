@@ -4,6 +4,9 @@ import { client } from '@/sanity/lib/client'
 
 export const metadata = { title: 'Insights — Cleo Consulting' }
 
+// Re-query Sanity at most once per 60s so newly published posts appear automatically
+export const revalidate = 60
+
 async function getPosts() {
   return client.fetch(`
     *[_type == "post"] | order(publishedAt desc) {

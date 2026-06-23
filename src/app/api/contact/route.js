@@ -16,7 +16,8 @@ function isValidEmail(email) {
 function sanitize(str, maxLen = 500) {
   if (!str) return ''
   return String(str)
-    .replace(/<[^>]*>/g, '')    // strip HTML tags
+    .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, '') // drop script/style blocks AND their contents
+    .replace(/<[^>]*>/g, '')    // strip any remaining HTML tags
     .replace(/[\r\n]+/g, ' ')  // collapse CRLF (prevents header injection)
     .trim()
     .slice(0, maxLen)
@@ -100,7 +101,7 @@ export async function POST(req) {
         <p>We've received your message and will get back to you promptly.</p>
         ${safeService ? `<p>You enquired about: <strong>${safeService}</strong></p>` : ''}
         <br/>
-        <p style="color: #999; font-size: 0.85rem;">Cleo Consulting — We Sniff Out the Best Talent</p>
+        <p style="font-size: 0.85rem;"><span style="color: #001229;">Cleo Consulting — We Sniff Out the Best Talent &nbsp;•&nbsp;</span> <a href="https://www.linkedin.com/company/cleo-consulting-inc-/" style="color: #C8991F; font-weight: bold;">LinkedIn</a></p>
       `,
     })
 

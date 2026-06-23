@@ -19,6 +19,10 @@ export async function generateStaticParams() {
   return slugs.map(slug => ({ slug }))
 }
 
+// Re-query Sanity at most once per 60s, and render slugs created after build on demand
+export const revalidate = 60
+export const dynamicParams = true
+
 export default async function BlogPage({ params }) {
   const post = await getPost(params.slug)
   if (!post) return (

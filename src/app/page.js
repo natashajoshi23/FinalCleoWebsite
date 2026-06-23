@@ -20,19 +20,19 @@ const services = [
 ]
 
 const roles = [
-  { name: 'Cloud Engineers & Architects', tag: 'Infrastructure', href: '/managed-services' },
-  { name: 'Cyber Security Consultants', tag: 'Security', href: '/managed-services' },
-  { name: 'Data Scientists', tag: 'Analytics', href: '/managed-services' },
-  { name: 'Palo Alto Certified Engineers', tag: 'PCNSE', href: '/managed-services' },
+  { name: 'Cloud Engineers & Architects', tag: 'Infrastructure', href: '/managed-services/cloud-engineers' },
+  { name: 'Cyber Security Consultants', tag: 'Security', href: '/managed-services/cyber-security' },
+  { name: 'Data Scientists', tag: 'Analytics', href: '/managed-services/data-scientist' },
+  { name: 'Palo Alto Certified Engineers', tag: 'PCNSE', href: '/managed-services/palo-alto' },
   { name: 'Salesforce & ServiceNow Consultants', tag: 'CRM / ITSM', href: '/managed-services' },
-  { name: 'Java & .NET Developers', tag: 'Engineering', href: '/managed-services' },
+  { name: 'Java & .NET Developers', tag: 'Engineering', href: '/managed-services/java-dotnet' },
   { name: 'Registered Nurses — RN / LPN / CNA', tag: 'Healthcare', href: '/health-services' },
 ]
 
 const projects = [
-  { title: 'Cisco Network Solutions', text: 'Enterprise Cisco network infrastructure design and deployment for clients across North America.', img: '/images/laptop-teamwork.webp' },
-  { title: 'Cloud Integration Services', text: 'Multi-cloud integration across Azure, AWS and GCP driving productivity and scalability.', img: '/images/digital-globe.webp' },
-  { title: 'Cyber Security Services', text: 'Advanced security consultation protecting digital assets for enterprise clients worldwide.', img: '/images/circuit-board.webp' },
+  { title: 'Cisco Network Solutions', text: 'Enterprise Cisco network infrastructure design and deployment for clients across North America.', img: '/images/laptop-teamwork.webp', slug: 'cisco-network-solutions' },
+  { title: 'Cloud Integration Services', text: 'Multi-cloud integration across Azure, AWS and GCP driving productivity and scalability.', img: '/images/digital-globe.webp', slug: 'cloud-integration-services' },
+  { title: 'Cyber Security Services', text: 'Advanced security consultation protecting digital assets for enterprise clients worldwide.', img: '/images/circuit-board.webp', slug: 'cyber-security-services' },
 ]
 
 const clients = ['CISCO', 'AZURE', 'AWS', 'PALO ALTO', 'SALESFORCE', 'SERVICENOW', 'GOOGLE CLOUD', 'NERSIFY', 'ADOBE AEM']
@@ -222,8 +222,8 @@ export default function Home() {
             <Link href="/projects" className="btn-ghost-btn">View All</Link>
           </div></ScrollReveal>
           <ScrollReveal delay={1}><div className="proj-grid">
-            {projects.map(({ title, text, img }) => (
-              <Link href="/projects" className="proj" key={title} style={{ textDecoration: 'none', display: 'block' }}>
+            {projects.map(({ title, text, img, slug }) => (
+              <Link href={`/projects/${slug}`} className="proj" key={title} style={{ textDecoration: 'none', display: 'block' }}>
                 <div className="proj-card-img"><img src={img} alt={title} /></div>
                 <div style={{ padding: '1.5rem 2rem' }}><div className="proj-title">{title}</div><p className="proj-text">{text}</p><div className="proj-link">View More</div></div>
               </Link>

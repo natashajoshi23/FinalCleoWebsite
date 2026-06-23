@@ -34,7 +34,7 @@ export default function Footer() {
               <div className="ft-col-title">Connect</div>
               <ul className="ft-links">
                 <li><Link href="/contact">Contact Us</Link></li>
-                <li><Link href="/contact">Our Offices</Link></li>
+                <li><Link href="/apply">Job Board</Link></li>
                 <li><a href="https://www.linkedin.com/company/cleo-consulting-inc-/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
               </ul>
             </div>
