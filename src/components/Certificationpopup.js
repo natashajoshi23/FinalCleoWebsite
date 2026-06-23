@@ -144,7 +144,7 @@ export default function CertificationPopup() {
             onClick={function(e) { e.stopPropagation() }}
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', marginTop: '1.25rem' }}
           >
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
               {slides.map(function(_, i) {
                 return (
                   <button
@@ -152,14 +152,17 @@ export default function CertificationPopup() {
                     onClick={function() { setCurrent(i) }}
                     aria-label={'Go to slide ' + (i + 1)}
                     style={{
-                      width: i === current ? '24px' : '8px',
-                      height: '8px',
-                      borderRadius: '4px',
+                      width: i === current ? '10px' : '8px',
+                      height: i === current ? '10px' : '8px',
+                      borderRadius: '50%',
                       border: 'none',
                       cursor: 'pointer',
                       background: i === current ? 'var(--gold)' : 'rgba(255,255,255,0.4)',
                       transition: 'all 0.3s',
                       padding: 0,
+                      minHeight: 'unset',
+                      minWidth: 'unset',
+                      flexShrink: 0,
                     }}
                   />
                 )
