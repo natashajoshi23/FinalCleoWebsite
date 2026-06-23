@@ -955,9 +955,8 @@ nav { overflow: visible !important; }
 
   /* ── Nav ── */
   nav {
-    height: 100px !important;
+    height: 130px !important;
     padding: 0 1.25rem !important;
-    /* Solid opaque header on mobile so page content doesn't show through */
     background: #001229 !important;
     backdrop-filter: none !important;
     top: 0 !important;
@@ -1032,7 +1031,7 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    padding: 100px 0 3rem;
+    padding: 130px 0 3rem;
     min-height: auto;
     margin-top: 0 !important;
   }
@@ -1053,7 +1052,7 @@ nav { overflow: visible !important; }
 
   /* ── Inner banner ── */
   .inner-banner {
-    margin-top: 100px !important;
+    margin-top: 130px !important;
     padding: 3rem 1.25rem 2.5rem;
     min-height: auto;
   }
@@ -1146,11 +1145,11 @@ nav { overflow: visible !important; }
   nav { overflow: visible !important; }
   /* Logo on actual small mobile */
   .nav-logo img {
-    height: 80px !important;
+    height: 120px !important;
     width: auto !important;
     margin: 0 0 0 -20px !important;
   }
-  [data-theme="light"] .nav-logo img { height: 95px !important; margin-left: -13px !important; margin-top: 0 !important; }
+  [data-theme="light"] .nav-logo img { height: 140px !important; margin-left: -13px !important; margin-top: 0 !important; }
 }
 
 .hero-badge-panel { display: none; }
@@ -1264,12 +1263,12 @@ img, video, iframe, embed, object {
   .nav-logo img {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    height: 80px !important;
-    max-height: 80px !important;
+    height: 120px !important;
+    max-height: 120px !important;
   }
   [data-theme="light"] .nav-logo img {
-    height: 95px !important;
-    max-height: 95px !important;
+    height: 140px !important;
+    max-height: 140px !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     margin-left: -13px !important;

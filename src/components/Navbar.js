@@ -79,8 +79,11 @@ export default function Navbar() {
           ? `1px solid ${themeHovered ? gold : 'rgba(245,237,230,0.25)'}`
           : `1px solid ${themeHovered ? 'rgba(0,18,41,0.5)' : 'rgba(0,18,41,0.25)'}`,
         borderRadius: '50%',
-        width: '38px',
-        height: '38px',
+        width: '44px',
+        height: '44px',
+        minHeight: '44px',
+        maxHeight: '44px',
+        minWidth: '44px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -113,7 +116,7 @@ export default function Navbar() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
-          height: isMobile ? '100px' : '155px',
+          height: isMobile ? '130px' : '155px',
           transition: 'background 0.5s, backdrop-filter 0.5s',
           background: isMobile
             ? (isDark ? '#001229' : '#FDFAF4')
@@ -134,7 +137,7 @@ export default function Navbar() {
             alt="Cleo Consulting"
             width={200} height={64}
             style={{
-              height: isMobile ? (isDark ? '80px' : '95px') : (isDark ? '145px' : '180px'),
+              height: isMobile ? (isDark ? '120px' : '140px') : (isDark ? '145px' : '180px'),
               width: 'auto',
               objectFit: 'contain',
               marginLeft: isMobile ? (isDark ? '-20px' : '-13px') : (isDark ? '-25px' : '-15px'),
