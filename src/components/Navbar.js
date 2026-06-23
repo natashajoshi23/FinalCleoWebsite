@@ -116,11 +116,11 @@ export default function Navbar() {
           height: isMobile ? '100px' : '155px',
           transition: 'background 0.5s, backdrop-filter 0.5s',
           background: isMobile
-            ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
+            ? (isDark ? '#001229' : '#FDFAF4')
             : scrolled
               ? (isDark ? 'rgba(0,18,41,0.95)' : 'rgba(253,250,244,0.95)')
               : 'transparent',
-          backdropFilter: (scrolled || isMobile) ? 'blur(16px)' : 'none',
+          backdropFilter: isMobile ? 'none' : (scrolled ? 'blur(16px)' : 'none'),
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
@@ -130,11 +130,11 @@ export default function Navbar() {
             alt="Cleo Consulting"
             width={200} height={64}
             style={{
-              height: isMobile ? (isDark ? '110px' : '140px') : (isDark ? '145px' : '180px'),
+              height: isMobile ? (isDark ? '80px' : '95px') : (isDark ? '145px' : '180px'),
               width: 'auto',
               objectFit: 'contain',
               marginLeft: isMobile ? (isDark ? '-20px' : '-13px') : (isDark ? '-25px' : '-15px'),
-              marginTop: isMobile ? (isDark ? '15px' : '9px') : (isDark ? '0px' : '-10px'),
+              marginTop: '0px',
             }}
             priority
           />
@@ -221,6 +221,8 @@ export default function Navbar() {
           opacity: menuOpen ? 1 : 0,
           pointerEvents: menuOpen ? 'auto' : 'none',
           transition: 'opacity 0.35s ease',
+          width: '100%', height: '100%',
+          maxWidth: '100vw', maxHeight: '100vh',
         }}
       />
 
@@ -239,6 +241,8 @@ export default function Navbar() {
           transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.35s cubic-bezier(0.4,0,0.2,1)',
           boxShadow: menuOpen ? '-8px 0 32px rgba(0,0,0,0.35)' : 'none',
+          maxHeight: '100vh',
+          overflowX: 'hidden',
         }}>
 
         {/* Sidebar header */}
