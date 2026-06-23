@@ -896,7 +896,7 @@ nav { overflow: visible !important; }
 
 /* Fluid gap: spreads out on wide screens, tightens when space is short (no overflow) */
 @media (min-width: 1401px) {
-  nav { padding: 0.75rem 1.25rem !important; }
+  nav { padding: 0.75rem 2.5rem 0.75rem 1.25rem !important; }
   .nav-desktop-links { gap: clamp(1.5rem, 2.8vw, 4rem) !important; }
   .nav-desktop-links a[href="/contact"],
   .nav-desktop-links a[href="/apply"] { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
