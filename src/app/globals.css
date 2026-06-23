@@ -1131,8 +1131,13 @@ nav { overflow: visible !important; }
   /* Health split: text overlaps the image (image as background) on mobile */
   .split-section { display: block !important; position: relative !important; min-height: auto !important; }
   .split-left { position: absolute !important; inset: 0 !important; height: 100% !important; }
-  .split-left::after { background: linear-gradient(to bottom, rgba(0,18,41,0.55), rgba(0,18,41,0.9)) !important; }
+  .split-left::after { background: linear-gradient(to bottom, rgba(0,18,41,0.65), rgba(0,18,41,0.92)) !important; }
   .split-right { position: relative !important; z-index: 2 !important; padding: 3rem 1.5rem !important; background: transparent !important; }
+  /* Light mode: overlay is still dark, so force text to be light */
+  [data-theme="light"] .split-right .big-title { color: rgba(245,237,230,0.95) !important; }
+  [data-theme="light"] .split-right p { color: rgba(245,237,230,0.75) !important; }
+  [data-theme="light"] .split-right .sec-label { color: var(--gold) !important; }
+  [data-theme="light"] .split-right .pill { border-color: rgba(245,237,230,0.4) !important; color: rgba(245,237,230,0.85) !important; }
   nav { overflow: visible !important; }
   /* Logo on actual small mobile — match the larger hamburger size */
   .nav-logo img {
