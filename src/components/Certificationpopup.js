@@ -89,7 +89,7 @@ export default function CertificationPopup() {
               boxSizing: 'border-box',
             }}
           >
-            {current === slides.length - 1 ? (
+            {!isMobile && (current === slides.length - 1 ? (
               <button
                 onClick={function() { setCurrent(0) }}
                 aria-label="Back to first slide"
@@ -98,8 +98,8 @@ export default function CertificationPopup() {
                 onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
               >{'‹'}</button>
             ) : (
-              <div style={{ width: isMobile ? '36px' : '48px', flexShrink: 0 }} />
-            )}
+              <div style={{ width: '48px', flexShrink: 0 }} />
+            ))}
 
             <div style={{ position: 'relative' }}>
               <button
@@ -114,15 +114,35 @@ export default function CertificationPopup() {
                 onMouseOver={function(e) { e.currentTarget.style.background = 'rgba(0,0,0,0.9)' }}
                 onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(0,0,0,0.6)' }}
               >{'x'}</button>
+
+              {isMobile && current === slides.length - 1 && (
+                <button
+                  onClick={function() { setCurrent(0) }}
+                  aria-label="Back to first slide"
+                  style={{ ...arrowStyle, position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+                  onMouseOver={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.25)' }}
+                  onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
+                >{'‹'}</button>
+              )}
+              {isMobile && current < slides.length - 1 && (
+                <button
+                  onClick={next}
+                  aria-label="Next slide"
+                  style={{ ...arrowStyle, position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+                  onMouseOver={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.25)' }}
+                  onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
+                >{'›'}</button>
+              )}
+
               <a href={siteUrl} target="_blank" rel="noopener noreferrer">
                 <img
                   src={slides[current].img}
                   alt={slides[current].alt}
                   style={{
                     height: 'auto',
-                    width: 'auto',
-                    maxHeight: isMobile ? '75vh' : '65vh',
-                    maxWidth: isSmall ? 'calc(100vw - 130px)' : 'min(calc(100vw - 160px), 760px)',
+                    width: isMobile ? 'calc(100vw - 2.5rem)' : 'auto',
+                    maxHeight: isMobile ? '70vh' : '65vh',
+                    maxWidth: isMobile ? 'none' : 'min(calc(100vw - 160px), 760px)',
                     display: 'block',
                     filter: 'drop-shadow(0 8px 30px rgba(0,0,0,0.4))',
                   }}
@@ -130,7 +150,7 @@ export default function CertificationPopup() {
               </a>
             </div>
 
-            {current < slides.length - 1 ? (
+            {!isMobile && (current < slides.length - 1 ? (
               <button
                 onClick={next}
                 aria-label="Next slide"
@@ -139,8 +159,8 @@ export default function CertificationPopup() {
                 onMouseOut={function(e) { e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
               >{'›'}</button>
             ) : (
-              <div style={{ width: isMobile ? '36px' : '48px', flexShrink: 0 }} />
-            )}
+              <div style={{ width: '48px', flexShrink: 0 }} />
+            ))}
           </div>
 
           <div
