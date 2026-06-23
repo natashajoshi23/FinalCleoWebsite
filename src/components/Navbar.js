@@ -32,8 +32,13 @@ export default function Navbar() {
   useEffect(() => { setMenuOpen(false); setMobileAboutOpen(false) }, [pathname])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    const lock = menuOpen ? 'hidden' : ''
+    document.body.style.overflow = lock
+    document.documentElement.style.overflow = lock
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
   }, [menuOpen])
 
   const gold = 'var(--gold)'
