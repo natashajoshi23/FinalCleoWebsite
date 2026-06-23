@@ -52,6 +52,8 @@ export default function CertificationPopup() {
     cursor: 'pointer',
     width: isMobile ? '36px' : '48px',
     height: isMobile ? '36px' : '48px',
+    minHeight: 'unset',
+    minWidth: 'unset',
     borderRadius: '50%',
     display: 'flex',
     alignItems: 'center',
@@ -103,7 +105,7 @@ export default function CertificationPopup() {
                 onClick={close}
                 style={{
                   position: 'absolute', top: '10px', right: '10px', zIndex: 10,
-                  width: '36px', height: '36px', borderRadius: '50%',
+                  width: '36px', height: '36px', minHeight: 'unset', minWidth: 'unset', borderRadius: '50%',
                   background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.3)',
                   color: '#fff', fontSize: '1.2rem', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
