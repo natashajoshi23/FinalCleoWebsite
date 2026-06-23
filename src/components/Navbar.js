@@ -138,8 +138,9 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop nav — hidden on mobile via CSS. Right padding reserves room for the pinned toggle. */}
-        <ul className="nav-desktop-links" style={{ display: 'flex', alignItems: 'center', gap: '2.25rem', listStyle: 'none', margin: 0, padding: '0 3.5rem 0 0' }}>
+        {/* Desktop nav + theme toggle grouped on the right so flexbox reserves space for the toggle — no overlap. Hidden on mobile via CSS. */}
+        <div className="nav-desktop-right" style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }}>
+        <ul className="nav-desktop-links" style={{ display: 'flex', alignItems: 'center', gap: '2.25rem', listStyle: 'none', margin: 0, padding: 0 }}>
           <li><Link href="/" style={linkStyle(pathname === '/', '/')} onMouseEnter={() => setHoveredLink('/')} onMouseLeave={() => setHoveredLink(null)}>Home</Link></li>
           <li
             style={{ position: 'relative' }}
@@ -181,9 +182,6 @@ export default function Navbar() {
             </div>
           </li>
         </ul>
-
-        {/* Theme toggle — pinned absolutely so it's out of the flex row and can never be clipped (desktop only) */}
-        <div className="nav-theme-pin" style={{ position: 'absolute', right: '1.5rem', top: '50%', transform: 'translateY(-50%)' }}>
           <ThemeButton />
         </div>
 

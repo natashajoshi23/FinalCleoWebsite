@@ -879,9 +879,9 @@ textarea:focus-visible,
 /* Desktop: show desktop nav, hide hamburger controls */
 .nav-desktop-links { display: flex !important; }
 .nav-mobile-controls { display: none !important; }
-/* Pinned desktop theme toggle: shown on desktop, hidden on mobile (mobile has its own) */
-.nav-theme-pin { display: flex !important; }
-@media (max-width: 1050px) { .nav-theme-pin { display: none !important; } }
+/* Desktop nav + toggle group: shown on desktop, hidden on mobile (mobile has its own toggle) */
+.nav-desktop-right { display: flex !important; align-items: center; }
+@media (max-width: 1050px) { .nav-desktop-right { display: none !important; } }
 
 /* Gradually shrink desktop nav as screen narrows */
 nav { overflow: visible !important; }
