@@ -32,12 +32,27 @@ export default function Navbar() {
   useEffect(() => { setMenuOpen(false); setMobileAboutOpen(false) }, [pathname])
 
   useEffect(() => {
-    const lock = menuOpen ? 'hidden' : ''
-    document.body.style.overflow = lock
-    document.documentElement.style.overflow = lock
-    return () => {
+    if (menuOpen) {
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.overflow = 'hidden'
+    } else {
+      const scrollY = parseInt(document.body.style.top || '0') * -1
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
       document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
+      window.scrollTo(0, scrollY)
+    }
+    return () => {
+      const scrollY = parseInt(document.body.style.top || '0') * -1
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      if (scrollY) window.scrollTo(0, scrollY)
     }
   }, [menuOpen])
 
@@ -239,11 +254,9 @@ export default function Navbar() {
       {/* Slide-in sidebar drawer */}
       <div className="mobile-sidebar" style={{
           position: 'fixed',
-          top: 0, right: 0,
+          top: 0, right: 0, bottom: 0,
           width: '340px',
           maxWidth: '90vw',
-          height: '100%',
-          minHeight: '-webkit-fill-available',
           background: drawerBg,
           zIndex: 9998,
           overflowY: 'auto',
@@ -254,7 +267,7 @@ export default function Navbar() {
           transition: 'transform 0.35s cubic-bezier(0.4,0,0.2,1)',
           boxShadow: menuOpen ? '-8px 0 32px rgba(0,0,0,0.35)' : 'none',
           overflowX: 'hidden',
-          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 1.5rem)',
         }}>
 
         {/* Sidebar header */}
