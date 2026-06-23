@@ -237,19 +237,19 @@ export default function Navbar() {
           </div>
       </nav>
 
-      {/* Backdrop */}
-      <div
-        onClick={() => setMenuOpen(false)}
-        style={{
-          position: 'fixed', inset: 0, zIndex: 9997,
-          backdropFilter: menuOpen ? 'blur(4px)' : 'none',
-          WebkitBackdropFilter: menuOpen ? 'blur(4px)' : 'none',
-          background: menuOpen ? 'rgba(0,0,0,0.15)' : 'transparent',
-          opacity: menuOpen ? 1 : 0,
-          pointerEvents: menuOpen ? 'auto' : 'none',
-          transition: 'opacity 0.35s ease',
-        }}
-      />
+      {/* Tap-outside-to-close — fully transparent, no overlay */}
+      {menuOpen && (
+        <div
+          onClick={() => setMenuOpen(false)}
+          style={{
+            position: 'fixed', inset: 0,
+            right: 'auto',
+            width: `calc(100vw - 340px)`,
+            zIndex: 9997,
+            background: 'transparent',
+          }}
+        />
+      )}
 
       {/* Slide-in sidebar drawer */}
       <div className="mobile-sidebar" style={{
