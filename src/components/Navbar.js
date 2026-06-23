@@ -253,8 +253,8 @@ export default function Navbar() {
       <div className="mobile-sidebar" style={{
           position: 'fixed',
           top: 0, right: 0, bottom: 0,
-          width: '300px',
-          maxWidth: '78vw',
+          width: '260px',
+          maxWidth: '65vw',
           background: drawerBg,
           zIndex: 9998,
           overflowY: 'auto',
