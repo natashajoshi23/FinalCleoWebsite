@@ -84,7 +84,7 @@ export default function CertificationPopup() {
               gap: isMobile ? '0.5rem' : '1.5rem',
               animation: 'popUp 0.3s ease',
               padding: isMobile ? '0 1.25rem' : '0',
-              marginTop: isMobile ? '0' : '80px',
+              marginTop: '80px',
               maxWidth: '100vw',
               boxSizing: 'border-box',
             }}

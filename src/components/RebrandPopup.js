@@ -42,7 +42,7 @@ export default function RebrandPopup() {
         onClick={e => e.stopPropagation()}
         style={{
           position: 'relative',
-          maxWidth: isMobile ? '100%' : '720px',
+          maxWidth: isMobile ? '90%' : '720px',
           width: '100%',
           animation: 'popUp 0.35s ease',
           marginTop: isMobile ? '0' : '60px',
@@ -65,6 +65,8 @@ export default function RebrandPopup() {
           style={{
             width: '100%',
             height: 'auto',
+            maxHeight: '65vh',
+            objectFit: 'contain',
             display: 'block',
             borderRadius: '8px',
             filter: 'drop-shadow(0 12px 40px rgba(0,0,0,0.5))',
