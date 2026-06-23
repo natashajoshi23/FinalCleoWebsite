@@ -108,7 +108,7 @@ export default function Navbar() {
         style={{
           position: 'fixed',
           top: 0, left: 0, right: 0,
-          zIndex: 200,
+          zIndex: 9999,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -121,6 +121,10 @@ export default function Navbar() {
               ? (isDark ? 'rgba(0,18,41,0.95)' : 'rgba(253,250,244,0.95)')
               : 'transparent',
           backdropFilter: isMobile ? 'none' : (scrolled ? 'blur(16px)' : 'none'),
+          /* Extend background upward to cover iOS Safari URL-bar gap during scroll */
+          boxShadow: isMobile
+            ? (isDark ? '0 -200px 0 200px #001229' : '0 -200px 0 200px #FDFAF4')
+            : 'none',
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
