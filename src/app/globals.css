@@ -957,14 +957,9 @@ nav { overflow: visible !important; }
   nav {
     height: 130px !important;
     padding: 0 1.25rem !important;
-    background: #001229 !important;
-    backdrop-filter: none !important;
     top: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
-  }
-  [data-theme="light"] nav {
-    background: #FDFAF4 !important;
   }
   .nav-desktop-links { display: none !important; }
   .nav-mobile-controls {
@@ -1248,16 +1243,10 @@ img, video, iframe, embed, object {
   height: auto;
 }
 
-/* 3. Nav: fully opaque, no overflow bleeding, flush to top on all mobile */
+/* 3. Nav: no overflow bleeding, flush to top on all mobile */
 @media (max-width: 1050px) {
   nav {
     overflow: hidden !important;
-    background: #001229 !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-  [data-theme="light"] nav {
-    background: #FDFAF4 !important;
   }
   /* All nav logo images — zero top margin, sized to fit */
   .nav-logo img {

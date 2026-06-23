@@ -118,14 +118,12 @@ export default function Navbar() {
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? '130px' : '155px',
           transition: 'background 0.5s, backdrop-filter 0.5s',
-          background: isMobile
-            ? (isDark ? '#001229' : '#FDFAF4')
-            : scrolled
-              ? (isDark ? 'rgba(0,18,41,0.95)' : 'rgba(253,250,244,0.95)')
-              : 'transparent',
-          backdropFilter: isMobile ? 'none' : (scrolled ? 'blur(16px)' : 'none'),
-          /* Extend background upward to cover iOS Safari URL-bar gap during scroll */
-          boxShadow: isMobile
+          background: scrolled
+            ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
+            : 'transparent',
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          /* Extend background upward on scroll to cover iOS Safari URL-bar gap */
+          boxShadow: isMobile && scrolled
             ? (isDark ? '0 -200px 0 200px #001229' : '0 -200px 0 200px #FDFAF4')
             : 'none',
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
