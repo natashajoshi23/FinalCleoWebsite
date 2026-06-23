@@ -84,6 +84,7 @@ export default function CertificationPopup() {
               gap: isMobile ? '0.5rem' : '1.5rem',
               animation: 'popUp 0.3s ease',
               padding: isMobile ? '0 1.25rem' : '0',
+              marginTop: isMobile ? '0' : '80px',
               maxWidth: '100vw',
               boxSizing: 'border-box',
             }}
@@ -120,7 +121,7 @@ export default function CertificationPopup() {
                   style={{
                     height: 'auto',
                     width: 'auto',
-                    maxHeight: '85vh',
+                    maxHeight: isMobile ? '75vh' : '65vh',
                     maxWidth: isSmall ? 'calc(100vw - 130px)' : 'min(calc(100vw - 160px), 760px)',
                     display: 'block',
                     filter: 'drop-shadow(0 8px 30px rgba(0,0,0,0.4))',
