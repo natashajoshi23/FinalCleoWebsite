@@ -139,7 +139,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav + theme toggle grouped on the right so flexbox reserves space for the toggle — no overlap. Hidden on mobile via CSS. */}
-        <div className="nav-desktop-right" style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }}>
+        <div className="nav-desktop-right" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <ul className="nav-desktop-links" style={{ display: 'flex', alignItems: 'center', gap: '2.25rem', listStyle: 'none', margin: 0, padding: 0 }}>
           <li><Link href="/" style={linkStyle(pathname === '/', '/')} onMouseEnter={() => setHoveredLink('/')} onMouseLeave={() => setHoveredLink(null)}>Home</Link></li>
           <li
