@@ -11,7 +11,7 @@
   --body:'DM Sans',sans-serif;
   --script:'Dancing Script',cursive;
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:var(--body);background:var(--ink);color:var(--paper);overflow-x:hidden}
 
 /* ── NOISE ── */
@@ -229,7 +229,7 @@ nav.scrolled{background:rgba(0,18,41,0.92);backdrop-filter:blur(16px)}
 /* ══════════════ HOME ══════════════ */
 
 /* HERO */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:visible;background:var(--ink);padding:180px 0 2rem}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow-x:clip;background:var(--ink);padding:180px 0 2rem}
 .hero-grid{position:absolute;inset:0;
   background-image:linear-gradient(rgba(200,153,31,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(200,153,31,0.045) 1px,transparent 1px);
   background-size:72px 72px;z-index:0}
@@ -957,6 +957,12 @@ nav { overflow: visible !important; }
   nav {
     height: 140px !important;
     padding: 0 2rem !important;
+    /* Solid header on mobile so page content doesn't show through the bar */
+    background: rgba(0, 18, 41, 0.97) !important;
+    backdrop-filter: blur(12px) !important;
+  }
+  [data-theme="light"] nav {
+    background: rgba(253, 250, 244, 0.97) !important;
   }
   .nav-desktop-links { display: none !important; }
   .nav-mobile-controls {
