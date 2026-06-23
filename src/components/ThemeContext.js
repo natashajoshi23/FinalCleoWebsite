@@ -12,10 +12,14 @@ export function ThemeProvider({ children }) {
     setIsDark(saved !== 'light') // anything other than explicit 'light' → dark
   }, [])
 
-  // On every change: apply to DOM and save
+  // On every change: apply to DOM and save (disable transitions during swap so it's instant)
   useEffect(() => {
+    document.documentElement.classList.add('no-transitions')
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.documentElement.classList.remove('no-transitions')
+    }))
   }, [isDark])
 
   return (

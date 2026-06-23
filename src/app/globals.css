@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,300&family=Dancing+Script:wght@600&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+.no-transitions *,.no-transitions *::before,.no-transitions *::after{transition:none!important}
 :root{
   --gold:#C8991F;--gold-l:#DBA82A;--gold-d:#8B6010;--gold-pale:rgba(200,153,31,0.08);
   --ink:#001229;--ink2:#0a1e3a;--ink3:#0d2847;
