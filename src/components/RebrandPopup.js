@@ -15,7 +15,7 @@ export default function RebrandPopup() {
   useEffect(() => {
     const seen = sessionStorage.getItem('rebrand-seen')
     if (!seen) {
-      const timer = setTimeout(() => setShow(true), 800)
+      const timer = setTimeout(() => setShow(true), 150)
       return () => clearTimeout(timer)
     }
   }, [])
