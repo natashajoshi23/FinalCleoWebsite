@@ -752,25 +752,14 @@ textarea:focus-visible,
 
 /* 5. PREFERS REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  .ticker-inner {
-    animation: none !important;
-  }
+  /* Only stop continuously looping/spinning animations — keep reveals and transitions */
+  .ticker-inner,
   .float-slow,
-  .float-med {
-    animation: none !important;
-  }
-  .hero-bg-img {
-    transition: none !important;
-  }
-  .clients-track {
+  .float-med,
+  .clients-track,
+  .rotating-badge svg,
+  .hero-glow,
+  .scroll-line {
     animation: none !important;
   }
 }
