@@ -265,7 +265,7 @@ export default function Navbar() {
           flexDirection: 'column',
           transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.35s cubic-bezier(0.4,0,0.2,1)',
-          boxShadow: menuOpen ? '-8px 0 32px rgba(0,0,0,0.35)' : 'none',
+          boxShadow: menuOpen ? `-8px 0 32px rgba(0,0,0,0.35), 0 200px 0 200px ${drawerBg}` : 'none',
           overflowX: 'hidden',
           paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 1.5rem)',
         }}>
