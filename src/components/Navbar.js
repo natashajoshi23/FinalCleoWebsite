@@ -246,6 +246,8 @@ export default function Navbar() {
           opacity: menuOpen ? 1 : 0,
           pointerEvents: menuOpen ? 'auto' : 'none',
           transition: 'opacity 0.35s ease',
+          width: '100%', height: '100%',
+          maxWidth: '100vw', maxHeight: '100vh',
         }}
       />
 
