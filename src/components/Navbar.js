@@ -131,7 +131,7 @@ export default function Navbar() {
         style={{
           position: 'fixed',
           top: 0, left: 0, right: 0,
-          zIndex: menuOpen ? 9996 : 9999,
+          zIndex: 9999,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -149,7 +149,7 @@ export default function Navbar() {
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
-        <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+        <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0, opacity: menuOpen ? 0 : 1, transition: 'opacity 0.2s' }}>
           <Image
             src={isDark ? '/images/logo-dark.webp' : '/images/logo-light.webp'}
             alt="Cleo Consulting"
@@ -213,7 +213,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile controls — hidden on desktop via CSS */}
-        <div className="nav-mobile-controls" style={{ display: 'none', alignItems: 'center', gap: '0.75rem' }}>
+        <div className="nav-mobile-controls" style={{ display: 'none', alignItems: 'center', gap: '0.75rem', opacity: menuOpen ? 0 : 1, transition: 'opacity 0.2s', pointerEvents: menuOpen ? 'none' : 'auto' }}>
             <ThemeButton />
             <button
               onClick={() => setMenuOpen(!menuOpen)}
