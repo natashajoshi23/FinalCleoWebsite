@@ -234,9 +234,11 @@ export default function Navbar() {
       {/* Slide-in sidebar drawer */}
       <div className="mobile-sidebar" style={{
           position: 'fixed',
-          top: 0, right: 0, bottom: 0,
+          top: 0, right: 0,
           width: '340px',
           maxWidth: '90vw',
+          height: '100%',
+          minHeight: '-webkit-fill-available',
           background: drawerBg,
           zIndex: 9998,
           overflowY: 'auto',
@@ -246,8 +248,8 @@ export default function Navbar() {
           transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.35s cubic-bezier(0.4,0,0.2,1)',
           boxShadow: menuOpen ? '-8px 0 32px rgba(0,0,0,0.35)' : 'none',
-          maxHeight: '100vh',
           overflowX: 'hidden',
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         }}>
 
         {/* Sidebar header */}
