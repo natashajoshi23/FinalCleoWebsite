@@ -115,10 +115,12 @@ export default function Navbar() {
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? '100px' : '155px',
           transition: 'background 0.5s, backdrop-filter 0.5s',
-          background: scrolled
-            ? (isDark ? 'rgba(0,18,41,0.95)' : 'rgba(253,250,244,0.95)')
-            : 'transparent',
-          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          background: isMobile
+            ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
+            : scrolled
+              ? (isDark ? 'rgba(0,18,41,0.95)' : 'rgba(253,250,244,0.95)')
+              : 'transparent',
+          backdropFilter: (scrolled || isMobile) ? 'blur(16px)' : 'none',
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
