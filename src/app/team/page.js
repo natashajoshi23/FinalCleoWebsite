@@ -34,7 +34,7 @@ export default function Team() {
             <div className="tm-info">
               <div className="tm-name">Cleo</div>
               <div style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>The Inspiration</div>
-              <p className="tm-bio">Last but definitely not the least, Cleo is the inspiration behind this company. She came into Jai&rsquo;s life in 2008 at a bakery where their eyes met. From then till today they are inseparable. Cleo has taught us how to be grateful, how to love, respect and accept. She is honest, loyal, expressive and genuine &mdash; and we, as a company, shall offer our services with the same principles to our clients.</p>
+              <p className="tm-bio">Cleo is the inspiration behind this company. She came into Jai&rsquo;s life in 2008 at a bakery where their eyes met. From then till today they are inseparable. Cleo has taught us how to be grateful, how to love, respect and accept. She is honest, loyal, expressive and genuine &mdash; and we, as a company, shall offer our services with the same principles to our clients.</p>
             </div>
           </div>
           {members.map((m, idx) => (
