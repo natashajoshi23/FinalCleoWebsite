@@ -8,19 +8,17 @@ function getResend() {
 // ── Validation helpers ────────────────────────────────────────────────────────
 
 function isValidEmail(email) {
-  return typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  if (typeof email !== 'string' || email.length > 254) return false
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
-// Strips HTML tags and CRLF characters to prevent email header injection and
-// HTML injection into email bodies. Input must be a plain-text field.
+// Strips CRLF to prevent email header injection. escapeHtml() handles HTML safety.
 function sanitize(str, maxLen = 500) {
   if (!str) return ''
   return String(str)
-    .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, '') // drop script/style blocks AND their contents
-    .replace(/<[^>]*>/g, '')    // strip any remaining HTML tags
-    .replace(/[\r\n]+/g, ' ')  // collapse CRLF (prevents header injection)
-    .trim()
     .slice(0, maxLen)
+    .replace(/[\r\n]+/g, ' ')
+    .trim()
 }
 
 // Escapes HTML special chars so sanitized text is safe inside an HTML email body.

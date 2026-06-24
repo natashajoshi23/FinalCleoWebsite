@@ -15,18 +15,17 @@ const ALLOWED_MIME_TYPES = [
 const ALLOWED_EXTENSIONS = ['.pdf', '.doc', '.docx']
 
 function isValidEmail(email) {
-  return typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  if (typeof email !== 'string' || email.length > 254) return false
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
-// Strips HTML tags and CRLF characters; prevents header injection and HTML injection in email bodies.
+// Strips CRLF to prevent email header injection. escapeHtml() handles HTML safety.
 function sanitize(str, maxLen = 500) {
   if (!str) return ''
   return String(str)
-    .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, '') // drop script/style blocks AND their contents
-    .replace(/<[^>]*>/g, '')
+    .slice(0, maxLen)
     .replace(/[\r\n]+/g, ' ')
     .trim()
-    .slice(0, maxLen)
 }
 
 // Escapes HTML special chars so sanitized text is safe inside an HTML email body.
