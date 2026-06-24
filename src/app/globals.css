@@ -797,11 +797,12 @@ textarea:focus-visible,
 }
 
 [data-theme="light"] .sec-label {
-  color: var(--paper) !important;
+  color: #001229 !important;
+  text-shadow: none !important;
 }
 
 [data-theme="light"] .sec-label::before {
-  background: var(--paper) !important;
+  background: #001229 !important;
 }
 
 [data-theme="light"] .banner-eyebrow {
