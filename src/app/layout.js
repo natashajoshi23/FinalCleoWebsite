@@ -1,10 +1,6 @@
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeContext'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import ScrollProgress from '@/components/ScrollProgress'
-import CertificationPopup from '@/components/Certificationpopup'
-import RebrandPopup from '@/components/RebrandPopup'
+import SiteChrome from '@/components/SiteChrome'
 
 export const metadata = {
   title: 'Cleo Consulting — We Sniff Out the Best Talent',
@@ -31,14 +27,7 @@ export default function RootLayout({ children }) {
       <body>
         <ThemeProvider>
           <a href="#main" className="skip-link">Skip to main content</a>
-          <RebrandPopup />
-          <CertificationPopup />
-          <ScrollProgress />
-          <Navbar />
-          <main id="main">
-            {children}
-          </main>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </ThemeProvider>
       </body>
     </html>

@@ -13,6 +13,7 @@ export default function RebrandPopup() {
   }, [])
 
   useEffect(() => {
+    if (window.location.pathname.startsWith('/studio')) return
     const seen = sessionStorage.getItem('rebrand-seen')
     if (!seen) {
       const timer = setTimeout(() => setShow(true), 150)
