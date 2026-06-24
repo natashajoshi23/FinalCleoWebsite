@@ -27,16 +27,16 @@ export default function Team() {
     <>
       <PageBanner eyebrow="About Us" title="OUR<br>TEAM" num="02" bgImage="/images/team-fistbump.webp" />
       <div className="pg-body">
-        {/* Cleo - top of page as the inspiration */}
-        <div className="tm">
-          <div className="tm-photo" style={{ padding: 0, overflow: 'hidden' }}><img src="/images/cleo.webp" alt="Cleo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-          <div className="tm-info">
-            <div className="tm-name">Cleo</div>
-            <div style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>The Inspiration</div>
-            <p className="tm-bio">Last but definitely not the least, Cleo is the inspiration behind this company. She came into Jai&rsquo;s life in 2008 at a bakery where their eyes met. From then till today they are inseparable. Cleo has taught us how to be grateful, how to love, respect and accept. She is honest, loyal, expressive and genuine &mdash; and we, as a company, shall offer our services with the same principles to our clients.</p>
-          </div>
-        </div>
         <div className="team-list">
+          {/* Cleo - top of page as the inspiration */}
+          <div className="tm">
+            <div className="tm-photo" style={{ padding: 0, overflow: 'hidden' }}><img src="/images/cleo.webp" alt="Cleo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+            <div className="tm-info">
+              <div className="tm-name">Cleo</div>
+              <div style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>The Inspiration</div>
+              <p className="tm-bio">Last but definitely not the least, Cleo is the inspiration behind this company. She came into Jai&rsquo;s life in 2008 at a bakery where their eyes met. From then till today they are inseparable. Cleo has taught us how to be grateful, how to love, respect and accept. She is honest, loyal, expressive and genuine &mdash; and we, as a company, shall offer our services with the same principles to our clients.</p>
+            </div>
+          </div>
           {members.map((m, idx) => (
             <div className={`tm`} key={idx}>
               <div className="tm-photo" style={m.img ? { padding: 0, overflow: 'hidden' } : {}}>{m.img ? <img src={m.img} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : m.i}</div>
