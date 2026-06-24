@@ -15,7 +15,7 @@ export default function CSR() {
         </div>
         <h3 style={{ fontFamily: 'var(--display)', fontSize: '2rem', color: 'var(--paper)', margin: '3rem 0 1rem', letterSpacing: '0.04em' }}>ORGANIZATIONS WE SUPPORT</h3>
         <div className="csr-orgs-list">
-          {[{ name: 'PeTA', full: 'People for the Ethical Treatment of Animals' },{ name: 'VoSD', full: 'Voice of Stray Dogs' },{ name: 'CUPA', full: 'Compassion Unlimited Plus Action' }].map(o => (
+          {[{ name: 'PeTA', full: 'People for the Ethical Treatment of Animals' },{ name: 'VoSD', full: 'Voice of Stray Dogs' },{ name: 'CUPA', full: 'Compassion Unlimited Plus Action' }, { name: 'ARF', full: 'Animal Relief Fund' }, { name: 'ALAI', full: 'Animal Lives Are Important' }].map(o => (
             <div className="csr-org" key={o.name}><div className="csr-org-name">{o.name}</div><div className="csr-org-full">{o.full}</div></div>
           ))}
         </div>
