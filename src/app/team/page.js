@@ -16,11 +16,11 @@ const members = [
   { i: 'AP', name: 'Amit Patil', img: '/images/amit.webp', li: 'https://www.linkedin.com/in/amit-49369b49/', bio: "Amit is a detail-oriented individual who is very energetic, creative, eager to learn and adapt to new challenges, excellent communications skills and strong interpersonal skills, excellent work ethics, team oriented with strong analytical and leadership qualities. He has very good understanding of all the technologies that helps him excel in his job. Natural leader with a sense of ownership and focus on quality even under high pressure situations. He loves to travel and spend time with his family and friends." },
   { i: 'AJ', name: 'Asa Jimomi', img: '/images/asa.webp', li: 'https://www.linkedin.com/in/asa-jimomi-575262250/', bio: "Asa is a Political Science graduate who has many talents and passions. Besides his academic accomplishments, Asa is an avid artist who loves to sketch and paint. He finds solace in creating art and is constantly exploring new mediums and techniques to improve his skills. Asa is a huge fan of Marvel heroes, especially Loki. He loves the character\u2019s complexity and mischievous nature, and finds the stories and mythology behind the character fascinating. He often incorporates Marvel themes into his artwork and is always excited to discuss the latest Marvel movie or TV show. His friends and family describe him as a kind and caring person who is easy to talk to and always puts others first. This quality alone makes him very personable and, therefore, a successful technical recruiter." },
   { i: 'SG', name: 'Sonali Gupta', img: '/images/sonali.webp', li: 'https://www.linkedin.com/in/sonali-gupta-42499b1ab/', bio: "Coming Soon..." },
-  { i: 'MS', name: 'Maninder Singh', img: '/images/maninder.webp', li: 'https://www.linkedin.com/in/iammsingh/', bio: "Coming Soon..." },
-  { i: 'AS', name: 'Abhishek Swami', img: '/images/abhishek.webp', li: 'https://www.linkedin.com/in/abhishek-s-532991163/', bio: "Coming Soon..." },
   { i: 'RK', name: 'Ram Kumar', img: '/images/ram.webp', li: 'https://www.linkedin.com/in/ram-kumar-5bb228145/', bio: "Coming Soon..." },
-  { i: 'SG', name: 'Sachin Gaikwad', img: '/images/sachin.webp', li: 'https://www.linkedin.com/in/sachincgaikwad/', bio: "Coming Soon..." },
+  { i: 'AS', name: 'Abhishek Swami', img: '/images/abhishek.webp', li: 'https://www.linkedin.com/in/abhishek-s-532991163/', bio: "Coming Soon..." },
   { i: 'DS', name: 'Dhruv Pratap Singh', img: '/images/dhruv.webp', li: 'https://www.linkedin.com/in/dhruv-p-52086424b/', bio: "Coming Soon..." },
+  { i: 'SG', name: 'Sachin Gaikwad', img: '/images/sachin.webp', li: 'https://www.linkedin.com/in/sachincgaikwad/', bio: "Coming Soon..." },
+  { i: 'MS', name: 'Maninder Singh', img: '/images/maninder.webp', li: 'https://www.linkedin.com/in/iammsingh/', bio: "Coming Soon..." },
 ]
 export default function Team() {
   return (
