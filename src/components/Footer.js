@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="ft-inner">
           <div className="ft-top">
             <div style={{ height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-            <Image src="/images/logo-dark.webp" alt="Cleo Consulting" width={180} height={80} className="footer-logo-dark" style={{ height: '160px', width: 'auto', objectFit: 'contain', display: 'block', margin: '2.3rem auto 1rem' }} />
+            <Image src="/images/logo-dark.webp" alt="Cleo Consulting" width={180} height={80} className="footer-logo-dark" style={{ height: '160px', width: 'auto', objectFit: 'contain', display: 'block', margin: '2.5rem auto 1rem' }} />
             <Image src="/images/logo-light.webp" alt="Cleo Consulting" width={180} height={80} className="footer-logo-light" style={{ height: '200px', width: 'auto', objectFit: 'contain', display: 'block', margin: '2rem auto 1rem' }} />
             </div>
             <div>
@@ -48,9 +48,9 @@ export default function Footer() {
               <span className="ft-dot"> • </span>
               <a href="https://www.linkedin.com/company/cleo-consulting-inc-/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)' }}>LinkedIn</a>
             </div>
-          </div>
-          <div style={{ textAlign: 'center', paddingBottom: '1.5rem', fontSize: '0.8rem', letterSpacing: '0.12em', color: 'var(--mist)' }}>
-            Designed & Built by <a href="https://www.linkedin.com/in/natasha-joshi-88a694285/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', fontWeight: 600, textDecoration: 'none' }}>Natasha Joshi</a>
+            <div style={{ fontSize: '0.8rem', letterSpacing: '0.12em', color: 'var(--mist)' }}>
+              Designed & Built by <a href="https://www.linkedin.com/in/natasha-joshi-88a694285/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', fontWeight: 600, textDecoration: 'none' }}>Natasha Joshi</a>
+            </div>
           </div>
         </div>
       </footer>
