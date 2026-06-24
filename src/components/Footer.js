@@ -49,6 +49,9 @@ export default function Footer() {
               <a href="https://www.linkedin.com/company/cleo-consulting-inc-/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)' }}>LinkedIn</a>
             </div>
           </div>
+          <div style={{ textAlign: 'center', paddingBottom: '1.5rem', fontSize: '0.7rem', letterSpacing: '0.12em', color: 'var(--mist)' }}>
+            Designed & Built by <span style={{ color: 'var(--gold)', fontWeight: 600 }}>Natasha Joshi</span>
+          </div>
         </div>
       </footer>
     </>
