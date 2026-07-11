@@ -67,7 +67,7 @@ export default function Home() {
       <div className="hero" style={{ paddingTop: '12rem' }}>
         {slides.map((s, i) => (
           <div key={i} className="hero-bg-img" style={{ opacity: i === cur ? 1 : 0, transition: 'opacity 0.8s ease-in-out' }}>
-            <img src={s.bg} alt="" aria-hidden="true" loading={i === 0 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'auto'} />
+            <img src={s.bg} alt="" aria-hidden="true" fetchPriority={i === 0 ? 'high' : 'low'} />
           </div>
         ))}
         <div className="hero-grid" />
