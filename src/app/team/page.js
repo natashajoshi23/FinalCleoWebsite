@@ -24,6 +24,7 @@ export default async function Team() {
 
   return (
     <>
+      <link rel="preload" as="image" href="/images/team-fistbump.webp" />
       <PageBanner eyebrow="About Us" title="OUR<br>TEAM" num="02" bgImage="/images/team-fistbump.webp" />
       <div className="pg-body">
         <div className="team-list">
@@ -43,7 +44,7 @@ export default async function Team() {
                 <div className="tm-info">
                   <div className="tm-name">{m.name}</div>
                   {m.subtitle && (
-                    <div style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>{m.subtitle}</div>
+                    <div className="tm-subtitle">{m.subtitle}</div>
                   )}
                   {m.linkedinUrl && (
                     <a href={m.linkedinUrl} target="_blank" rel="noopener noreferrer" className="tm-li">LinkedIn →</a>

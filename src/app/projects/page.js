@@ -17,6 +17,7 @@ const projects = [
 export default function Projects() {
   return (
     <>
+      <link rel="preload" as="image" href="/images/laptop-teamwork.webp" />
       {/* Mobile-only: hide description text, shrink title font on project cards */}
       <style jsx global>{`
         @media (max-width: 640px) {

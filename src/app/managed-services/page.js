@@ -13,10 +13,12 @@ const svcs = [
   { title: 'Engineering & Design', desc: 'Specialized staffing from mechanical engineers to UX designers.', img: '/images/circuit-board.webp', slug: 'engineering' },
   { title: 'Finance & Accounting', desc: 'From junior analysts to CFOs — building strong financial teams.', img: '/images/finance-tablet.webp', slug: 'finance' },
   { title: 'Information Technology', desc: 'Short-term contractors or permanent staff for long-term needs.', img: '/images/code-php.webp', slug: 'information-technology' },
+  { title: 'Artificial Intelligence & Machine Learning', desc: 'Leverage AI and machine learning to automate processes, unlock insights, and build smarter systems.', img: '/images/circuit-brain.webp', slug: 'artificial-intelligence' },
 ]
 export default function ManagedServices() {
   return (
     <>
+      <link rel="preload" as="image" href="/images/businessman-suit.webp" />
       <PageBanner eyebrow="Specialist Talent" title="MANAGED<br>SERVICES" num="04" bgImage="/images/businessman-suit.webp" />
       <div style={{ padding: '2.5rem 0 5rem', background: 'var(--ink)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>

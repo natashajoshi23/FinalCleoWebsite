@@ -13,7 +13,7 @@ async function getPosts() {
       title,
       "slug": slug.current,
       publishedAt,
-      "img": mainImage.asset->url,
+      "img": mainImage.asset->url + "?w=600&q=70&auto=format&fit=max",
       "excerpt": array::join(string::split(pt::text(body), "")[0..200], "") + "..."
     }
   `)
@@ -24,13 +24,14 @@ export default async function Blogs() {
 
   return (
     <>
+      <link rel="preload" as="image" href="/images/business-newspaper.webp" />
       <PageBanner eyebrow="Insights" title="LATEST<br>THINKING" num="07" bgImage="/images/business-newspaper.webp" />
       <div className="pg-body" style={{ paddingTop: '0rem' }}>
         <div className="blog-grid">
           {posts.map(({ publishedAt, title, excerpt, img, slug }) => (
-            <Link href={"/blogs/" + slug} className="blog" key={slug} style={{ textDecoration: 'none' }}>
+            <Link href={"/blogs/" + slug} className="blog" key={slug} aria-label={`Read more about ${title}`} style={{ textDecoration: 'none' }}>
               <div className="blog-card-img-real">
-                {img && <img src={img} alt={title} />}
+                {img && <img src={img} alt={title} loading="lazy" width={600} height={400} />}
               </div>
               <div style={{ padding: '1.5rem' }}>
                 <div className="blog-date" style={{ color: 'var(--gold)', fontWeight: 700, fontSize: '0.8rem' }}>
@@ -38,7 +39,7 @@ export default async function Blogs() {
                 </div>
                 <div className="blog-title">{title}</div>
                 <p className="blog-excerpt">{excerpt}</p>
-                <span className="blog-read">Read More →</span>
+                <span className="blog-read" aria-hidden="true">Read More →</span>
               </div>
             </Link>
           ))}
