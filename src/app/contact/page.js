@@ -23,7 +23,7 @@ export default async function ContactPage() {
         lines: [o.addressLine1, o.addressLine2].filter(Boolean).join('\n'),
         phone: o.phone,
         email: o.email,
-        imageUrl: o.image ? urlFor(o.image).width(800).auto('format').url() : fallbackOffices[i]?.imageUrl || null,
+        imageUrl: o.image ? urlFor(o.image).width(600).quality(70).auto('format').url() : fallbackOffices[i]?.imageUrl || null,
         imagePos: fallbackOffices[i]?.imagePos || 'center center',
       }))
     }

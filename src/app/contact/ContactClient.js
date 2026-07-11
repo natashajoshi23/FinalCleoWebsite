@@ -1,8 +1,9 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import Script from 'next/script'
 import PageBanner from '@/components/PageBanner'
-import { client } from '@/sanity/client'
-import { urlFor } from '@/sanity/lib/image'
+
+const RECAPTCHA_SITE_KEY = '6LdF7kstAAAAAATe2Gk-hUgNhvyxz1KEGUw-BKcR'
 
 const LIMITS = { firstName: 50, lastName: 50, email: 254, phone: 30, message: 2000 }
 
@@ -16,36 +17,36 @@ function CharCount({ value, max }) {
   )
 }
 
-const fallbackOffices = [
-  { country: 'USA', city: 'New York', lines: '1879 Whitehaven Road, Suite C\nGrand Island, NY 14072', phone: '+1 866-390-6604', email: 'usa@cleoconsult.com', imageUrl: null },
-  { country: 'Canada', city: 'Ontario', lines: '3390 South Service Rd, Suite 301 #24\nBurlington, ON L7N 3J5', phone: '+1 866-390-6604', email: 'canada@cleoconsult.com', imageUrl: null },
-  { country: 'India', city: 'Karnataka', lines: '#21178, Tower-21, Prestige Shantiniketan\nWhitefield Main Road, Bangalore 560048', phone: '+91 80 4333-3655', email: 'india@cleoconsult.com', imageUrl: null },
-]
-export default function Contact() {
-  const [offices, setOffices] = useState(fallbackOffices)
-  const [sent, setSent] = useState(false)
+function waitForRecaptcha() {
+  return new Promise((resolve) => {
+    if (window.grecaptcha && window.grecaptcha.ready) {
+      window.grecaptcha.ready(resolve)
+    } else {
+      const interval = setInterval(() => {
+        if (window.grecaptcha && window.grecaptcha.ready) {
+          clearInterval(interval)
+          window.grecaptcha.ready(resolve)
+        }
+      }, 100)
+    }
+  })
+}
 
-  useEffect(() => {
-    client.fetch(
-      `*[_type == "officeLocation"] | order(order asc) { _id, country, city, addressLine1, addressLine2, phone, email, image }`
-    ).then(data => {
-      if (data && data.length > 0) {
-        setOffices(data.map(o => ({
-          country: o.country,
-          city: o.city,
-          lines: [o.addressLine1, o.addressLine2].filter(Boolean).join('\n'),
-          phone: o.phone,
-          email: o.email,
-          imageUrl: o.image ? urlFor(o.image).width(800).height(380).fit('crop').auto('format').url() : null,
-        })))
-      }
-    }).catch(() => {})
-  }, [])
+export default function ContactClient({ offices }) {
+  const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [fields, setFields] = useState({ firstName: '', lastName: '', email: '', phone: '', message: '' })
   const set = (k) => (e) => setFields(f => ({ ...f, [k]: e.target.value.slice(0, LIMITS[k]) }))
+
+  const fallbackImgs = [
+    { src: '/images/office-ny.webp', alt: 'Cleo Consulting New York headquarters office building', pos: 'center center' },
+    { src: '/images/office-ontario.webp', alt: 'Cleo Consulting Ontario headquarters office building', pos: '20% center' },
+    { src: '/images/office-bangalore.webp', alt: 'Cleo Consulting Bangalore office building', pos: 'center center' },
+  ]
+
   return (
     <div className="contact-page">
-      {/* Mobile-only: stack the USA/Canada office grid into a single column */}
       <style jsx global>{`
         @media (max-width: 640px) {
           .offices-grid {
@@ -55,57 +56,59 @@ export default function Contact() {
         }
       `}</style>
 
+      <Script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`} strategy="afterInteractive" />
       <PageBanner eyebrow="Reach Out" title="LET'S<br>TALK" num="08" bgImage="/images/conference-room.webp" />
       <div className="pg-body" style={{ paddingTop: '1rem' }}>
-        <h2 style={{ fontFamily: 'var(--display)', fontSize: '2rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '-2rem' }}>OUR OFFICES</h2>
-        {/* First two offices in a 2-column grid */}
-        {offices.length >= 2 && (
-          <div className="offices-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2.5rem', background: 'transparent' }}>
-            {offices.slice(0, 2).map(({ country, city, lines, phone, email, imageUrl }, i) => {
-              const fallbackImgs = [
-                { src: '/images/office-ny.webp', alt: 'Cleo Consulting New York headquarters office building', pos: 'center center' },
-                { src: '/images/office-ontario.webp', alt: 'Cleo Consulting Ontario headquarters office building', pos: '20% center' },
-              ]
-              const imgSrc = imageUrl || fallbackImgs[i].src
-              const imgAlt = fallbackImgs[i].alt
-              return (
-                <div key={city}>
-                  <div style={{ height: '380px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
-                    <img src={imgSrc} alt={imgAlt} className="img-cover" style={{ objectPosition: 'center center' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)' }} />
-                    <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem' }}>
-                      <div style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)' }}>{country}</div>
-                      <div style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>{city}</div>
+        <h2 style={{ fontFamily: 'var(--display)', fontSize: '2rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '1.5rem' }}>OUR OFFICES</h2>
+
+        {(() => {
+          const rows = []
+          for (let i = 0; i < offices.length; i += 2) {
+            const pair = offices.slice(i, i + 2)
+            const isSingle = pair.length === 1
+            rows.push(
+              <div
+                key={i}
+                className="offices-grid"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: isSingle ? '1fr' : '1fr 1fr',
+                  gap: '1.5rem',
+                  marginBottom: '2.5rem',
+                  background: 'transparent',
+                  maxWidth: isSingle ? '600px' : 'none',
+                  margin: isSingle ? '0 auto 2.5rem' : '0 0 2.5rem',
+                }}
+              >
+                {pair.map(({ country, city, lines, phone, email, imageUrl, imagePos }, j) => {
+                  const globalIdx = i + j
+                  const key = `${globalIdx}-${city}`
+                  const fallback = fallbackImgs[globalIdx]
+                  const imgSrc = imageUrl || fallback?.src || null
+                  return (
+                    <div key={key}>
+                      <div style={{ height: '380px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
+                        {imgSrc && <img src={imgSrc} alt={fallback?.alt || `Cleo Consulting ${city} office`} className="img-cover" width={600} height={380} style={{ objectPosition: imagePos || fallback?.pos || 'center center' }} loading="lazy" />}
+                        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)' }} />
+                        <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem' }}>
+                          <div className="contact-country-label" style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', fontWeight: '800' }}>{country}</div>
+                          <div style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>{city}</div>
+                        </div>
+                      </div>
+                      <div style={{ marginTop: '1rem', color: 'var(--paper)', fontSize: '0.9rem', lineHeight: 1.7, borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '1rem', background: 'transparent', textAlign: isSingle ? 'center' : 'left' }}>
+                        {lines && lines.split('\n').map((l, k) => <div key={k}>{l}</div>)}
+                        {phone && <><a href={`tel:${phone.replace(/\s/g, '')}`} style={{ color: 'var(--paper)' }} aria-label={`Call ${city} office at ${phone}`}>{phone}</a><br /></>}
+                        {email && <a href={`mailto:${email}`} className="contact-email-link" style={{ color: 'var(--gold)' }} aria-label={`Email ${city} office at ${email}`}>{email}</a>}
+                      </div>
                     </div>
-                  </div>
-                  <div style={{ marginTop: '1rem', color: 'var(--paper)', fontSize: '0.9rem', lineHeight: 1.7, borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '1rem', background: 'transparent' }}>
-                    {lines.split('\n').map((l, j) => <div key={j}>{l}</div>)}
-                    <a href={`tel:${phone.replace(/\s/g, '')}`} style={{ color: 'var(--paper)' }} aria-label={`Call ${city} office at ${phone}`}>{phone}</a><br />
-                    <a href={`mailto:${email}`} style={{ color: 'var(--gold)' }} aria-label={`Email ${city} office at ${email}`}>{email}</a>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        )}
-        {/* Remaining offices (India etc.) centred below the grid */}
-        {offices.slice(2).map(({ country, city, lines, phone, email, imageUrl }) => (
-          <div key={city} style={{ marginTop: '1rem' }}>
-            <div style={{ height: '380px', overflow: 'hidden', borderRadius: '2px', position: 'relative', maxWidth: '600px', margin: '0 auto' }} className="india-office-img">
-              <img src={imageUrl || '/images/office-bangalore.webp'} alt={`Cleo Consulting ${city} office building`} className="img-cover" style={{ objectPosition: 'center center' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)' }} />
-              <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem' }}>
-                <div style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)' }}>{country}</div>
-                <div style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>{city}</div>
+                  )
+                })}
               </div>
-            </div>
-            <div className="india-office-text" style={{ maxWidth: '600px', margin: '1rem auto 0', color: 'var(--paper)', fontSize: '0.9rem', lineHeight: 1.7, borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '1rem', textAlign: 'center' }}>
-              <div>{lines.split('\n').map((l, i) => <span key={i}>{l}<br /></span>)}</div>
-              <a href={`tel:${phone.replace(/\s/g, '')}`} style={{ color: 'var(--paper)' }} aria-label={`Call ${city} office at ${phone}`}>{phone}</a><br />
-              <a href={`mailto:${email}`} style={{ color: 'var(--gold)' }} aria-label={`Email ${city} office at ${email}`}>{email}</a>
-            </div>
-          </div>
-        ))}
+            )
+          }
+          return rows
+        })()}
+
         <div className="contact-form-sec">
           <div className="cf-title" id="contact-form-heading">SEND A MESSAGE</div>
           <div className="cf-sub">Fill out the form and we&rsquo;ll get back to you promptly.</div>
@@ -114,20 +117,38 @@ export default function Contact() {
           ) : (
             <form onSubmit={async e => {
               e.preventDefault()
-              const data = new FormData(e.target)
-              await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  firstName: fields.firstName,
-                  lastName:  fields.lastName,
-                  email:     fields.email,
-                  phone:     fields.phone,
-                  service:   data.get('service'),
-                  message:   fields.message,
+              setError('')
+              setSubmitting(true)
+              try {
+                const data = new FormData(e.target)
+                let recaptchaToken = ''
+                try {
+                  await waitForRecaptcha()
+                  recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' })
+                } catch (_) {}
+                const res = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    firstName: fields.firstName,
+                    lastName:  fields.lastName,
+                    email:     fields.email,
+                    phone:     fields.phone,
+                    service:   data.get('service'),
+                    message:   fields.message,
+                    recaptchaToken,
+                  })
                 })
-              })
-              setSent(true)
+                if (!res.ok) {
+                  const json = await res.json().catch(() => ({}))
+                  throw new Error(json.error || 'Something went wrong. Please try again.')
+                }
+                setSent(true)
+              } catch (err) {
+                setError(err.message || 'Something went wrong. Please try again.')
+              } finally {
+                setSubmitting(false)
+              }
             }} aria-labelledby="contact-form-heading">
               <div className="cf-row">
                 <div className="fg">
@@ -167,7 +188,11 @@ export default function Contact() {
                 </label>
                 <textarea id="contact-message" name="message" placeholder="Tell us about your project or requirements..." required maxLength={LIMITS.message} value={fields.message} onChange={set('message')} />
               </div>
-              <button type="submit" className="btn-fill">Send Message</button>
+              {error && <p style={{ color: '#e74c3c', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
+              <button type="submit" className="btn-fill" disabled={submitting} style={{ opacity: submitting ? 0.6 : 1, cursor: submitting ? 'not-allowed' : 'pointer' }}>{submitting ? 'Sending…' : 'Send Message'}</button>
+              <p style={{ fontSize: '0.72rem', color: 'var(--fog)', marginTop: '1rem' }}>
+                This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--fog)', textDecoration: 'underline' }}>Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--fog)', textDecoration: 'underline' }}>Terms of Service</a> apply.
+              </p>
             </form>
           )}
         </div>
