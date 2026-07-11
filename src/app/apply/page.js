@@ -19,8 +19,8 @@ export default function ApplyPage() {
         <div id="example-widget-container" />
         <Script
           src="https://jobsapi.ceipal.com/APISource/widget.js"
-          data-ceipal-api-key="bTg1L0IrMFR6d1NDL2NudjE1ek0xdz09"
-          data-ceipal-career-portal-id="Z3RkUkt2OXZJVld2MjFpOVRSTXoxZz09"
+          data-ceipal-api-key={process.env.NEXT_PUBLIC_CEIPAL_API_KEY}
+          data-ceipal-career-portal-id={process.env.NEXT_PUBLIC_CEIPAL_PORTAL_ID}
           strategy="afterInteractive"
         />
 
