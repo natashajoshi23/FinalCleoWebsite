@@ -35,11 +35,23 @@ const projects = [
   { title: 'Cyber Security Services', text: 'Advanced security consultation protecting digital assets for enterprise clients worldwide.', img: '/images/circuit-board.webp', slug: 'cyber-security-services' },
 ]
 
-const clients = ['CISCO', 'AZURE', 'AWS', 'PALO ALTO', 'SALESFORCE', 'SERVICENOW', 'GOOGLE CLOUD', 'NERSIFY', 'ADOBE AEM']
+const clients = [
+  'ONTARIO GOVERNMENT', 'STATE OF VIRGINIA', 'ONTARIO HEALTH', 'STATE OF MICHIGAN',
+  'TELUS', 'CITY OF ATLANTA', 'CITY OF TORONTO', 'STATE OF CONNECTICUT',
+  'METROLINX', 'ATLANTA PUBLIC SCHOOLS', 'ONTARIO PROVINCIAL POLICE', 'STATE OF COLORADO',
+  'GENERAL DYNAMICS IT', 'SAS INSTITUTE', 'AUDIENCEVIEW', 'STATE OF MISSISSIPPI',
+  'ONTARIO HEALTH', 'STATE OF ARKANSAS', 'TELUS', 'STATE OF OREGON',
+  'CITY OF TORONTO', 'STATE OF MINNESOTA', 'METROLINX', 'ADDISON SEARCH',
+]
 
 export default function Home() {
   const [cur, setCur] = useState(0)
-  useEffect(() => { const t = setInterval(() => setCur(c => (c + 1) % slides.length), 6000); return () => clearInterval(t) }, [])
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+    const t = setInterval(() => setCur(c => (c + 1) % slides.length), 6000)
+    return () => clearInterval(t)
+  }, [])
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 900)
@@ -55,7 +67,7 @@ export default function Home() {
       <div className="hero" style={{ paddingTop: '12rem' }}>
         {slides.map((s, i) => (
           <div key={i} className="hero-bg-img" style={{ opacity: i === cur ? 1 : 0, transition: 'opacity 0.8s ease-in-out' }}>
-            <img src={s.bg} alt="" aria-hidden="true" />
+            <img src={s.bg} alt="" aria-hidden="true" loading={i === 0 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'auto'} />
           </div>
         ))}
         <div className="hero-grid" />
@@ -92,17 +104,17 @@ export default function Home() {
               </div>
             </div>
             <div className="hero-badge-panel" style={{ position: 'relative', width: '350px', height: '100%', minHeight: '500px', marginTop: '0rem', zIndex: 0 }}>
-              <Link href="/projects" className="badge-link float-slow" style={{ textDecoration: 'none', position: 'absolute', top: '0', right: '0', textAlign: 'center' }}>
+              <Link href="/projects" className="badge-link float-slow" aria-label="View our projects" style={{ textDecoration: 'none', position: 'absolute', top: '0', right: '0', textAlign: 'center' }}>
                 <RotatingBadge text="OUR PROJECTS · OUR PROJECTS · OUR PROJECTS · " img="/images/finance-tablet.webp" spacing="1.7" size="170" imgSize="120" />
-                <div style={{ fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginTop: '0.4rem' }}>View Projects →</div>
+                <div aria-hidden="true" style={{ fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#B8860B', marginTop: '0.4rem', fontWeight: '400' }}>View Projects →</div>
               </Link>
-              <Link href="/managed-services" className="badge-link float-med" style={{ textDecoration: 'none', position: 'absolute', top: '150px', right: '200px', textAlign: 'center' }}>
+              <Link href="/managed-services" className="badge-link float-med" aria-label="View our IT staffing services" style={{ textDecoration: 'none', position: 'absolute', top: '150px', right: '200px', textAlign: 'center' }}>
                 <RotatingBadge text="IT STAFFING · IT STAFFING · IT STAFFING · IT STAFFING · " img="/images/code-python.webp" spacing="1" size="260" imgSize="180" />
-                <div style={{ fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginTop: '0.4rem' }}>Our Services →</div>
+                <div aria-hidden="true" style={{ fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#B8860B', marginTop: '0.4rem', fontWeight: '400' }}>Our Services →</div>
               </Link>
-              <Link href="/health-services" className="badge-link float-slow" style={{ textDecoration: 'none', position: 'absolute', top: '400px', right: '-10px', textAlign: 'center' }}>
+              <Link href="/health-services" className="badge-link float-slow" aria-label="Learn more about Cleo Health Services" style={{ textDecoration: 'none', position: 'absolute', top: '400px', right: '-10px', textAlign: 'center' }}>
                 <RotatingBadge text="HEALTH SERVICES · HEALTH SERVICES · HEALTH SERVICES · " img="/images/nurse-scrubs.webp" spacing="0.7" size="200" imgSize="140" />
-                <div style={{ fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginTop: '0.4rem' }}>Learn More →</div>
+                <div aria-hidden="true" style={{ fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#B8860B', marginTop: '0.4rem', fontWeight: '400' }}>Learn More →</div>
               </Link>
             </div>
           </div>
@@ -116,7 +128,7 @@ export default function Home() {
 
       {/* CLIENTS */}
       <div className="clients-section" style={{ padding: '1rem 0' }}>
-        <div className="clients-label" style={{ paddingTop: '1.2rem' }}>Trusted Technologies & Partners</div>
+        <div className="clients-label" style={{ paddingTop: '1.2rem' }}>Clients We&rsquo;ve Proudly Served</div>
         <div className="clients-track">{[...clients,...clients].map((c,i) => <div className="client-logo" key={i}><span>{c}</span></div>)}</div>
       </div>
 
@@ -130,13 +142,13 @@ export default function Home() {
         <div style={{ position: 'relative', display: 'inline-block' }}>
           <div style={{ position: 'absolute', inset: '-8px', border: '1.5px solid var(--gold)', opacity: 0.4, transform: 'rotate(2deg)' }} />
           <div style={{ transform: 'rotate(-1deg)', height: '250px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
-            <img src="/images/handshake.webp" alt="Partnership" className="img-cover" style={{ filter: 'sepia(20%) saturate(120%) brightness(0.85)' }} />
+            <img src="/images/handshake.webp" alt="Partnership" className="img-cover" loading="lazy" style={{ filter: 'sepia(20%) saturate(120%) brightness(0.85)' }} />
           </div>
         </div>
         <div style={{ position: 'relative', display: 'inline-block' }}>
           <div style={{ position: 'absolute', inset: '-8px', border: '1.5px solid var(--gold)', opacity: 0.4, transform: 'rotate(-2deg)' }} />
           <div style={{ transform: 'rotate(1deg)', height: '250px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
-            <img src="/images/team-meeting-overhead.webp" alt="Team" className="img-cover" style={{ filter: 'sepia(20%) saturate(120%) brightness(0.85)' }} />
+            <img src="/images/team-meeting-overhead.webp" alt="Team" className="img-cover" loading="lazy" style={{ filter: 'sepia(20%) saturate(120%) brightness(0.85)' }} />
           </div>
         </div>
       </div>       </ScrollReveal></div>
@@ -152,7 +164,7 @@ export default function Home() {
               <div style={{ marginTop: '1.25rem', position: 'relative', display: 'inline-block', width: '100%' }}>
                 <div style={{ position: 'absolute', inset: '-6px', border: '1px solid var(--gold)', opacity: 0.3, transform: 'rotate(1.5deg)' }} />
                 <div style={{ height: '120px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }} className="img-zoom">
-                  <img src={img} alt={title} className="img-cover" style={{ filter: 'sepia(30%) saturate(130%) brightness(0.75)' }} />
+                  <img src={img} alt={title} className="img-cover" loading="lazy" style={{ filter: 'sepia(30%) saturate(130%) brightness(0.75)' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(200,153,31,0.12), rgba(0,18,41,0.4))', pointerEvents: 'none' }} />
                 </div>
               </div>              </div>
@@ -163,7 +175,7 @@ export default function Home() {
 
       {/* TESTIMONIAL */}
       <div className="testimonial-section">
-        <div className="testimonial-bg"><img src="/images/conference-room.webp" alt="" aria-hidden="true" /></div>        <div className="testimonial-inner"><ScrollReveal>
+        <div className="testimonial-bg"><img src="/images/conference-room.webp" alt="" aria-hidden="true" loading="lazy" /></div>        <div className="testimonial-inner"><ScrollReveal>
           <div className="testimonial-mark">&ldquo;</div>
           <p className="testimonial-text">Being small keeps us hungry, motivated and driven to excel. We don&rsquo;t just fill roles — we build lasting partnerships that transform how our clients find and retain talent.</p>
           <div className="testimonial-author">— Cleo Consulting Founding Partners</div>
@@ -182,7 +194,7 @@ export default function Home() {
               <div style={{ position: 'relative', display: 'inline-block', width: '100%' }}>
                 <div style={{ position: 'absolute', inset: '-8px', border: '1px solid var(--gold)', opacity: 0.4, transform: 'rotate(2deg)' }} />
                 <div style={{ height: '250px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }} className="img-zoom">
-                  <img src="/images/team-fistbump.webp" alt="Team" className="img-cover" style={{ filter: 'sepia(30%) saturate(130%) brightness(0.75)', objectPosition: 'center 32%' }} />
+                  <img src="/images/team-fistbump.webp" alt="Team" className="img-cover" loading="lazy" style={{ filter: 'sepia(30%) saturate(130%) brightness(0.75)', objectPosition: 'center 32%' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(200,153,31,0.12), rgba(0,18,41,0.4))', pointerEvents: 'none' }} />
                 </div>
               </div>            </div></ScrollReveal>
@@ -207,7 +219,7 @@ export default function Home() {
 
       {/* SPLIT HEALTH */}
       <div className="split-section">
-        <div className="split-left"><img src="/images/doctor-female.webp" alt="Healthcare" /></div>
+        <div className="split-left"><img src="/images/doctor-female.webp" alt="Healthcare" loading="lazy" /></div>
         <div className="split-right"><ScrollReveal>
           <div className="sec-label" style={{ marginBottom: '1.25rem' }}>New Division</div>
           <div className="big-title" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', marginBottom: '1.5rem' }}>CLEO<br /><em style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--gold)' }}>Health</em><br />SERVICES</div>
@@ -215,7 +227,7 @@ export default function Home() {
           <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
             {['RN','LPN','CNA','Long-Term Care','Memory Care'].map(p => <span className="pill" key={p}>{p}</span>)}
           </div>
-          <Link href="/health-services" className="btn-fill">Learn More</Link>
+          <Link href="/health-services" className="btn-fill">Explore Health Services</Link>
         </ScrollReveal></div>
       </div>
 
@@ -226,13 +238,13 @@ export default function Home() {
           <ScrollReveal><div className="projects-hdr">
             <div><div className="sec-label" style={{ marginBottom: '1.8rem' }}>Selected Work</div>
               <h2 className="big-title" style={{ fontSize: 'clamp(3rem, 6vw, 6rem)' }}>KEY<br /><span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--gold)' }}>Projects</span></h2></div>
-            <Link href="/projects" className="btn-ghost-btn">View All</Link>
+            <Link href="/projects" className="btn-ghost-btn">View All Projects</Link>
           </div></ScrollReveal>
           <ScrollReveal delay={1}><div className="proj-grid">
             {projects.map(({ title, text, img, slug }) => (
-              <Link href={`/projects/${slug}`} className="proj" key={title} style={{ textDecoration: 'none', display: 'block' }}>
-                <div className="proj-card-img"><img src={img} alt={title} /></div>
-                <div style={{ padding: '1.5rem 2rem' }}><div className="proj-title">{title}</div><p className="proj-text">{text}</p><div className="proj-link">View More</div></div>
+              <Link href={`/projects/${slug}`} className="proj" key={title} aria-label={`View project: ${title}`} style={{ textDecoration: 'none', display: 'block' }}>
+                <div className="proj-card-img"><img src={img} alt="" aria-hidden="true" loading="lazy" /></div>
+                <div style={{ padding: '1.5rem 2rem' }}><div className="proj-title">{title}</div><p className="proj-text">{text}</p><div className="proj-link" aria-hidden="true">View More</div></div>
               </Link>
             ))}
           </div></ScrollReveal>
@@ -241,7 +253,7 @@ export default function Home() {
 
       {/* CTA */}
       <div className="cta-sec" style={{ position: 'relative' }}>
-        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 0 }}><img src="/images/office-sunset.webp" alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.06 }} /></div>
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 0 }}><img src="/images/office-sunset.webp" alt="" aria-hidden="true" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.06 }} /></div>
         <ScrollReveal><div className="cta-label"><div className="cta-dash" />Ready to work together<div className="cta-dash" /></div></ScrollReveal>
         <ScrollReveal delay={1}><h2 className="cta-title">LET&rsquo;S<br /><em>BUILD</em></h2></ScrollReveal>
         <ScrollReveal delay={2}><p className="cta-sub">We respond quickly and partner closely. Tell us what you need — we&rsquo;ll find the right people or build the right solution.</p></ScrollReveal>
