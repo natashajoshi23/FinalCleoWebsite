@@ -964,8 +964,8 @@ nav { overflow: visible !important; }
 
   /* ── Nav ── */
   nav {
-    height: calc(140px + env(safe-area-inset-top)) !important;
-    padding: env(safe-area-inset-top) 2rem 0 !important;
+    height: 140px !important;
+    padding: 0 2rem !important;
     background: rgba(0, 18, 41, 0.97) !important;
     backdrop-filter: blur(12px) !important;
   }
@@ -1061,7 +1061,7 @@ nav { overflow: visible !important; }
 
   /* ── Inner banner ── */
   .inner-banner {
-    margin-top: calc(140px + env(safe-area-inset-top)) !important;
+    margin-top: 140px !important;
     padding: 3rem 1.25rem 2.5rem;
     min-height: auto;
   }
