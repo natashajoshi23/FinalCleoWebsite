@@ -124,7 +124,7 @@ export default function Navbar() {
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? '100px' : '155px',
           transition: 'background 0.5s, backdrop-filter 0.5s',
-          background: (isMobile || scrolled)
+          background: scrolled
             ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
             : 'transparent',
           backdropFilter: scrolled ? 'blur(16px)' : 'none',
