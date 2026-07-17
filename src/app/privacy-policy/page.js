@@ -93,7 +93,16 @@ const sections = [
   },
   {
     num: '3',
-    title: 'How We Share Your Information',
+    title: 'Chatbot & Third-Party Services',
+    text: 'Our website uses a virtual assistant chatbot powered by Botpress. When you interact with the chatbot, your conversation messages may be stored and processed on Botpress\'s servers. Please be mindful of the information you share in the chat — we recommend not entering sensitive personal information such as passwords, payment details, or government ID numbers. By using the chatbot, you acknowledge that your conversation data may be stored by Botpress in accordance with their own privacy policy.',
+    bullets: [
+      { bold: 'Google Analytics:', text: 'We use Google Analytics to collect anonymous usage data such as page views, session duration, and general location. This data helps us understand how visitors use our site. Google may store this data on their own servers.' },
+      { bold: 'Google reCAPTCHA:', text: 'Our contact and application forms are protected by Google reCAPTCHA v3 to prevent spam and abuse. reCAPTCHA operates in the background without requiring user interaction. By submitting a form, you acknowledge that your interaction data is processed by Google in accordance with their Privacy Policy and Terms of Service.' },
+    ],
+  },
+  {
+    num: '4',
+    title: 'How We Share Your Personal Information',
     text: 'We do not sell, trade, or rent your personal information to third parties. We may share your information in the following cases:',
     bullets: [
       { bold: 'With Employers:', text: 'We may share your resume, job history, and other relevant information with employers who are seeking candidates for job openings.' },
@@ -101,13 +110,13 @@ const sections = [
     ],
   },
   {
-    num: '4',
+    num: '5',
     title: 'Data Security',
     text: 'We take reasonable measures to protect your personal information from unauthorized access, disclosure, or destruction. However, please be aware that no security measures are completely secure, and we cannot guarantee the absolute security of your information.',
     bullets: [],
   },
   {
-    num: '5',
+    num: '6',
     title: 'Your Rights and Choices',
     text: 'Depending on your location, you may have the following rights:',
     bullets: [
@@ -118,13 +127,13 @@ const sections = [
     ],
   },
   {
-    num: '6',
+    num: '7',
     title: "Children's Privacy",
     text: 'Our Site is not intended for children under the age of 13, and we do not knowingly collect personal information from children. If you believe we have collected personal information from a child under 13, please contact us immediately, and we will take steps to delete the information.',
     bullets: [],
   },
   {
-    num: '7',
+    num: '8',
     title: 'Changes to This Privacy Policy',
     text: 'We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any significant changes by posting the updated Privacy Policy on this page with a new effective date.',
     bullets: [],
@@ -137,7 +146,7 @@ export default function PrivacyPolicy() {
       <PageBanner eyebrow="Legal" title="PRIVACY<br>POLICY" num="" bgImage="/images/office-sunset.webp" />
       <div style={{ maxWidth: '780px', margin: '0 auto', padding: '4rem 2rem 5rem' }}>
 
-        <p style={{ fontSize: '1rem', letterSpacing: '0.1em', color: 'var(--gold)', marginBottom: '1.5rem', fontWeight: 700 }}>Effective Date: Jan 1st 2025</p>
+        <p className="pp-gold" style={{ fontSize: '1rem', letterSpacing: '0.1em', color: 'var(--gold)', marginBottom: '1.5rem', fontWeight: 700 }}>Effective Date: Jan 1st 2025</p>
 
         <p style={{ fontSize: '0.95rem', color: 'var(--fog)', lineHeight: 1.85, marginBottom: '1.25rem' }}>At Cleo Consulting Inc., we are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This Privacy Policy outlines how we collect, use, disclose, and protect your personal information when you visit our website at cleoconsult.com (the &ldquo;Site&rdquo;).</p>
 
@@ -145,15 +154,15 @@ export default function PrivacyPolicy() {
 
         {sections.map(s => (
           <div key={s.num} style={{ marginBottom: '2.5rem' }}>
-            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--paper)', marginBottom: '0.75rem' }}>
-              <span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>{s.num}.</span> {s.title}
-            </h3>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--paper)', marginBottom: '0.75rem' }}>
+              <span className="pp-gold" style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>{s.num}.</span> {s.title}
+            </h2>
             <p style={{ fontSize: '0.92rem', color: 'var(--fog)', lineHeight: 1.85, marginBottom: s.bullets.length > 0 ? '1rem' : '0' }}>{s.text}</p>
             {s.bullets.length > 0 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingLeft: '1rem' }}>
                 {s.bullets.map((b, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.88rem', color: 'var(--fog)', lineHeight: 1.7 }}>
-                    <span style={{ color: 'var(--gold)', marginTop: '0.15rem', flexShrink: 0 }}>{'\u2014'}</span>
+                    <span className="pp-gold" style={{ color: 'var(--gold)', marginTop: '0.15rem', flexShrink: 0 }}>{'\u2014'}</span>
                     <span>{b.bold && <strong style={{ color: 'var(--paper)' }}>{b.bold} </strong>}{b.text}</span>
                   </div>
                 ))}
@@ -163,15 +172,15 @@ export default function PrivacyPolicy() {
         ))}
 
         <div style={{ marginTop: '3rem', padding: '2rem', border: '1px solid var(--ghost)' }}>
-          <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--paper)', marginBottom: '0.75rem' }}>
-            <span style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>8.</span> Contact Us
-          </h3>
+          <h2 style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--paper)', marginBottom: '0.75rem' }}>
+            <span className="pp-gold" style={{ color: 'var(--gold)', marginRight: '0.5rem' }}>9.</span> Contact Us
+          </h2>
           <p style={{ fontSize: '0.92rem', color: 'var(--fog)', lineHeight: 1.85, marginBottom: '1rem' }}>If you have any questions or concerns about this Privacy Policy, or if you would like to exercise any of your rights, please contact us at:</p>
           <div style={{ fontSize: '0.92rem', color: 'var(--paper)', lineHeight: 1.8 }}>
             <strong>Cleo Consulting Inc.</strong><br />
             1879 Whitehaven Rd, Ste C & 1020,<br />
             Grand Island, NY 14072<br />
-            <a href="tel:1-866-3906604" style={{ color: 'var(--gold)', textDecoration: 'none' }}>1-866-390-6604</a>
+            <a href="tel:1-866-3906604" className="pp-gold" style={{ color: 'var(--gold)', textDecoration: 'none' }}>1-866-390-6604</a>
           </div>
         </div>
 

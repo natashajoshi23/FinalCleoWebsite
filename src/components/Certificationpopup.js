@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const slides = [
   { img: '/images/gptw-badge.webp', alt: 'Great Place to Work Certified 2025' },
@@ -11,6 +11,7 @@ export default function CertificationPopup() {
   const [show, setShow] = useState(false)
   const [showBadge, setShowBadge] = useState(false)
   const [current, setCurrent] = useState(0)
+  const closeRef = useRef(null)
   const [isMobile, setIsMobile] = useState(false)
   const [isSmall, setIsSmall] = useState(false)
   const [isMedium, setIsMedium] = useState(false)
@@ -42,6 +43,20 @@ export default function CertificationPopup() {
     sessionStorage.setItem('gptw-seen', '1')
   }
 
+  useEffect(() => {
+    if (!show) return
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    closeRef.current?.focus()
+    const onKey = (e) => { if (e.key === 'Escape') close() }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [show])
+
   const next = () => setCurrent(c => (c + 1) % slides.length)
 
   const arrowStyle = {
@@ -69,14 +84,19 @@ export default function CertificationPopup() {
       {show && (
         <div
           onClick={close}
+          role="presentation"
+          aria-hidden="true"
           style={{
-            position: 'fixed', inset: 0, zIndex: 9999,
+            position: 'fixed', inset: 0, zIndex: 100000,
             background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)',
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
             animation: 'fadeIn 0.3s ease',
           }}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Great Place to Work certification"
             onClick={function(e) { e.stopPropagation() }}
             style={{
               display: 'flex',
@@ -103,7 +123,9 @@ export default function CertificationPopup() {
 
             <div style={{ position: 'relative' }}>
               <button
+                ref={closeRef}
                 onClick={close}
+                aria-label="Close certification popup"
                 style={{
                   position: 'absolute', top: '10px', right: '10px', zIndex: 10,
                   width: '36px', height: '36px', minHeight: 'unset', minWidth: 'unset', borderRadius: '50%',

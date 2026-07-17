@@ -30,9 +30,9 @@ const roles = [
 ]
 
 const projects = [
-  { title: 'Cisco Network Solutions', text: 'Enterprise Cisco network infrastructure design and deployment for clients across North America.', img: '/images/laptop-teamwork.webp', slug: 'cisco-network-solutions' },
-  { title: 'Cloud Integration Services', text: 'Multi-cloud integration across Azure, AWS and GCP driving productivity and scalability.', img: '/images/digital-globe.webp', slug: 'cloud-integration-services' },
-  { title: 'Cyber Security Services', text: 'Advanced security consultation protecting digital assets for enterprise clients worldwide.', img: '/images/circuit-board.webp', slug: 'cyber-security-services' },
+  { title: 'Cisco Network Solutions', text: 'Enterprise Cisco network infrastructure design and deployment for clients across North America.', img: '/images/server-rack.webp', slug: 'cisco-network-solutions' },
+  { title: 'Cloud Integration Services', text: 'Multi-cloud integration across Azure, AWS and GCP driving productivity and scalability.', img: '/images/cloud-int.webp', slug: 'cloud-integration-services' },
+  { title: 'Cyber Security Services', text: 'Advanced security consultation protecting digital assets for enterprise clients worldwide.', img: '/images/cybersecurity-fingerprint.webp', slug: 'cyber-security-services' },
 ]
 
 const clients = [
@@ -114,7 +114,7 @@ export default function Home() {
               </Link>
               <Link href="/health-services" className="badge-link float-slow" aria-label="Learn more about Cleo Health Services" style={{ textDecoration: 'none', position: 'absolute', top: '400px', right: '-10px', textAlign: 'center' }}>
                 <RotatingBadge text="HEALTH SERVICES · HEALTH SERVICES · HEALTH SERVICES · " img="/images/nurse-scrubs.webp" spacing="0.7" size="200" imgSize="140" />
-                <div aria-hidden="true" style={{ fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#B8860B', marginTop: '0.4rem', fontWeight: '400' }}>Learn More →</div>
+                <div aria-hidden="true" style={{ fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#B8860B', marginTop: '1.5rem', fontWeight: '400' }}>Learn More →</div>
               </Link>
             </div>
           </div>
@@ -135,39 +135,26 @@ export default function Home() {
       {/* MANIFESTO */}
       <div className="manifesto" style={{ paddingBottom: '1rem', paddingTop: '1rem' }}><div className="manifesto-inner">
         <div className="manifesto-left"><ScrollReveal>
-          <div className="sec-label" style={{ marginTop: '4rem', marginBottom: '1.5rem' }}>Our Philosophy</div>
+          <div className="sec-label" style={{ marginTop: '2.5rem', marginBottom: '1.5rem' }}>Our Philosophy</div>
           <p className="big-quote" style={{ marginBottom: '1.5rem' }}>&ldquo;Every role filled is <em className="gradient-text" style={{ WebkitTextFillColor: 'transparent' }}>a relationship</em> built. We sniff out the <em className="gradient-text" style={{ WebkitTextFillColor: 'transparent' }}>right talent</em>— not just the nearest available.&rdquo;</p>
           <div className="quote-attr" style={{ marginBottom: '2rem' }}>— Cleo Consulting</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem', marginTop: '3.5rem' }}>
-        <div style={{ position: 'relative', display: 'inline-block' }}>
-          <div style={{ position: 'absolute', inset: '-8px', border: '1.5px solid var(--gold)', opacity: 0.4, transform: 'rotate(2deg)' }} />
-          <div style={{ transform: 'rotate(-1deg)', height: '250px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
-            <img src="/images/handshake.webp" alt="Partnership" className="img-cover" loading="lazy" style={{ filter: 'sepia(20%) saturate(120%) brightness(0.85)' }} />
+          <div style={{ position: 'relative', display: 'inline-block', marginTop: '0rem' }}>
+            <div style={{ position: 'absolute', inset: '-8px', border: '1.5px solid var(--gold)', opacity: 0.4, transform: 'rotate(2deg)' }} />
+            <div style={{ transform: 'rotate(-1deg)', height: '250px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
+              <img src="/images/handshake2.webp" alt="Partnership" className="img-cover" loading="lazy" style={{ filter: 'sepia(20%) saturate(120%) brightness(0.85)' }} />
+            </div>
           </div>
-        </div>
-        <div style={{ position: 'relative', display: 'inline-block' }}>
-          <div style={{ position: 'absolute', inset: '-8px', border: '1.5px solid var(--gold)', opacity: 0.4, transform: 'rotate(-2deg)' }} />
-          <div style={{ transform: 'rotate(1deg)', height: '250px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
-            <img src="/images/team-meeting-overhead.webp" alt="Team" className="img-cover" loading="lazy" style={{ filter: 'sepia(20%) saturate(120%) brightness(0.85)' }} />
-          </div>
-        </div>
-      </div>       </ScrollReveal></div>
-        <div className="cards-col">
+      </ScrollReveal></div>
+        <div className="cards-col" style={{ paddingTop: '2rem' }}>
           {[
             { num: '01', title: 'Who We Are', text: "We are Cleo Consulting, a hardworking and dedicated IT Consulting and Recruitment firm. Cleo is being built by partners who boast a combined experience of over 200+ years in IT Consulting and Recruitment Industry. Since Cleo's inception, we have partnered with multiple clients in various industries successfully delivering projects.", img: '/images/laptop-teamwork.webp' },
-            { num: '02', title: 'What We Do', text: "We have strategic partnerships to deliver various consulting projects with both onshore and offshore delivery models. At the same time, our core business entails providing end to end recruitment services — IT, Finance & Accounting, Engineering, Customer Service, Admin Support and Sales. This allows our clients to focus on what is most important for their company while leaving their hiring needs to us.", img: '/images/desk-bw.webp' },
-            { num: '03', title: 'Why Cleo?', text: "We are not a typical projects consulting firm — we serve a limited number of clients to build strong partner relationships. This allows us to deliver a higher level of responsiveness, fewer blocking restrictions, maximum access to the market and personal, partner-led involvement on all assignments. Being small allows us to stay hungry, remain motivated and driven to excel. We are of the \"Action Speaks Louder Than Words\" school of thought.", img: '/images/puzzle-light.webp' },
+            { num: '02', title: 'What We Do', text: "We have strategic partnerships to deliver various consulting projects with both onshore and offshore delivery models. At the same time, our core business entails providing end to end recruitment services — IT, Finance & Accounting, Engineering, Customer Service, Admin Support and Sales. This allows our clients to focus on what is most important for their company while leaving their hiring needs to us.", img: '/images/servicenow.webp' },
+            { num: '03', title: 'Why Cleo?', text: "We are not a typical projects consulting firm — we serve a limited number of clients to build strong partner relationships. This allows us to deliver a higher level of responsiveness, fewer blocking restrictions, maximum access to the market and personal, partner-led involvement on all assignments. Being small allows us to stay hungry, remain motivated and driven to excel. We are of the \"Action Speaks Louder Than Words\" school of thought.", img: '/images/puzzle.webp' },
           ].map(({ num, title, text, img }, i) => (
             <ScrollReveal key={num} delay={i + 1}><div className="m-card">
               <div className="m-num">{num}</div>
               <div><div className="m-title">{title}</div><p className="m-text">{text}</p>
-              <div style={{ marginTop: '1.25rem', position: 'relative', display: 'inline-block', width: '100%' }}>
-                <div style={{ position: 'absolute', inset: '-6px', border: '1px solid var(--gold)', opacity: 0.3, transform: 'rotate(1.5deg)' }} />
-                <div style={{ height: '120px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }} className="img-zoom">
-                  <img src={img} alt={title} className="img-cover" loading="lazy" style={{ filter: 'sepia(30%) saturate(130%) brightness(0.75)' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(200,153,31,0.12), rgba(0,18,41,0.4))', pointerEvents: 'none' }} />
-                </div>
-              </div>              </div>
+              </div>
             </div></ScrollReveal>
           ))}
         </div>
@@ -175,7 +162,7 @@ export default function Home() {
 
       {/* TESTIMONIAL */}
       <div className="testimonial-section">
-        <div className="testimonial-bg"><img src="/images/conference-room.webp" alt="" aria-hidden="true" loading="lazy" /></div>        <div className="testimonial-inner"><ScrollReveal>
+        <div className="testimonial-bg"><img src="/images/skyline.webp" alt="" aria-hidden="true" loading="lazy" /></div>        <div className="testimonial-inner"><ScrollReveal>
           <div className="testimonial-mark">&ldquo;</div>
           <p className="testimonial-text">Being small keeps us hungry, motivated and driven to excel. We don&rsquo;t just fill roles — we build lasting partnerships that transform how our clients find and retain talent.</p>
           <div className="testimonial-author">— Cleo Consulting Founding Partners</div>
@@ -193,8 +180,8 @@ export default function Home() {
               <p style={{ fontSize: '0.88rem', lineHeight: 1.8, color: 'var(--fog)', maxWidth: '340px', marginBottom: '1.5rem', letterSpacing: '0.02em', opacity: 0.85 }}></p>
               <div style={{ position: 'relative', display: 'inline-block', width: '100%' }}>
                 <div style={{ position: 'absolute', inset: '-8px', border: '1px solid var(--gold)', opacity: 0.4, transform: 'rotate(2deg)' }} />
-                <div style={{ height: '250px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }} className="img-zoom">
-                  <img src="/images/team-fistbump.webp" alt="Team" className="img-cover" loading="lazy" style={{ filter: 'sepia(30%) saturate(130%) brightness(0.75)', objectPosition: 'center 32%' }} />
+                <div style={{ height: 'clamp(140px, 20vw, 280px)', overflow: 'hidden', borderRadius: '2px', position: 'relative' }} className="img-zoom">
+                  <img src="/images/businessman-suit.webp" alt="Team" className="img-cover" loading="lazy" style={{ filter: 'sepia(30%) saturate(130%) brightness(0.75)', objectPosition: 'center 32%', transform: 'none' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(200,153,31,0.12), rgba(0,18,41,0.4))', pointerEvents: 'none' }} />
                 </div>
               </div>            </div></ScrollReveal>

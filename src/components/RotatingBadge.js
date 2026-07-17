@@ -1,6 +1,8 @@
 'use client'
+import { useTheme } from './ThemeContext'
 
 export default function RotatingBadge({ text = 'CLEO CONSULTING · CLEO CONSULTING · ', img = '/images/puzzle-circle.webp', spacing = '3.2', size = '180', imgSize = '105' }) {
+  const { isDark } = useTheme()
   return (
     <div className="rotating-badge" style={{ width: `${size}px`, height: `${size}px` }}>
       <svg viewBox="0 0 120 120">

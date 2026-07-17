@@ -25,14 +25,14 @@ export default async function Team() {
   return (
     <>
       <link rel="preload" as="image" href="/images/team-fistbump.webp" />
-      <PageBanner eyebrow="About Us" title="OUR<br>TEAM" num="02" bgImage="/images/team-fistbump.webp" />
+      <PageBanner eyebrow="About Us" title="OUR<br>TEAM" num="02" bgImage="/images/team-fistbump.webp" bgPosition="center 40%" />
       <div className="pg-body">
         <div className="team-list">
 
           {/* --- CMS-managed members --- */}
           {sanityMembers.map((m) => {
             const photoUrl = m.photo
-              ? urlFor(m.photo).width(400).height(400).fit('crop').auto('format').url()
+              ? urlFor(m.photo).width(800).height(800).fit('crop').quality(95).auto('format').url()
               : null
             return (
               <div className="tm" key={m._id}>

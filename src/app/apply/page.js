@@ -1,12 +1,27 @@
 'use client'
-import Script from 'next/script'
+import { useEffect } from 'react'
 import PageBanner from '@/components/PageBanner'
 
 export default function ApplyPage() {
+  useEffect(() => {
+    const container = document.getElementById('example-widget-container')
+    if (container) container.innerHTML = ''
+
+    const script = document.createElement('script')
+    script.src = 'https://jobsapi.ceipal.com/APISource/widget.js'
+    script.setAttribute('data-ceipal-api-key', process.env.NEXT_PUBLIC_CEIPAL_API_KEY)
+    script.setAttribute('data-ceipal-career-portal-id', process.env.NEXT_PUBLIC_CEIPAL_PORTAL_ID)
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
+
   return (
     <>
-      <link rel="preload" as="image" href="/images/handshake.webp" />
-      <PageBanner eyebrow="Careers" title="APPLY<br>NOW" num="09" bgImage="/images/handshake.webp" />
+      <link rel="preload" as="image" href="/images/apply-now.webp" />
+      <PageBanner eyebrow="Careers" title="APPLY<br>NOW" num="09" bgImage="/images/apply-now.webp" />
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2rem 5rem' }}>
 
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '3rem', paddingBottom: '2rem', borderBottom: '1px solid var(--ghost)', textAlign: 'center' }}>
@@ -17,12 +32,6 @@ export default function ApplyPage() {
         </div>
 
         <div id="example-widget-container" />
-        <Script
-          src="https://jobsapi.ceipal.com/APISource/widget.js"
-          data-ceipal-api-key={process.env.NEXT_PUBLIC_CEIPAL_API_KEY}
-          data-ceipal-career-portal-id={process.env.NEXT_PUBLIC_CEIPAL_PORTAL_ID}
-          strategy="afterInteractive"
-        />
 
       </div>
     </>

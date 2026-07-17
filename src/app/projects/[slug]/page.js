@@ -5,7 +5,7 @@ const projects = {
   'cisco-network-solutions': {
     title: 'Cisco Network Solutions',
     banner: 'CISCO<br>NETWORK',
-    img: '/images/digital-globe.webp',
+    img: '/images/server-rack.webp',
     sections: [
       { heading: '', text: "At Cleo Consulting, we specialize in providing comprehensive Cisco network solutions that empower businesses to build secure, scalable, and reliable network infrastructures. As a trusted partner of Cisco Systems, we have the expertise and knowledge to help organizations of all sizes optimize their networks, enhance connectivity, and drive digital transformation." },
     ],
@@ -27,7 +27,9 @@ const projects = {
   'cloud-integration-services': {
     title: 'Cloud Integration Services',
     banner: 'CLOUD<br>INTEGRATION',
-    img: '/images/laptop-teamwork.webp',
+    img: '/images/cloud-int.webp',
+    bgScale: 1.1,
+    bgPosition: 'center 20%',
     sections: [
       { heading: '', text: "In today\u2019s digital landscape, businesses rely on various cloud-based applications and systems to drive productivity and growth. At Cleo, we support all major cloud products \u2013 MS Azure, AMAZON, Google Cloud etc. We specialize in providing comprehensive cloud integration solutions that connect and streamline your business processes. With our expertise and cutting-edge technology, we help you leverage the power of the cloud to optimize your operations and achieve your business goals." },
     ],
@@ -51,7 +53,8 @@ const projects = {
   'cyber-security-services': {
     title: 'Cyber Security Services',
     banner: 'CYBER<br>SECURITY',
-    img: '/images/code-blue.webp',
+    img: '/images/cybersecurity-fingerprint.webp',
+    bgScale: 1.0,
     sections: [
       { heading: '', text: "At CLEO Consulting, we understand the critical importance of safeguarding your digital assets in today\u2019s increasingly interconnected world. With the rapid evolution of technology and the growing sophistication of cyber threats, businesses and organizations must be proactive in defending against potential breaches and protecting sensitive information. That\u2019s where we come in." },
       { heading: '', text: "Our team of experienced cyber security professionals is dedicated to providing comprehensive and tailored solutions to address your unique security needs. We offer a wide range of services designed to identify vulnerabilities, mitigate risks, and ensure the integrity and confidentiality of your data. Whether you\u2019re a small business, a government agency, or a multinational corporation, we have the expertise and knowledge to help you navigate the complex cyber landscape." },
@@ -74,7 +77,7 @@ const projects = {
   'palo-alto-network-solutions': {
     title: 'Palo Alto Network Solutions',
     banner: 'PALO ALTO<br>NETWORKS',
-    img: '/images/night-city.webp',
+    img: '/images/vpn.webp',
     sections: [
       { heading: '', text: "At CLEO Consulting, we understand the importance of a robust and reliable network infrastructure in today\u2019s digital landscape. We specialize in providing comprehensive Palo Alto network solutions that empower businesses to secure their networks, protect their data, and mitigate emerging cyber threats. With our expertise and deep knowledge of Palo Alto Networks technologies, we help organizations of all sizes build resilient and secure network environments." },
     ],
@@ -95,7 +98,7 @@ const projects = {
   'data-science-solutions': {
     title: 'Data Science Solutions',
     banner: 'DATA<br>SCIENCE',
-    img: '/images/circuit-brain.webp',
+    img: '/images/code.webp',
     sections: [
       { heading: '', text: "At CLEO Consulting, we offer a range of cutting-edge solutions designed to help you leverage the potential of your data and make informed business decisions. Our team of expert data scientists is dedicated to delivering tailored services that address your unique challenges and drive success." },
     ],
@@ -113,7 +116,7 @@ const projects = {
   'it-networking-solutions': {
     title: 'IT Networking Solutions',
     banner: 'IT<br>NETWORKING',
-    img: '/images/laptop-teamwork.webp',
+    img: '/images/IT-network.webp',
     sections: [
       { heading: '', text: "In today\u2019s interconnected world, a robust and reliable network infrastructure is essential for the smooth functioning of businesses. At Cleo, we specialize in delivering cutting-edge IT networking solutions that optimize connectivity, enhance performance, and enable seamless communication across your organization. With our expertise and innovative technologies, we help you build a solid foundation for your digital transformation journey." },
     ],
@@ -136,7 +139,7 @@ const projects = {
   'salesforce-services': {
     title: 'Salesforce Services',
     banner: 'SALESFORCE<br>SERVICES',
-    img: '/images/laptop-teamwork.webp',
+    img: '/images/salesforce.webp',
     sections: [
       { heading: '', text: "We offer comprehensive Salesforce services tailored to meet your business needs. Our team of experienced Salesforce experts is dedicated to helping you maximize the potential of your Salesforce implementation. Whether you\u2019re just starting with Salesforce or looking to optimize and enhance your existing setup, we have the expertise to guide you every step of the way." },
     ],
@@ -159,7 +162,7 @@ const projects = {
   'servicenow-service': {
     title: 'ServiceNow Service',
     banner: 'SERVICENOW<br>SERVICES',
-    img: '/images/desk-bw.webp',
+    img: '/images/ITSM2.webp',
     sections: [
       { heading: '', text: "We are dedicated to providing top-notch ServiceNow services to help businesses optimize their workflows, enhance collaboration, and streamline their IT service management processes. With our deep expertise in the ServiceNow platform, we are committed to delivering tailored solutions that meet your unique business needs." },
     ],
@@ -214,7 +217,9 @@ const projects = {
   'aem-development-services': {
     title: 'AEM Development Services',
     banner: 'AEM<br>DEVELOPMENT',
-    img: '/images/ai-cube.webp',
+    img: '/images/AEM.webp',
+    bgScale: 1,
+    bgPosition: 'center 15%',
     sections: [
       { heading: '', text: "We specialize in providing top-notch AEM development services to help businesses leverage the power of Adobe Experience Manager. With our team of experienced AEM developers, we offer a comprehensive range of services to ensure seamless implementation, customization, and optimization of AEM for your digital experience management needs." },
       { heading: 'Our AEM Development Process', text: "Our AEM development process is designed to deliver exceptional results while ensuring a smooth and efficient workflow. We begin by understanding your specific requirements and objectives, allowing us to tailor our services to meet your unique needs." },
@@ -248,12 +253,12 @@ const projects = {
 const imgs = {
   'cisco-network-solutions': '/images/digital-globe.webp',
   'cloud-integration-services': '/images/laptop-teamwork.webp',
-  'cyber-security-services': '/images/code-blue.webp',
+  'cyber-security-services': '/images/cybersecurity-fingerprint.webp',
   'palo-alto-network-solutions': '/images/night-city.webp',
   'data-science-solutions': '/images/circuit-brain.webp',
   'it-networking-solutions': '/images/laptop-teamwork.webp',
-  'salesforce-services': '/images/laptop-teamwork.webp',
-  'servicenow-service': '/images/desk-bw.webp',
+  'salesforce-services': '/images/network.webp',
+  'servicenow-service': '/images/servicenow.webp',
   'software-development': '/images/code-python.webp',
   'aem-development-services': '/images/ai-cube.webp',
 }
@@ -271,13 +276,13 @@ export default function ProjectPage({ params }) {
 
   return (
     <>
-      <PageBanner eyebrow="Our Projects" title={proj.banner} num="" bgImage={proj.img} />
+      <PageBanner eyebrow="Our Projects" title={proj.banner} num="" bgImage={proj.img} bgScale={proj.bgScale} bgPosition={proj.bgPosition} />
       <div className="pg-body" style={{ maxWidth: '900px' }}>
 
         {/* Intro */}
         {proj.sections.map((s, i) => (
           <div key={i} style={{ marginBottom: '2rem' }}>
-            {s.heading && <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.3rem', color: 'var(--gold)', letterSpacing: '0.03em', marginBottom: '0.75rem' }}>{s.heading}</h3>}
+            {s.heading && <h2 className="proj-section-heading" style={{ fontFamily: 'var(--display)', fontSize: '1.3rem', color: 'var(--gold)', letterSpacing: '0.03em', marginBottom: '0.75rem' }}>{s.heading}</h2>}
             <p style={{ fontSize: '0.95rem', color: 'var(--fog)', lineHeight: 1.85 }}>{s.text}</p>
           </div>
         ))}
@@ -285,32 +290,24 @@ export default function ProjectPage({ params }) {
         {/* Process steps if present */}
         {proj.steps && proj.steps.length > 0 && (
           <div style={{ margin: '2.5rem 0', padding: '2rem', border: '1px solid var(--ghost)', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '-0.6rem', left: '1.5rem', background: 'var(--ink)', padding: '0 0.75rem', fontFamily: 'var(--display)', fontSize: '0.7rem', letterSpacing: '0.15em', color: 'var(--gold)', textTransform: 'uppercase' }}>Our Process</div>
+            <div className="proj-process-label" style={{ position: 'absolute', top: '-0.6rem', left: '1.5rem', background: 'var(--ink)', padding: '0 0.75rem', fontFamily: 'var(--display)', fontSize: '0.7rem', letterSpacing: '0.15em', color: 'var(--gold)', textTransform: 'uppercase' }}>Our Process</div>
             {proj.steps.map((step, i) => (
               <div key={i} style={{ display: 'flex', gap: '1rem', marginBottom: '1.25rem', alignItems: 'flex-start' }}>
-                <span style={{ fontFamily: 'var(--display)', fontSize: '1.8rem', color: 'var(--gold)', opacity: 0.4, lineHeight: 1, flexShrink: 0, width: '2rem', textAlign: 'right' }}>{'0' + (i + 1)}</span>
+                <span className="proj-step-num" style={{ fontFamily: 'var(--display)', fontSize: '1.8rem', color: 'var(--gold)', opacity: 0.4, lineHeight: 1, flexShrink: 0, width: '2rem', textAlign: 'right' }}>{'0' + (i + 1)}</span>
                 <p style={{ fontSize: '0.9rem', color: 'var(--fog)', lineHeight: 1.7, margin: 0 }}>{step}</p>
               </div>
             ))}
           </div>
         )}
 
-        {/* Image */}
-        <div style={{ position: 'relative', margin: '3rem 0' }}>
-          <div style={{ position: 'absolute', inset: '-8px', border: '1px solid var(--gold)', opacity: 0.3, transform: 'rotate(2deg)' }} />
-          <div style={{ height: '300px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
-            <img src={proj.img} alt={proj.title} className="img-cover" style={{ filter: 'sepia(30%) saturate(130%) brightness(0.75)' }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(200,153,31,0.12), rgba(0,18,41,0.4))', pointerEvents: 'none' }} />
-          </div>
-        </div>
 
         {/* Services / Offerings */}
         {proj.services && proj.services.length > 0 && (
           <div style={{ marginBottom: '3rem' }}>
-            <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.2rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '2rem', paddingBottom: '0.75rem', borderBottom: '1px solid var(--gold)' }}>OUR SERVICES</h3>
+            <h2 style={{ fontFamily: 'var(--display)', fontSize: '1.2rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '2rem', paddingBottom: '0.75rem', borderBottom: '1px solid var(--gold)' }}>OUR SERVICES</h2>
             {proj.services.map((s, i) => (
               <div key={i} style={{ marginBottom: '2rem', paddingLeft: '1.5rem', borderLeft: '2px solid var(--gold)' }}>
-                <h4 style={{ fontFamily: 'var(--serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--paper)', marginBottom: '0.5rem' }}>{s.name}</h4>
+                <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--paper)', marginBottom: '0.5rem' }}>{s.name}</h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--fog)', lineHeight: 1.8 }}>{s.text}</p>
               </div>
             ))}
@@ -320,11 +317,11 @@ export default function ProjectPage({ params }) {
         {/* Why Choose */}
         {proj.whyChoose && proj.whyChoose.length > 0 && (
           <div style={{ marginBottom: '3rem' }}>
-            <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.2rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '2rem', paddingBottom: '0.75rem', borderBottom: '1px solid var(--gold)' }}>WHY CHOOSE CLEO?</h3>
+            <h2 style={{ fontFamily: 'var(--display)', fontSize: '1.2rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '2rem', paddingBottom: '0.75rem', borderBottom: '1px solid var(--gold)' }}>WHY CHOOSE CLEO?</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               {proj.whyChoose.map((w, i) => (
                 <div key={i} style={{ padding: '1.5rem', border: '1px solid var(--ghost)', position: 'relative' }}>
-                  <div style={{ fontFamily: 'var(--display)', fontSize: '0.7rem', letterSpacing: '0.12em', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{w.label}</div>
+                  <div className="proj-why-label" style={{ fontFamily: 'var(--display)', fontSize: '1rem', letterSpacing: '0.12em', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{w.label}</div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--fog)', lineHeight: 1.7, margin: 0 }}>{w.text}</p>
                 </div>
               ))}
@@ -346,19 +343,19 @@ export default function ProjectPage({ params }) {
 
         {/* Other Projects */}
         <div style={{ marginTop: '4rem', paddingTop: '3rem', borderTop: '1px solid var(--ghost)' }}>
-          <h3 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '1.5rem' }}>OTHER PROJECTS</h3>
+          <h2 style={{ fontFamily: 'var(--display)', fontSize: '1.4rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '1.5rem' }}>OTHER PROJECTS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'var(--ghost)' }}>
             {otherProjects.map(slug => (
               <Link href={"/projects/" + slug} key={slug} style={{ textDecoration: 'none', background: 'var(--ink)', padding: '1.5rem', display: 'block' }}>
                 <div style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontWeight: 700, color: 'var(--paper)', marginBottom: '0.3rem' }}>{projects[slug].title}</div>
-                <span style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)' }}>View Project {'\u2192'}</span>
+                <span className="proj-view-link" style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)' }}>View Project {'\u2192'}</span>
               </Link>
             ))}
           </div>
         </div>
 
         <div style={{ marginTop: '2rem' }}>
-          <Link href="/projects" style={{ fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', textDecoration: 'none' }}>{'\u2190'} Back to All Projects</Link>
+          <Link href="/projects" className="proj-back-link" style={{ fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', textDecoration: 'none' }}>{'\u2190'} Back to All Projects</Link>
         </div>
       </div>
     </>

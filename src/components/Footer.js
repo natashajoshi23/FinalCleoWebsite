@@ -44,11 +44,13 @@ export default function Footer() {
             <div className="ft-bottom-links">
               <Link href="/privacy-policy">Privacy Policy</Link>
               <span className="ft-dot"> • </span>
+              <Link href="/accessibility">Accessibility</Link>
+              <span className="ft-dot"> • </span>
               <Link href="/sitemap">Sitemap</Link>
               <span className="ft-dot"> • </span>
               <a href="https://www.linkedin.com/company/cleo-consulting-inc-/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)' }}>LinkedIn</a>
             </div>
-            <div style={{ fontSize: '0.8rem', letterSpacing: '0.12em', color: 'var(--mist)' }}>
+            <div style={{ fontSize: '0.8rem', letterSpacing: '0.12em', color: 'var(--fog)' }}>
               Designed & Built by <a href="https://www.linkedin.com/in/natasha-joshi-88a694285/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', fontWeight: 600, textDecoration: 'none' }}>Natasha Joshi</a>
             </div>
           </div>

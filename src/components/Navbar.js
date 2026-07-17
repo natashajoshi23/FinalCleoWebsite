@@ -17,14 +17,14 @@ export default function Navbar() {
   const [themeHovered, setThemeHovered] = useState(false)
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 1050)
+    const check = () => setIsMobile(window.innerWidth <= 1150)
     check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
   }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10)
+    const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -33,26 +33,15 @@ export default function Navbar() {
 
   useEffect(() => {
     if (menuOpen) {
-      const scrollY = window.scrollY
-      document.body.style.position = 'fixed'
-      document.body.style.top = `-${scrollY}px`
-      document.body.style.width = '100%'
       document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
     } else {
-      const scrollY = parseInt(document.body.style.top || '0') * -1
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.width = ''
       document.body.style.overflow = ''
-      window.scrollTo(0, scrollY)
+      document.documentElement.style.overflow = ''
     }
     return () => {
-      const scrollY = parseInt(document.body.style.top || '0') * -1
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.width = ''
       document.body.style.overflow = ''
-      if (scrollY) window.scrollTo(0, scrollY)
+      document.documentElement.style.overflow = ''
     }
   }, [menuOpen])
 
@@ -99,11 +88,8 @@ export default function Navbar() {
           ? `1px solid ${themeHovered ? gold : 'rgba(245,237,230,0.25)'}`
           : `1px solid ${themeHovered ? 'rgba(0,18,41,0.5)' : 'rgba(0,18,41,0.25)'}`,
         borderRadius: '50%',
-        width: '44px',
-        height: '44px',
-        minHeight: '44px',
-        maxHeight: '44px',
-        minWidth: '44px',
+        width: '38px',
+        height: '38px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -131,37 +117,30 @@ export default function Navbar() {
         style={{
           position: 'fixed',
           top: 0, left: 0, right: 0,
-          zIndex: menuOpen ? 9996 : 9999,
+          zIndex: 200,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
-          height: isMobile ? '130px' : '155px',
+          height: isMobile ? '100px' : '155px',
           transition: 'background 0.5s, backdrop-filter 0.5s',
           background: scrolled
             ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
             : 'transparent',
           backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          /* Extend background upward on scroll to cover iOS Safari URL-bar gap */
-          boxShadow: isMobile && scrolled
-            ? (isDark ? '0 -200px 0 200px #001229' : '0 -200px 0 200px #FDFAF4')
-            : 'none',
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
         <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-          <Image
+          <img
             src={isDark ? '/images/logo-dark.webp' : '/images/logo-light.webp'}
             alt="Cleo Consulting"
-            width={200} height={64}
             style={{
-              height: isMobile ? (isDark ? '120px' : '140px') : (isDark ? '145px' : '180px'),
+              height: isMobile ? (isDark ? '110px' : '140px') : (isDark ? '145px' : '180px'),
               width: 'auto',
-              objectFit: 'contain',
               marginLeft: isMobile ? (isDark ? '-20px' : '-13px') : (isDark ? '-25px' : '-15px'),
-              marginTop: '0px',
+              marginTop: isMobile ? (isDark ? '15px' : '9px') : (isDark ? '0px' : '-10px'),
             }}
-            priority
           />
         </Link>
 
@@ -204,7 +183,7 @@ export default function Navbar() {
           ))}
           <li>
             <div style={{ display: 'flex', overflow: 'hidden', borderRadius: '2px' }}>
-              <Link href="/contact" style={{ padding: '0.6rem 2rem', background: pathname === '/contact' ? 'var(--paper)' : (hoveredLink === '/contact' ? 'var(--paper)' : 'transparent'), border: '1px solid var(--fog)', borderRight: 'none', fontSize: '0.9rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: pathname === '/contact' || hoveredLink === '/contact' ? 'var(--ink)' : 'var(--paper)', textDecoration: 'none', fontWeight: 550, transition: 'all 0.3s', whiteSpace: 'nowrap' }} onMouseEnter={() => setHoveredLink('/contact')} onMouseLeave={() => setHoveredLink(null)}>Contact</Link>
+              <Link href="/contact" style={{ padding: '0.6rem 2rem', background: pathname === '/contact' ? gold : (hoveredLink === '/contact' ? gold : 'transparent'), border: `1px solid ${pathname === '/contact' ? gold : 'var(--fog)'}`, borderRight: 'none', fontSize: '0.9rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: pathname === '/contact' || hoveredLink === '/contact' ? '#001229' : 'var(--paper)', textDecoration: 'none', fontWeight: 700, transition: 'all 0.3s', whiteSpace: 'nowrap' }} onMouseEnter={() => setHoveredLink('/contact')} onMouseLeave={() => setHoveredLink(null)}>Contact</Link>
               <Link href="/apply" className="apply-cta-link" style={{ padding: '0.6rem 2rem', background: 'var(--gold)', border: '1px solid var(--gold)', fontSize: '0.9rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink)', textDecoration: 'none', fontWeight: 750, transition: 'all 0.3s', whiteSpace: 'nowrap' }}>Apply Now</Link>
             </div>
           </li>
@@ -237,18 +216,17 @@ export default function Navbar() {
           </div>
       </nav>
 
-      {/* Transparent tap-to-close area on the left of the drawer */}
-      {menuOpen && (
-        <div
-          onClick={() => setMenuOpen(false)}
-          style={{
-            position: 'fixed', top: 0, left: 0, bottom: 0,
-            right: '340px',
-            zIndex: 9997,
-            background: 'transparent',
-          }}
-        />
-      )}
+      {/* Backdrop */}
+      <div
+        onClick={() => setMenuOpen(false)}
+        style={{
+          position: 'fixed', inset: 0, zIndex: 9997,
+          background: 'rgba(0,0,0,0.45)',
+          opacity: menuOpen ? 1 : 0,
+          pointerEvents: menuOpen ? 'auto' : 'none',
+          transition: 'opacity 0.35s ease',
+        }}
+      />
 
       {/* Slide-in sidebar drawer */}
       <div className="mobile-sidebar" style={{
@@ -259,14 +237,12 @@ export default function Navbar() {
           background: drawerBg,
           zIndex: 9998,
           overflowY: 'auto',
-          borderLeft: drawerBorder,
+          borderLeft: 'none',
           display: 'flex',
           flexDirection: 'column',
           transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 0.35s cubic-bezier(0.4,0,0.2,1)',
-          boxShadow: menuOpen ? `-8px 0 32px rgba(0,0,0,0.35), 0 200px 0 200px ${drawerBg}` : 'none',
-          overflowX: 'hidden',
-          paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 1.5rem)',
+          boxShadow: menuOpen ? '-8px 0 32px rgba(0,0,0,0.35)' : 'none',
         }}>
 
         {/* Sidebar header */}

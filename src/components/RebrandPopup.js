@@ -1,9 +1,10 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function RebrandPopup() {
   const [show, setShow] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const closeRef = useRef(null)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 900)
@@ -21,6 +22,20 @@ export default function RebrandPopup() {
     }
   }, [])
 
+  useEffect(() => {
+    if (!show) return
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    closeRef.current?.focus()
+    const onKey = (e) => { if (e.key === 'Escape') close() }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [show])
+
   const close = () => {
     setShow(false)
     sessionStorage.setItem('rebrand-seen', '1')
@@ -31,6 +46,7 @@ export default function RebrandPopup() {
   return (
     <div
       onClick={close}
+      role="presentation"
       style={{
         position: 'fixed', inset: 0, zIndex: 10000,
         background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)',
@@ -40,6 +56,9 @@ export default function RebrandPopup() {
       }}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Cleo Consulting rebrand announcement"
         onClick={e => e.stopPropagation()}
         style={{
           position: 'relative',
@@ -50,7 +69,9 @@ export default function RebrandPopup() {
         }}
       >
         <button
+          ref={closeRef}
           onClick={close}
+          aria-label="Close announcement"
           style={{
             position: 'absolute', top: '10px', right: '10px', zIndex: 10,
             width: '36px', height: '36px', minHeight: 'unset', minWidth: 'unset',

@@ -21,6 +21,7 @@ export default async function sitemap() {
     '/projects',
     '/blogs',
     '/privacy-policy',
+    '/accessibility',
     '/contact',
     '/apply',
     '/sitemap',

@@ -57,7 +57,7 @@ export default function ContactClient({ offices }) {
       `}</style>
 
       <Script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`} strategy="afterInteractive" />
-      <PageBanner eyebrow="Reach Out" title="LET'S<br>TALK" num="08" bgImage="/images/conference-room.webp" />
+      <PageBanner eyebrow="Reach Out" title="LET'S<br>TALK" num="08" bgImage="/images/handshake.webp" bgPosition="center 62%" />
       <div className="pg-body" style={{ paddingTop: '1rem' }}>
         <h2 style={{ fontFamily: 'var(--display)', fontSize: '2rem', color: 'var(--paper)', letterSpacing: '0.04em', marginBottom: '1.5rem' }}>OUR OFFICES</h2>
 
@@ -88,7 +88,7 @@ export default function ContactClient({ offices }) {
                   return (
                     <div key={key}>
                       <div style={{ height: '380px', overflow: 'hidden', borderRadius: '2px', position: 'relative' }}>
-                        {imgSrc && <img src={imgSrc} alt={fallback?.alt || `Cleo Consulting ${city} office`} className="img-cover" width={600} height={380} style={{ objectPosition: imagePos || fallback?.pos || 'center center' }} loading="lazy" />}
+                        {imgSrc && <img src={imgSrc} alt={fallback?.alt || `Cleo Consulting ${city} office`} className="img-cover" width={1200} height={760} style={{ objectPosition: imagePos || fallback?.pos || 'center center' }} loading="lazy" />}
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)' }} />
                         <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem' }}>
                           <div className="contact-country-label" style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', fontWeight: '800' }}>{country}</div>

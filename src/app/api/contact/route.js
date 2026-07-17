@@ -33,6 +33,16 @@ function escapeHtml(str) {
 
 // ── Route handler ─────────────────────────────────────────────────────────────
 
+async function verifyRecaptcha(token) {
+  const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+  })
+  const data = await res.json()
+  return data.success && data.score >= 0.7
+}
+
 export async function POST(req) {
   // Enforce a reasonable request body size (~16 KB)
   const contentLength = req.headers.get('content-length')
@@ -45,7 +55,15 @@ export async function POST(req) {
 
   try {
     const body = await req.json()
-    const { firstName, lastName, email, phone, service, message } = body
+    const { firstName, lastName, email, phone, service, message, recaptchaToken } = body
+
+    // Verify reCAPTCHA token
+    if (!recaptchaToken || !(await verifyRecaptcha(recaptchaToken))) {
+      return new Response(
+        JSON.stringify({ error: 'reCAPTCHA verification failed. Please try again.' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
 
     // Required field validation
     if (!firstName || !lastName || !email || !message) {

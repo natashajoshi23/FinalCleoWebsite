@@ -38,9 +38,27 @@ function escapeHtml(str) {
     .replace(/'/g, '&#x27;')
 }
 
+async function verifyRecaptcha(token) {
+  const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+  })
+  const data = await res.json()
+  return data.success && data.score >= 0.7
+}
+
 export async function POST(req) {
   try {
     const formData = await req.formData()
+
+    const recaptchaToken = formData.get('recaptchaToken')
+    if (!recaptchaToken || !(await verifyRecaptcha(recaptchaToken))) {
+      return new Response(
+        JSON.stringify({ error: 'reCAPTCHA verification failed. Please try again.' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
 
     const name       = escapeHtml(sanitize(formData.get('name'), 100))
     const email      = escapeHtml(sanitize(formData.get('email'), 254))
