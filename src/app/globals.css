@@ -562,6 +562,7 @@ footer::before{content:'';position:absolute;top:0;left:3rem;right:3rem;height:1p
 
 /* ── SCROLL PROGRESS BAR (Accenture) ── */
 .scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:9999;width:0%;transition:width 0.05s linear}
+@media(max-width:1150px){.scroll-progress{display:none}}
 
 /* ── ROTATING BADGE (Unseen Studio) ── */
 .rotating-badge{width:180px;height:180px;position:relative;flex-shrink:0}
