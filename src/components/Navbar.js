@@ -123,7 +123,7 @@ export default function Navbar() {
           justifyContent: 'space-between',
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? '100px' : '155px',
-          transition: 'background 0.5s, backdrop-filter 0.5s',
+          transition: isMobile ? 'backdrop-filter 0.5s' : 'background 0.5s, backdrop-filter 0.5s',
           background: scrolled
             ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
             : 'transparent',
