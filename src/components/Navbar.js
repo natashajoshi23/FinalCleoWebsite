@@ -110,13 +110,15 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Fills the iOS safe-area-inset-top (status bar / notch zone) so page content doesn't bleed through */}
+      {/* Covers the iOS status bar / safe area with navbar color — z-index must beat scroll-progress (9999) */}
       <div style={{
         position: 'fixed',
-        top: 0, left: 0, right: 0,
-        height: 'env(safe-area-inset-top, 0px)',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 'env(safe-area-inset-top, 44px)',
         background: isDark ? '#001229' : '#FDFAF4',
-        zIndex: 201,
+        zIndex: 10000,
         pointerEvents: 'none',
       }} />
       <nav
