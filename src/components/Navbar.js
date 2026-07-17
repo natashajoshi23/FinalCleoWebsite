@@ -110,17 +110,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Covers the iOS status bar / safe area with navbar color — z-index must beat scroll-progress (9999) */}
-      <div style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: 'env(safe-area-inset-top, 44px)',
-        background: isDark ? '#001229' : '#FDFAF4',
-        zIndex: 10000,
-        pointerEvents: 'none',
-      }} />
       <nav
         id="nav"
         role="banner"
@@ -135,7 +124,7 @@ export default function Navbar() {
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? '100px' : '155px',
           transition: 'background 0.5s, backdrop-filter 0.5s',
-          background: scrolled
+          background: (isMobile || scrolled)
             ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
             : 'transparent',
           backdropFilter: scrolled ? 'blur(16px)' : 'none',

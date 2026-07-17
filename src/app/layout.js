@@ -22,7 +22,6 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   userScalable: true,
-  viewportFit: 'cover',
   themeColor: '#001229',
 }
 
@@ -33,9 +32,6 @@ export default function RootLayout({ children }) {
         <link rel="preload" as="image" href="/images/city-skyscrapers.webp" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Cleo Consulting" />
         {/* Runs synchronously before first paint — prevents flash of dark mode when user prefers light */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})()` }} />
       </head>
