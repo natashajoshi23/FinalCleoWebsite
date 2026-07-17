@@ -1061,7 +1061,7 @@ nav { overflow: visible !important; }
 
   /* ── Inner banner ── */
   .inner-banner {
-    margin-top: 143px !important;
+    margin-top: calc(140px + env(safe-area-inset-top)) !important;
     padding: 3rem 1.25rem 2.5rem;
     min-height: auto;
   }
