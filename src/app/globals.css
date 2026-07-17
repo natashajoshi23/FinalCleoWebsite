@@ -11,7 +11,7 @@
   --body:'DM Sans',sans-serif;
   --script:'Dancing Script',cursive;
 }
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;background:#001229}
 body{font-family:var(--body);background:var(--ink);color:var(--paper);overflow-x:hidden}
 
 /* ── NOISE ── */

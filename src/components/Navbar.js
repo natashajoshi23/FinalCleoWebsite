@@ -110,6 +110,15 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Fills the iOS safe-area-inset-top (status bar / notch zone) so page content doesn't bleed through */}
+      <div style={{
+        position: 'fixed',
+        top: 0, left: 0, right: 0,
+        height: 'env(safe-area-inset-top, 0px)',
+        background: isDark ? '#001229' : '#FDFAF4',
+        zIndex: 201,
+        pointerEvents: 'none',
+      }} />
       <nav
         id="nav"
         role="banner"
