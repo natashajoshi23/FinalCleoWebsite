@@ -13,12 +13,12 @@ export default function HealthServices() {
         <p style={{ fontSize: '0.95rem', color: 'var(--fog)', lineHeight: 1.85, marginBottom: '2.5rem' }}>We will partner with you to build healthcare staffing solutions that will address your unique workforce needs by tapping into national &amp; international networks of talent and place qualified professionals faster.</p>
 
         {/* Images + Specialties side by side */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'center', marginBottom: '3rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-            <div style={{ height: '150px', overflow: 'hidden', borderRadius: '2px' }}><img src="/images/2nurses.webp" alt="Doctor" className="img-cover" /></div>
-            <div style={{ height: '150px', overflow: 'hidden', borderRadius: '2px' }}><img src="/images/nurse-scrubs.webp" alt="Nurse" className="img-cover" /></div>
-            <div style={{ height: '150px', overflow: 'hidden', borderRadius: '2px' }}><img src="/images/lab-microscope.webp" alt="Lab" className="img-cover" /></div>
-            <div style={{ height: '150px', overflow: 'hidden', borderRadius: '2px' }}><img src="/images/nurse.webp" alt="Doctor" className="img-cover" /></div>
+        <div className="hs-media-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', alignItems: 'center', marginBottom: '3rem' }}>
+          <div className="hs-photo-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+            <div className="hs-photo" style={{ height: '150px', overflow: 'hidden', borderRadius: '2px' }}><img src="/images/2nurses.webp" alt="Doctor" className="img-cover" /></div>
+            <div className="hs-photo" style={{ height: '150px', overflow: 'hidden', borderRadius: '2px' }}><img src="/images/nurse-scrubs.webp" alt="Nurse" className="img-cover" /></div>
+            <div className="hs-photo" style={{ height: '150px', overflow: 'hidden', borderRadius: '2px' }}><img src="/images/lab-microscope.webp" alt="Lab" className="img-cover" /></div>
+            <div className="hs-photo" style={{ height: '150px', overflow: 'hidden', borderRadius: '2px' }}><img src="/images/nurse.webp" alt="Doctor" className="img-cover" /></div>
           </div>
           <div>
             <div className="hs-label" style={{ fontFamily: 'var(--display)', fontSize: '1.1rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '1rem', color: 'var(--gold)' }}>We offer nursing staff for these specialties:</div>
@@ -53,7 +53,7 @@ export default function HealthServices() {
         {/* Why Partner - 2x2 grid */}
         <div style={{ marginBottom: '3rem' }}>
           <h2 style={{ fontFamily: 'var(--display)', fontSize: '1.6rem', color: 'var(--gold)', letterSpacing: '0.04em', marginBottom: '1.5rem' }}>WHY PARTNER WITH CLEO</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: 'var(--ghost)' }}>
+          <div className="hs-why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: 'var(--ghost)' }}>
             {[
               { t: 'Specialized Staffing Solutions', p: 'We specialize in only Direct Placement services of Nursing Staff, ensuring flexibility and scalability to match your staffing requirements.' },
               { t: 'Extensive Experience', p: 'We have a proven history of successfully partnering with leading Industry partners, providing them with top-tier talent across multiple industries.' },

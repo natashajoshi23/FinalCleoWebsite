@@ -1125,6 +1125,16 @@ nav { overflow: visible !important; }
   .three-col-grid, .blog-grid { grid-template-columns: 1fr; }
   .pg-body { padding: 3rem 1.25rem; }
 
+  /* ── Health page mobile ── */
+  .hs-media-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .hs-photo-grid { grid-template-columns: 1fr 1fr !important; }
+  .hs-photo { height: 200px !important; }
+  .hs-why-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Social responsibility mobile ── */
+  .csr-intro-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+  .csr-intro-grid > div:last-child { height: 260px !important; width: 100% !important; }
+
   /* ── Team ── */
   .tm, .tm:nth-child(even) { grid-template-columns: 1fr; gap: 1.5rem; }
   .tm:nth-child(even) .tm-photo,

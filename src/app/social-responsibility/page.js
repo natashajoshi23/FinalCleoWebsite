@@ -7,7 +7,7 @@ export default function CSR() {
       <link rel="preload" as="image" href="/images/social-responsibility.webp" />
       <PageBanner eyebrow="Values" title="SOCIAL<br>RESPONSIBILITY" num="03" bgImage="/images/social-responsibility.webp" />
       <div className="pg-body">
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.6fr', gap: '3rem', alignItems: 'start', marginBottom: '1rem' }}>
+        <div className="csr-intro-grid" style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.6fr', gap: '3rem', alignItems: 'start', marginBottom: '1rem' }}>
           <div>
             <p className="csr-text">Our company got its name from Cleopatra — not the queen of ancient Egypt, but a rescued stray dog that one of the partners adopted a few years back. We draw our inspiration from her: love the employees that work for us, respect the clients we work for, and just be happy and content with the small treats that life has to offer.</p>
             <p className="csr-text" style={{ marginTop: '1.5rem' }}>Advocating the idea of animal welfare, we try to donate a small percentage of the company&rsquo;s earnings towards organizations doing genuine good for our mute friends.</p>
