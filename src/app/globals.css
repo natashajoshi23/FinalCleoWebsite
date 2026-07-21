@@ -1040,7 +1040,8 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    padding: 2rem 0 3rem;
+    margin-top: -140px;
+    padding: 160px 0 3rem;
     min-height: auto;
     align-items: flex-start !important;
   }
