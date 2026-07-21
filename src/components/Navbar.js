@@ -132,7 +132,7 @@ export default function Navbar() {
           paddingTop: isMobile ? 'env(safe-area-inset-top)' : undefined,
           transition: isMobile ? 'none' : 'background 0.5s, backdrop-filter 0.5s',
           background: isMobile
-            ? (scrolled || pathname !== '/' ? (isDark ? '#001229' : '#FDFAF4') : 'transparent')
+            ? (pathname !== '/' ? (isDark ? '#001229' : '#FDFAF4') : 'transparent')
             : (scrolled ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)') : 'transparent'),
           backdropFilter: (!isMobile && scrolled) ? 'blur(16px)' : 'none',
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
