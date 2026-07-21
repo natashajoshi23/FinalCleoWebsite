@@ -1171,7 +1171,7 @@ nav { overflow: visible !important; }
   [data-theme="light"] .split-left::after { background: linear-gradient(to bottom, rgba(253,250,244,0.55), rgba(253,250,244,0.92)) !important; }
   [data-theme="light"] .split-right { background: rgba(253,250,244,0.0) !important; }
   [data-theme="light"] .split-right .big-title { color: #072144 !important; }
-  [data-theme="light"] .split-right p { color: rgba(7,33,68,0.75) !important; }
+  [data-theme="light"] .split-right p { color: #072144 !important; }
   [data-theme="light"] .split-right .sec-label { color: #072144 !important; text-shadow: none !important; }
   [data-theme="light"] .split-right .pill { border-color: rgba(7,33,68,0.4) !important; color: #072144 !important; }
   nav { overflow: visible !important; }
