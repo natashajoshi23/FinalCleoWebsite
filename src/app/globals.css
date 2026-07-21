@@ -965,8 +965,7 @@ nav { overflow: visible !important; }
 
   /* ── Nav ── */
   nav {
-    position: sticky !important;
-    top: 0 !important;
+    position: relative !important;
     height: 140px !important;
     padding: 0 2rem !important;
     z-index: 200 !important;
