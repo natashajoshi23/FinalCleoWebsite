@@ -1,30 +1,25 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import PageBanner from '@/components/PageBanner'
 
 export default function ApplyPage() {
-  const containerRef = useRef(null)
-  const [loading, setLoading] = useState(true)
-
   useEffect(() => {
-    fetch('/api/ceipal-jobs')
-      .then(res => res.json())
-      .then(data => {
-        setLoading(false)
-        const container = containerRef.current
-        if (!container) return
-        if (data.html) {
-          container.innerHTML = data.html
-          container.querySelectorAll('script').forEach(oldScript => {
-            const newScript = document.createElement('script')
-            if (oldScript.src) newScript.src = oldScript.src
-            else newScript.textContent = oldScript.textContent
-            document.body.appendChild(newScript)
-            oldScript.remove()
-          })
-        }
-      })
-      .catch(() => setLoading(false))
+    const container = document.getElementById('example-widget-container')
+    if (container) container.innerHTML = ''
+
+    const existing = document.querySelector('script[data-ceipal-api-key]')
+    if (existing) existing.remove()
+
+    const script = document.createElement('script')
+    script.src = 'https://jobsapi.ceipal.com/APISource/widget.js'
+    script.setAttribute('data-ceipal-api-key', process.env.NEXT_PUBLIC_CEIPAL_API_KEY)
+    script.setAttribute('data-ceipal-career-portal-id', process.env.NEXT_PUBLIC_CEIPAL_PORTAL_ID)
+    document.body.appendChild(script)
+
+    return () => {
+      const s = document.querySelector('script[data-ceipal-api-key]')
+      if (s) s.remove()
+    }
   }, [])
 
   return (
@@ -40,16 +35,7 @@ export default function ApplyPage() {
           </div>
         </div>
 
-        {loading && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {[1, 2, 3].map(i => (
-              <div key={i} style={{ height: '80px', background: 'var(--ghost)', opacity: 0.3, borderRadius: '2px', animation: 'pulse 1.5s ease-in-out infinite', animationDelay: `${i * 0.15}s` }} />
-            ))}
-            <style>{`@keyframes pulse { 0%,100%{opacity:.15} 50%{opacity:.35} }`}</style>
-          </div>
-        )}
-
-        <div ref={containerRef} />
+        <div id="example-widget-container" />
 
       </div>
     </>
