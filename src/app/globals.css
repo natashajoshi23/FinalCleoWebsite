@@ -965,7 +965,7 @@ nav { overflow: visible !important; }
 
   /* ── Nav ── */
   nav, nav.scrolled {
-    position: static !important;
+    position: relative !important;
     top: auto !important;
     background: transparent !important;
     backdrop-filter: none !important;
