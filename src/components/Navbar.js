@@ -16,6 +16,7 @@ export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false)
   const [hoveredLink, setHoveredLink] = useState(null)
   const [themeHovered, setThemeHovered] = useState(false)
+  const [mobileHidden, setMobileHidden] = useState(false)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 1150)
@@ -25,7 +26,15 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 1)
+    let lastY = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 1)
+      if (window.innerWidth <= 1150) {
+        setMobileHidden(y > lastY && y > 80)
+      }
+      lastY = y
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -121,12 +130,13 @@ export default function Navbar() {
           justifyContent: 'space-between',
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? '140px' : '155px',
-          transition: isMobile ? 'background 0.3s' : 'background 0.5s, backdrop-filter 0.5s',
-          background: scrolled
+          transition: isMobile ? 'transform 0.3s ease' : 'background 0.5s, backdrop-filter 0.5s',
+          transform: (isMobile && mobileHidden && !menuOpen) ? 'translateY(-100%)' : 'translateY(0)',
+          background: isMobile ? 'transparent' : (scrolled
             ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
-            : 'transparent',
-          backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
+            : 'transparent'),
+          backdropFilter: (!isMobile && scrolled) ? 'blur(16px)' : 'none',
+          borderBottom: (!isMobile && scrolled && !isDark) ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
         <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
