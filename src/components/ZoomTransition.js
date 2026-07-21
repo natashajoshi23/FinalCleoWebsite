@@ -27,6 +27,9 @@ export default function ZoomTransition({ children }) {
       e.preventDefault()
       e.stopPropagation()
 
+      // Close mobile menu immediately before animation starts
+      document.dispatchEvent(new CustomEvent('zoom-nav-start'))
+
       setStamp({ x: e.clientX, y: e.clientY })
       document.body.style.overflow = 'hidden'
 

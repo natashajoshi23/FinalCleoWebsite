@@ -964,9 +964,13 @@ nav { overflow: visible !important; }
 @media (max-width: 1150px) {
 
   /* ── Nav ── */
+  /* Use sticky on mobile — avoids iOS momentum-scroll lag that makes fixed elements appear to float */
   nav {
+    position: sticky !important;
+    top: 0 !important;
     height: 140px !important;
     padding: 0 2rem !important;
+    z-index: 200 !important;
   }
   .nav-desktop-links { display: none !important; }
   .nav-mobile-controls {
@@ -1032,8 +1036,15 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    padding: 164px 0 3rem;
+    margin-top: 0;
+    padding: 3rem 0 3rem;
     min-height: auto;
+  }
+  /* Prevent gold CTA from showing through iOS browser chrome during scroll */
+  .hero .btn-fill {
+    background: transparent !important;
+    color: var(--gold) !important;
+    border-color: var(--gold) !important;
   }
   .hero-content { padding: 0 1.25rem; }
   .hero-content > div {
@@ -1052,7 +1063,7 @@ nav { overflow: visible !important; }
 
   /* ── Inner banner ── */
   .inner-banner {
-    margin-top: 140px !important;
+    margin-top: 0 !important;
     padding: 3rem 1.25rem 2.5rem;
     min-height: auto;
   }
@@ -1069,6 +1080,9 @@ nav { overflow: visible !important; }
   .services-inner { padding: 0 1.25rem; }
   .services-hdr { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
   .svcs-grid { grid-template-columns: 1fr; }
+  .svc-featured { grid-template-columns: 1fr !important; }
+  .svc-featured .svc-featured-img { height: 220px; width: 100%; }
+  .svc-featured .svc-featured-img img { width: 100%; height: 100%; object-fit: cover; }
 
   /* ── Talent ── */
   .talent-sec { padding: 4rem 1.25rem 3rem; }
@@ -1100,7 +1114,7 @@ nav { overflow: visible !important; }
   .cta-btns a { text-align: center; }
 
   /* ── Footer ── */
-  footer { padding: 4rem 1.25rem 2rem; }
+  footer { padding: 4rem 1.25rem 7rem; }
   /* Keep footer columns side-by-side; just tighten gap + text */
   .ft-top { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
   .ft-bottom { flex-direction: column; gap: 1rem; text-align: center; }

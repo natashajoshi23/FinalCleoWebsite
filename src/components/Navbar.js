@@ -32,6 +32,12 @@ export default function Navbar() {
   useEffect(() => { setMenuOpen(false); setMobileAboutOpen(false) }, [pathname])
 
   useEffect(() => {
+    const handler = () => { setMenuOpen(false); setMobileAboutOpen(false) }
+    document.addEventListener('zoom-nav-start', handler)
+    return () => document.removeEventListener('zoom-nav-start', handler)
+  }, [])
+
+  useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
       document.documentElement.style.overflow = 'hidden'
@@ -122,12 +128,13 @@ export default function Navbar() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
-          height: isMobile ? '100px' : '155px',
-          transition: isMobile ? 'backdrop-filter 0.5s' : 'background 0.5s, backdrop-filter 0.5s',
-          background: scrolled
-            ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
-            : 'transparent',
-          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          height: isMobile ? 'calc(100px + env(safe-area-inset-top))' : '155px',
+          paddingTop: isMobile ? 'env(safe-area-inset-top)' : undefined,
+          transition: isMobile ? 'none' : 'background 0.5s, backdrop-filter 0.5s',
+          background: isMobile
+            ? (scrolled || pathname !== '/' ? (isDark ? '#001229' : '#FDFAF4') : 'transparent')
+            : (scrolled ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)') : 'transparent'),
+          backdropFilter: (!isMobile && scrolled) ? 'blur(16px)' : 'none',
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
