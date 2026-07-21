@@ -11,9 +11,9 @@
   --body:'DM Sans',sans-serif;
   --script:'Dancing Script',cursive;
 }
-html{scroll-behavior:smooth;height:100%;overflow:hidden;background:#001229}
+html{height:100%;overflow:hidden;background:#001229}
 body{font-family:var(--body);background:var(--ink);color:var(--paper);height:100%;overflow:hidden}
-#scroll-wrap{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#scroll-wrap{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
 
 /* ── NOISE ── */
 body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
