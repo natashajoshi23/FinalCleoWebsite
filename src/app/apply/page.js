@@ -1,25 +1,28 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PageBanner from '@/components/PageBanner'
 
 export default function ApplyPage() {
+  const containerRef = useRef(null)
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
-    const container = document.getElementById('example-widget-container')
-    if (container) container.innerHTML = ''
-
-    const existing = document.querySelector('script[data-ceipal-api-key]')
-    if (existing) existing.remove()
-
-    const script = document.createElement('script')
-    script.src = 'https://jobsapi.ceipal.com/APISource/widget.js'
-    script.setAttribute('data-ceipal-api-key', process.env.NEXT_PUBLIC_CEIPAL_API_KEY)
-    script.setAttribute('data-ceipal-career-portal-id', process.env.NEXT_PUBLIC_CEIPAL_PORTAL_ID)
-    document.body.appendChild(script)
-
-    return () => {
-      const s = document.querySelector('script[data-ceipal-api-key]')
-      if (s) s.remove()
-    }
+    fetch('/api/ceipal-jobs')
+      .then(res => res.json())
+      .then(data => {
+        setLoading(false)
+        const container = containerRef.current
+        if (!container || !data.html) return
+        container.innerHTML = data.html
+        container.querySelectorAll('script').forEach(old => {
+          const s = document.createElement('script')
+          if (old.src) s.src = old.src
+          else s.textContent = old.textContent
+          document.body.appendChild(s)
+          old.remove()
+        })
+      })
+      .catch(() => setLoading(false))
   }, [])
 
   return (
@@ -35,7 +38,16 @@ export default function ApplyPage() {
           </div>
         </div>
 
-        <div id="example-widget-container" />
+        {loading && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <style>{`@keyframes pulse{0%,100%{opacity:.15}50%{opacity:.35}}`}</style>
+            {[0, 1, 2].map(i => (
+              <div key={i} style={{ height: '72px', background: 'var(--ghost)', borderRadius: '2px', animation: `pulse 1.5s ease-in-out ${i * 0.2}s infinite` }} />
+            ))}
+          </div>
+        )}
+
+        <div ref={containerRef} />
 
       </div>
     </>
