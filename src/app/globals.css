@@ -1038,9 +1038,10 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    margin-top: -140px;
-    padding: 0 0 3rem;
+    margin-top: 0;
+    padding: 160px 0 3rem;
     min-height: auto;
+    align-items: flex-start !important;
   }
   .hero-bg-img img { opacity: 0.35 !important; }
   :root .hero-bg-img::after { content: ''; position: absolute; inset: 0; background: rgba(0,18,41,0.6); z-index: 1; }
