@@ -1036,8 +1036,8 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    margin-top: 0;
-    padding: 3rem 0 3rem;
+    margin-top: -140px;
+    padding: calc(140px + 3rem) 0 3rem;
     min-height: auto;
   }
   /* Prevent gold CTA from showing through iOS browser chrome during scroll */
