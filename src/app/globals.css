@@ -964,9 +964,8 @@ nav { overflow: visible !important; }
 @media (max-width: 1150px) {
 
   /* ── Nav ── */
-  /* Use sticky on mobile — avoids iOS momentum-scroll lag that makes fixed elements appear to float */
   nav {
-    position: sticky !important;
+    position: fixed !important;
     top: 0 !important;
     height: 140px !important;
     padding: 0 2rem !important;
@@ -1036,10 +1035,11 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    margin-top: -140px;
-    padding: calc(140px + 3rem) 0 3rem;
+    margin-top: 0;
+    padding: 0 0 3rem;
     min-height: auto;
   }
+  .hero-bg-img img { opacity: 0.35 !important; }
   /* Prevent gold CTA from showing through iOS browser chrome during scroll */
   .hero .btn-fill {
     background: transparent !important;
