@@ -120,12 +120,6 @@ export default function Navbar() {
           justifyContent: 'space-between',
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? '140px' : '155px',
-          transition: isMobile ? 'none' : 'background 0.5s, backdrop-filter 0.5s',
-          background: isMobile ? 'transparent' : (scrolled
-            ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
-            : 'transparent'),
-          backdropFilter: (!isMobile && scrolled) ? 'blur(16px)' : 'none',
-          borderBottom: (!isMobile && scrolled && !isDark) ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
         <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
