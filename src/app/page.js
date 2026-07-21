@@ -210,7 +210,7 @@ export default function Home() {
         <div className="split-right"><ScrollReveal>
           <div className="sec-label" style={{ marginBottom: '1.25rem' }}>New Division</div>
           <div className="big-title" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', marginBottom: '1.5rem' }}>CLEO<br /><em style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--gold)' }}>Health</em><br />SERVICES</div>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.85, color: 'var(--paper)', fontWeight: 700, marginBottom: '1.5rem', maxWidth: '420px' }}>Direct Placement of nursing professionals across North America. Partnered with Nersify — 300+ hospitals, 20,000+ professionals worldwide.</p>
+          <p style={{ fontSize: '1.05rem', lineHeight: 1.85, color: 'var(--paper)', fontWeight: 500, marginBottom: '1.5rem', maxWidth: '420px' }}>Direct Placement of nursing professionals across North America. Partnered with Nersify — 300+ hospitals, 20,000+ professionals worldwide.</p>
           <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
             {['RN','LPN','CNA','Long-Term Care','Memory Care'].map(p => <span className="pill" key={p}>{p}</span>)}
           </div>
