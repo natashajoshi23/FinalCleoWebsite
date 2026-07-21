@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 export async function GET() {
   const apiKey = process.env.NEXT_PUBLIC_CEIPAL_API_KEY
   const portalId = process.env.NEXT_PUBLIC_CEIPAL_PORTAL_ID
@@ -16,28 +14,18 @@ export async function GET() {
         'Origin': 'https://jobsapi.ceipal.com',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
       },
-      next: { revalidate: 300 }, // cache for 5 minutes
+      next: { revalidate: 300 }, // cache response for 5 minutes on Vercel
     })
 
     if (!res.ok) {
-      return new Response(JSON.stringify({ error: `CEIPAL returned ${res.status}` }), {
-        status: 502,
-        headers: { 'Content-Type': 'application/json' },
-      })
+      return Response.json({ error: `CEIPAL returned ${res.status}` }, { status: 502 })
     }
 
     const data = await res.json()
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=60',
-      },
+    return Response.json(data, {
+      headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=60' },
     })
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 502,
-      headers: { 'Content-Type': 'application/json' },
-    })
+    return Response.json({ error: err.message }, { status: 502 })
   }
 }
