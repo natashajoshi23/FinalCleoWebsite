@@ -7,22 +7,44 @@ export default function ApplyPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // Try the cached proxy first for fast load
     fetch('/api/ceipal-jobs')
       .then(res => res.json())
       .then(data => {
-        setLoading(false)
-        const container = containerRef.current
-        if (!container || !data.html) return
-        container.innerHTML = data.html
-        container.querySelectorAll('script').forEach(old => {
-          const s = document.createElement('script')
-          if (old.src) s.src = old.src
-          else s.textContent = old.textContent
-          document.body.appendChild(s)
-          old.remove()
-        })
+        if (data.html) {
+          setLoading(false)
+          const container = containerRef.current
+          if (!container) return
+          container.innerHTML = data.html
+          container.querySelectorAll('script').forEach(old => {
+            const s = document.createElement('script')
+            if (old.src) s.src = old.src
+            else s.textContent = old.textContent
+            document.body.appendChild(s)
+            old.remove()
+          })
+        } else {
+          // Proxy hit rate limit — fall back to direct widget
+          loadDirectWidget()
+        }
       })
-      .catch(() => setLoading(false))
+      .catch(() => loadDirectWidget())
+
+    function loadDirectWidget() {
+      setLoading(false)
+      const existing = document.querySelector('script[data-ceipal-api-key]')
+      if (existing) existing.remove()
+      const script = document.createElement('script')
+      script.src = 'https://jobsapi.ceipal.com/APISource/widget.js'
+      script.setAttribute('data-ceipal-api-key', process.env.NEXT_PUBLIC_CEIPAL_API_KEY)
+      script.setAttribute('data-ceipal-career-portal-id', process.env.NEXT_PUBLIC_CEIPAL_PORTAL_ID)
+      document.body.appendChild(script)
+    }
+
+    return () => {
+      const s = document.querySelector('script[data-ceipal-api-key]')
+      if (s) s.remove()
+    }
   }, [])
 
   return (
@@ -47,7 +69,7 @@ export default function ApplyPage() {
           </div>
         )}
 
-        <div ref={containerRef} />
+        <div id="example-widget-container" ref={containerRef} />
 
       </div>
     </>
