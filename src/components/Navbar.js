@@ -25,10 +25,9 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const el = document.getElementById('scroll-wrap') || window
-    const onScroll = () => setScrolled((el.scrollTop ?? window.scrollY) > 1)
-    el.addEventListener('scroll', onScroll)
-    return () => el.removeEventListener('scroll', onScroll)
+    const onScroll = () => setScrolled(window.scrollY > 1)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => { setMenuOpen(false); setMobileAboutOpen(false) }, [pathname])
@@ -40,11 +39,8 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const wrap = document.getElementById('scroll-wrap')
-    if (wrap) {
-      wrap.style.overflow = menuOpen ? 'hidden' : ''
-    }
-    return () => { if (wrap) wrap.style.overflow = '' }
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
   const gold = 'var(--gold)'
@@ -126,10 +122,10 @@ export default function Navbar() {
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? '140px' : '155px',
           transition: isMobile ? 'background 0.3s' : 'background 0.5s, backdrop-filter 0.5s',
-          background: isMobile
-            ? (pathname !== '/' ? (isDark ? '#001229' : '#FDFAF4') : 'transparent')
-            : (scrolled ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)') : 'transparent'),
-          backdropFilter: (!isMobile && scrolled) ? 'blur(16px)' : 'none',
+          background: scrolled
+            ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)')
+            : 'transparent',
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
         }}
       >
