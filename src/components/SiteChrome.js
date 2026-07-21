@@ -18,8 +18,8 @@ export default function SiteChrome({ children }) {
       <RebrandPopup />
       <CertificationPopup />
       <ScrollProgress />
+      <Navbar />
       <div id="scroll-wrap">
-        <Navbar />
         <main id="main">{children}</main>
         <Footer />
       </div>
