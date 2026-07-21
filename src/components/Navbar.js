@@ -121,7 +121,7 @@ export default function Navbar() {
         role="banner"
         className={scrolled ? 'scrolled' : ''}
         style={{
-          position: 'fixed',
+          position: isMobile ? 'sticky' : 'fixed',
           top: 0, left: 0, right: 0,
           zIndex: 200,
           display: 'flex',
@@ -130,9 +130,9 @@ export default function Navbar() {
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
           height: isMobile ? 'calc(100px + env(safe-area-inset-top))' : '155px',
           paddingTop: isMobile ? 'env(safe-area-inset-top)' : undefined,
-          transition: isMobile ? 'none' : 'background 0.5s, backdrop-filter 0.5s',
+          transition: isMobile ? 'background 0.3s' : 'background 0.5s, backdrop-filter 0.5s',
           background: isMobile
-            ? (pathname !== '/' ? (isDark ? '#001229' : '#FDFAF4') : 'transparent')
+            ? (pathname !== '/' || scrolled ? (isDark ? '#001229' : '#FDFAF4') : 'transparent')
             : (scrolled ? (isDark ? 'rgba(0,18,41,0.97)' : 'rgba(253,250,244,0.97)') : 'transparent'),
           backdropFilter: (!isMobile && scrolled) ? 'blur(16px)' : 'none',
           borderBottom: scrolled && !isDark ? '1px solid rgba(0,18,41,0.08)' : 'none',
