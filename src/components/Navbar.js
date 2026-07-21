@@ -1,12 +1,13 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { useTheme } from './ThemeContext'
 
 export default function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
   const { isDark, setIsDark } = useTheme()
   const [aboutOpen, setAboutOpen] = useState(false)
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false)
@@ -266,7 +267,7 @@ export default function Navbar() {
             { href: '/projects', label: 'Projects' },
             { href: '/blogs', label: 'Insights' },
           ].map(({ href, label }, i) => (
-            <Link key={href} href={href} onClick={() => setMenuOpen(false)} style={{
+            <Link key={href} href={href} onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push(href) }} style={{
               display: 'block',
               padding: '1.1rem 1.5rem',
               fontSize: '0.85rem',
@@ -274,6 +275,7 @@ export default function Navbar() {
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               textDecoration: 'none',
+              touchAction: 'manipulation',
               color: pathname === href ? gold : (hoveredLink === `m-${href}` ? gold : drawerLinkColor(false)),
               borderBottom: drawerDivider,
               transition: `color 0.2s, padding-left 0.2s, opacity 0.35s ease ${i * 0.06}s, transform 0.35s cubic-bezier(0.4,0,0.2,1) ${i * 0.06}s`,
@@ -322,8 +324,8 @@ export default function Navbar() {
             </button>
             {mobileAboutOpen && (
               <div style={{ background: drawerSubBg }}>
-                <Link href="/team" style={{ display: 'block', padding: '0.85rem 2.5rem', fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'none', color: pathname === '/team' ? gold : (hoveredLink === 'm-team' ? gold : drawerLinkColor(false)), borderTop: drawerSubDivider, transition: 'color 0.2s' }} onMouseEnter={() => setHoveredLink('m-team')} onMouseLeave={() => setHoveredLink(null)}>Our Team</Link>
-                <Link href="/social-responsibility" style={{ display: 'block', padding: '0.85rem 2.5rem', fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'none', color: pathname === '/social-responsibility' ? gold : (hoveredLink === 'm-social' ? gold : drawerLinkColor(false)), borderTop: drawerSubDivider, transition: 'color 0.2s' }} onMouseEnter={() => setHoveredLink('m-social')} onMouseLeave={() => setHoveredLink(null)}>Social Responsibility</Link>
+                <Link href="/team" onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push('/team') }} style={{ display: 'block', padding: '0.85rem 2.5rem', fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'none', touchAction: 'manipulation', color: pathname === '/team' ? gold : (hoveredLink === 'm-team' ? gold : drawerLinkColor(false)), borderTop: drawerSubDivider, transition: 'color 0.2s' }} onMouseEnter={() => setHoveredLink('m-team')} onMouseLeave={() => setHoveredLink(null)}>Our Team</Link>
+                <Link href="/social-responsibility" onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push('/social-responsibility') }} style={{ display: 'block', padding: '0.85rem 2.5rem', fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'none', touchAction: 'manipulation', color: pathname === '/social-responsibility' ? gold : (hoveredLink === 'm-social' ? gold : drawerLinkColor(false)), borderTop: drawerSubDivider, transition: 'color 0.2s' }} onMouseEnter={() => setHoveredLink('m-social')} onMouseLeave={() => setHoveredLink(null)}>Social Responsibility</Link>
               </div>
             )}
           </div>
@@ -332,7 +334,7 @@ export default function Navbar() {
             opacity: menuOpen ? 1 : 0, transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
             transition: 'opacity 0.35s ease 0.38s, transform 0.35s cubic-bezier(0.4,0,0.2,1) 0.38s',
           }}>
-            <Link href="/contact" onClick={() => setMenuOpen(false)}
+            <Link href="/contact" onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push('/contact') }}
               onMouseEnter={() => setHoveredLink('m-contact')}
               onMouseLeave={() => setHoveredLink(null)}
               style={{
@@ -341,12 +343,13 @@ export default function Navbar() {
                 background: hoveredLink === 'm-contact' ? (isDark ? 'rgba(245,237,230,0.08)' : 'rgba(0,18,41,0.08)') : 'transparent',
                 color: hoveredLink === 'm-contact' ? gold : (isDark ? fog : '#333'),
                 textDecoration: 'none', fontSize: '0.8rem', letterSpacing: '0.14em', textTransform: 'uppercase',
-                transition: 'all 0.2s',
+                touchAction: 'manipulation', transition: 'all 0.2s',
               }}>Contact</Link>
-            <Link href="/apply" onClick={() => setMenuOpen(false)} className="apply-cta-link" style={{
+            <Link href="/apply" onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push('/apply') }} className="apply-cta-link" style={{
               display: 'block', padding: '1rem', textAlign: 'center',
               background: gold, color: '#001229',
               textDecoration: 'none', fontSize: '0.8rem', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700,
+              touchAction: 'manipulation',
             }}>Apply Now</Link>
           </div>
         </div>
