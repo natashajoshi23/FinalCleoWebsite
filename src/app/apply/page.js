@@ -1,39 +1,26 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import PageBanner from '@/components/PageBanner'
 
 export default function ApplyPage() {
-  const containerRef = useRef(null)
-
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const container = document.getElementById('example-widget-container')
+    if (container) container.innerHTML = ''
 
-    container.innerHTML = '<p style="color:var(--fog);text-align:center;padding:3rem 0">Loading positions...</p>'
+    // Remove any previously appended CEIPAL script
+    const existing = document.querySelector('script[data-ceipal-api-key]')
+    if (existing) existing.remove()
 
-    fetch('/api/ceipal-jobs')
-      .then(res => res.json())
-      .then(data => {
-        if (data.html) {
-          container.innerHTML = data.html
-          // Run any inline scripts CEIPAL injected
-          container.querySelectorAll('script').forEach(oldScript => {
-            const newScript = document.createElement('script')
-            if (oldScript.src) {
-              newScript.src = oldScript.src
-            } else {
-              newScript.textContent = oldScript.textContent
-            }
-            document.body.appendChild(newScript)
-            oldScript.remove()
-          })
-        } else {
-          container.innerHTML = '<p style="color:var(--fog);text-align:center;padding:3rem 0">No open positions at the moment. Check back soon.</p>'
-        }
-      })
-      .catch(() => {
-        container.innerHTML = '<p style="color:var(--fog);text-align:center;padding:3rem 0">Unable to load positions. Please try again later.</p>'
-      })
+    const script = document.createElement('script')
+    script.src = 'https://jobsapi.ceipal.com/APISource/widget.js'
+    script.setAttribute('data-ceipal-api-key', process.env.NEXT_PUBLIC_CEIPAL_API_KEY)
+    script.setAttribute('data-ceipal-career-portal-id', process.env.NEXT_PUBLIC_CEIPAL_PORTAL_ID)
+    document.body.appendChild(script)
+
+    return () => {
+      const s = document.querySelector('script[data-ceipal-api-key]')
+      if (s) s.remove()
+    }
   }, [])
 
   return (
@@ -49,7 +36,7 @@ export default function ApplyPage() {
           </div>
         </div>
 
-        <div ref={containerRef} />
+        <div id="example-widget-container" />
 
       </div>
     </>
