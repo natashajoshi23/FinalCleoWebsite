@@ -31,12 +31,13 @@ export default function ZoomTransition({ children }) {
       document.dispatchEvent(new CustomEvent('zoom-nav-start'))
 
       setStamp({ x: e.clientX, y: e.clientY })
-      document.body.style.overflow = 'hidden'
+      const wrap = document.getElementById('scroll-wrap')
+      if (wrap) wrap.style.overflow = 'hidden'
 
       setTimeout(() => {
-        document.body.style.overflow = ''
+        if (wrap) { wrap.style.overflow = ''; wrap.scrollTo(0, 0) }
+        else window.scrollTo(0, 0)
         router.push(href)
-        window.scrollTo(0, 0)
         setStamp(null)
       }, 650)
     }

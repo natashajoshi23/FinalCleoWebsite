@@ -24,9 +24,10 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 1)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    const el = document.getElementById('scroll-wrap') || window
+    const onScroll = () => setScrolled((el.scrollTop ?? window.scrollY) > 1)
+    el.addEventListener('scroll', onScroll)
+    return () => el.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => { setMenuOpen(false); setMobileAboutOpen(false) }, [pathname])
@@ -38,17 +39,11 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden'
-      document.documentElement.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
+    const wrap = document.getElementById('scroll-wrap')
+    if (wrap) {
+      wrap.style.overflow = menuOpen ? 'hidden' : ''
     }
-    return () => {
-      document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
-    }
+    return () => { if (wrap) wrap.style.overflow = '' }
   }, [menuOpen])
 
   const gold = 'var(--gold)'
@@ -121,10 +116,8 @@ export default function Navbar() {
         role="banner"
         className={scrolled ? 'scrolled' : ''}
         style={{
-          position: isMobile ? 'relative' : 'fixed',
-          top: isMobile ? undefined : 0,
-          left: isMobile ? undefined : 0,
-          right: isMobile ? undefined : 0,
+          position: 'fixed',
+          top: 0, left: 0, right: 0,
           zIndex: 200,
           display: 'flex',
           alignItems: 'center',
