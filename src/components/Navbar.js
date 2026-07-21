@@ -124,8 +124,7 @@ export default function Navbar() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: isMobile ? '0 1.25rem' : '0.75rem 3rem',
-          height: isMobile ? 'calc(100px + env(safe-area-inset-top))' : '155px',
-          paddingTop: isMobile ? 'env(safe-area-inset-top)' : undefined,
+          height: isMobile ? '140px' : '155px',
           transition: isMobile ? 'background 0.3s' : 'background 0.5s, backdrop-filter 0.5s',
           background: isMobile
             ? (pathname !== '/' ? (isDark ? '#001229' : '#FDFAF4') : 'transparent')
