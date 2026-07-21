@@ -1040,6 +1040,7 @@ nav { overflow: visible !important; }
     min-height: auto;
   }
   .hero-bg-img img { opacity: 0.35 !important; }
+  .hero-bg-img::after { content: ''; position: absolute; inset: 0; background: rgba(0,18,41,0.6); z-index: 1; }
   /* Prevent gold CTA from showing through iOS browser chrome during scroll */
   .hero .btn-fill {
     background: transparent !important;
