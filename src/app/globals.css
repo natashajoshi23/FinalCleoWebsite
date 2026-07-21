@@ -1037,7 +1037,6 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    margin-top: -140px;
     padding: 160px 0 3rem;
     min-height: auto;
     align-items: flex-start !important;
@@ -1069,7 +1068,7 @@ nav { overflow: visible !important; }
   /* ── Inner banner ── */
   .inner-banner {
     margin-top: 0 !important;
-    padding: 3rem 1.25rem 2.5rem;
+    padding: 140px 1.25rem 2.5rem;
     min-height: auto;
   }
   .banner-h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }

@@ -112,7 +112,7 @@ export default function Navbar() {
         role="banner"
         className={scrolled ? 'scrolled' : ''}
         style={{
-          position: 'sticky',
+          position: isMobile ? 'fixed' : 'sticky',
           top: 0, left: 0, right: 0,
           zIndex: 200,
           display: 'flex',
