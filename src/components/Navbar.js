@@ -110,7 +110,7 @@ export default function Navbar() {
       <nav
         id="nav"
         role="banner"
-        className={scrolled ? 'scrolled' : ''}
+        className={[scrolled ? 'scrolled' : '', pathname !== '/' ? 'nav-inner' : ''].filter(Boolean).join(' ')}
         style={{
           position: isMobile ? 'relative' : 'sticky',
           top: 0, left: 0, right: 0,
