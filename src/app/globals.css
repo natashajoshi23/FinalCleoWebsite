@@ -1072,7 +1072,7 @@ nav { overflow: visible !important; }
   /* ── Inner banner ── */
   .inner-banner {
     margin-top: 0 !important;
-    padding: 3rem 1.25rem 2.5rem;
+    padding: 160px 1.25rem 2.5rem;
     min-height: auto;
   }
   .banner-h1 { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
