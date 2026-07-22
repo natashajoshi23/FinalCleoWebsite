@@ -32,7 +32,7 @@ export default function ManagedServices() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
 
           {/* Featured IT card — full width */}
-          <Link href={`/managed-services/${featured.slug}`} className="svc svc-featured" style={{ textDecoration: 'none', display: 'grid', gridTemplateColumns: '1fr 1fr', marginBottom: '1px', overflow: 'hidden' }}>
+          <Link href={`/managed-services/${featured.slug}`} className="svc svc-featured" style={{ textDecoration: 'none', display: 'grid', marginBottom: '1px', overflow: 'hidden' }}>
             <div className="svc-featured-img" style={{ height: '280px', overflow: 'hidden', position: 'relative' }}>
               <img src={featured.img} alt={featured.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
