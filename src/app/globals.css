@@ -11,8 +11,8 @@
   --body:'DM Sans',sans-serif;
   --script:'Dancing Script',cursive;
 }
-html{background:#001229}
-body{font-family:var(--body);background:var(--ink);color:var(--paper)}
+html{background:#001229;overscroll-behavior:none}
+body{font-family:var(--body);background:var(--ink);color:var(--paper);overscroll-behavior:none}
 
 /* ── NOISE ── */
 body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
