@@ -1108,7 +1108,7 @@ nav { overflow: visible !important; }
   .svc-featured .svc-featured-img img { width: 100%; height: 100%; object-fit: cover; }
   .svc-featured-text { padding: 1rem 1.25rem 1rem !important; }
   .svc-featured-text .svc-text { padding-right: 0 !important; }
-  .svc-featured-text .svc-arrow { position: static !important; margin-top: 0.5rem; }
+  .svc-featured-text .svc-arrow { position: static !important; margin-top: 0; }
 
   /* ── Talent ── */
   .talent-sec { padding: 4rem 1.25rem 3rem; }
