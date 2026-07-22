@@ -1133,7 +1133,8 @@ nav { overflow: visible !important; }
   .ft-top { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; margin-bottom: 2rem; }
   .ft-top > div:first-child { grid-column: 1 / -1; }
   .ft-bottom { flex-direction: column; gap: 0.6rem; text-align: center; }
-  .ft-bottom span, .ft-bottom-links { font-size: 0.75rem; }
+  .ft-bottom span, .ft-bottom-links { font-size: 0.95rem; }
+  .ft-bottom-links a, .ft-dot { font-size: 0.95rem; }
   footer .ft-inner > .ft-top > div:first-child { text-align: center; }
 
   /* ── Inner page grids ── */
