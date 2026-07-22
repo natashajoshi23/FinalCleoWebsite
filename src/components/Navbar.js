@@ -279,15 +279,13 @@ export default function Navbar() {
             transition: 'opacity 0.35s ease 0.38s, transform 0.35s cubic-bezier(0.4,0,0.2,1) 0.38s',
           }}>
             <Link href="/contact" onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push('/contact') }}
-              onMouseEnter={() => setHoveredLink('m-contact')}
-              onMouseLeave={() => setHoveredLink(null)}
               style={{
                 display: 'block', padding: '1rem', textAlign: 'center',
                 border: isDark ? '1px solid rgba(245,237,230,0.3)' : '1px solid rgba(0,18,41,0.25)',
-                background: hoveredLink === 'm-contact' ? (isDark ? 'rgba(245,237,230,0.08)' : 'rgba(0,18,41,0.08)') : 'transparent',
-                color: hoveredLink === 'm-contact' ? gold : (isDark ? fog : '#333'),
+                background: 'transparent',
+                color: isDark ? fog : '#333',
                 textDecoration: 'none', fontSize: '0.8rem', letterSpacing: '0.14em', textTransform: 'uppercase',
-                touchAction: 'manipulation', transition: 'all 0.2s',
+                touchAction: 'manipulation',
               }}>Contact</Link>
             <Link href="/apply" onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push('/apply') }} className="apply-cta-link" style={{
               display: 'block', padding: '1rem', textAlign: 'center',
