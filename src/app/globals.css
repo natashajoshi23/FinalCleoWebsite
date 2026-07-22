@@ -1103,7 +1103,7 @@ nav { overflow: visible !important; }
   .services-inner { padding: 0 1.25rem; }
   .services-hdr { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
   .svcs-grid { grid-template-columns: 1fr; }
-  .svc-featured { grid-template-columns: 1fr !important; }
+  .svc-featured { grid-template-columns: 1fr !important; padding: 0 !important; }
   .svc-featured .svc-featured-img { height: 220px !important; width: 100%; }
   .svc-featured .svc-featured-img img { width: 100%; height: 100%; object-fit: cover; }
   .svc-featured-text { padding: 1rem 1.25rem !important; }
