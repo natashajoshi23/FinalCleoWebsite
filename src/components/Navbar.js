@@ -240,7 +240,7 @@ export default function Navbar() {
         {/* Sidebar header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: isDark ? '138px' : '122px', padding: '0 1.5rem', borderBottom: drawerBorder }}>
           <Link href="/" onClick={() => setMenuOpen(false)}>
-            <img src={isDark ? '/images/logo-dark.webp' : '/images/logo-light.webp'} alt="Cleo Consulting" style={{ height: isDark ? '115px' : '144px', width: 'auto', marginTop: isDark ? '0' : '-16px', marginLeft: isDark ? '-9px' : '-2px' }} />
+            <img src={isDark ? '/images/logo-dark.webp' : '/images/logo-light.webp'} alt="Cleo Consulting" style={{ height: isDark ? '115px' : '144px', width: 'auto', marginTop: isDark ? '0' : '-6px', marginLeft: isDark ? '-9px' : '-2px' }} />
           </Link>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <ThemeButton />
