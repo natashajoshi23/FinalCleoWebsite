@@ -36,7 +36,7 @@ export default function ManagedServices() {
             <div className="svc-featured-img" style={{ overflow: 'hidden', position: 'relative' }}>
               <img src={featured.img} alt={featured.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <div className="svc-featured-text" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem' }}>
+            <div className="svc-featured-text" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', padding: '3rem' }}>
               <div style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>Our Core Service</div>
               <div className="svc-title" style={{ fontSize: '1.6rem', marginBottom: '1rem' }}>{featured.title}</div>
               <p className="svc-text" style={{ marginBottom: '1.5rem' }}>{featured.desc}</p>
