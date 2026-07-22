@@ -441,7 +441,7 @@ footer::before{content:'';position:absolute;top:0;left:3rem;right:3rem;height:1p
 .d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}.d4{transition-delay:0.4s}
 
 /* ══════════════ INNER PAGES ══════════════ */
-.inner-banner{padding:5rem 3rem 4rem;background:var(--ink2);position:relative;overflow:hidden;min-height:52vh;display:flex;flex-direction:column;justify-content:flex-end;margin-top:170px}
+.inner-banner{padding:5rem 3rem 4rem;background:var(--ink2);position:relative;overflow:hidden;min-height:52vh;display:flex;flex-direction:column;justify-content:flex-end}
 .inner-banner::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 20% 60%,rgba(200,153,31,0.07),transparent)}
 .banner-ghost{position:absolute;right:2rem;bottom:-1rem;font-family:var(--display);font-size:20vw;color:var(--paper);opacity:0.03;line-height:1;pointer-events:none;z-index:0}
 .banner-eyebrow{font-size:0.78rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.7rem;position:relative;z-index:1;font-weight:800}
