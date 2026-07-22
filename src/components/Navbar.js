@@ -228,6 +228,7 @@ export default function Navbar() {
           background: drawerBg,
           zIndex: 9998,
           overflowY: 'auto',
+          overscrollBehavior: 'none',
           borderLeft: 'none',
           display: 'flex',
           flexDirection: 'column',
