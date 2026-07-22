@@ -213,8 +213,11 @@ textarea:focus {
 .theme-toggle:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(200,153,31,0.6)}
 
 /* ── NAV ── */
-nav{position:sticky;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0.75rem 3rem;height:170px;transition:background 0.5s,backdrop-filter 0.5s;overflow:visible}
+nav{position:sticky;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0.75rem 3rem;height:170px;transition:background 0.5s,backdrop-filter 0.5s;overflow:visible;margin-bottom:-170px}
 nav.scrolled{background:rgba(0,18,41,0.92);backdrop-filter:blur(16px)}
+nav.nav-inner{margin-bottom:0}
+nav.nav-inner.scrolled{background:rgba(0,18,41,0.92);backdrop-filter:blur(16px)}
+[data-theme="light"] nav.nav-inner.scrolled{background:rgba(253,250,244,0.92);backdrop-filter:blur(16px)}
 .nav-logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none;}
 .nav-logo img { max-width: 400px; }
 
