@@ -1133,8 +1133,8 @@ nav { overflow: visible !important; }
   .ft-top { grid-template-columns: 1fr 1fr 1fr !important; gap: 1rem !important; margin-bottom: 2rem; }
   .ft-top > div:first-child { display: none !important; }
   .ft-bottom { flex-direction: column; gap: 0.6rem; text-align: center; }
-  .ft-bottom span, .ft-bottom-links { font-size: 0.95rem; }
-  .ft-bottom-links a, .ft-dot { font-size: 0.95rem; }
+  .ft-bottom span, .ft-bottom-links { font-size: 0.82rem; }
+  .ft-bottom-links a, .ft-dot { font-size: 0.82rem; }
 
   /* ── Inner page grids ── */
   .two-col-grid, .ap-grid, .offices-grid,
