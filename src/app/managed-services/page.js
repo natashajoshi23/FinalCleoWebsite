@@ -2,7 +2,7 @@ import PageBanner from '@/components/PageBanner'
 import Link from 'next/link'
 export const metadata = { title: 'Managed Services — Cleo Consulting' }
 
-const featured = { title: 'Information Technology', desc: 'Short-term contractors or permanent staff for long-term needs. From helpdesk to enterprise architects — we place the right people, fast. IT is where Cleo began, and it remains the foundation of everything we do. Whether you need one specialist or an entire team, we move quickly and get it right.', img: '/images/code-php.webp', slug: 'information-technology' }
+const featured = { title: 'Information Technology', desc: 'From helpdesk to enterprise architects — we place the right people, fast. IT is where Cleo began, and it remains the foundation of everything we do.', img: '/images/code-php.webp', slug: 'information-technology' }
 
 const svcs = [
   { title: 'Artificial Intelligence', desc: 'Build smarter systems with AI professionals who know how to deliver results in production.', img: '/images/ai-cube.webp', slug: 'artificial-intelligence', imgPosition: 'center 48%' },
