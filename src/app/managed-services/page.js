@@ -33,10 +33,10 @@ export default function ManagedServices() {
 
           {/* Featured IT card — full width */}
           <Link href={`/managed-services/${featured.slug}`} className="svc svc-featured" style={{ textDecoration: 'none', display: 'grid', marginBottom: '1px', overflow: 'hidden' }}>
-            <div className="svc-featured-img" style={{ height: '280px', overflow: 'hidden', position: 'relative' }}>
+            <div className="svc-featured-img" style={{ overflow: 'hidden', position: 'relative' }}>
               <img src={featured.img} alt={featured.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem' }}>
+            <div className="svc-featured-text" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem' }}>
               <div style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.75rem' }}>Our Core Service</div>
               <div className="svc-title" style={{ fontSize: '1.6rem', marginBottom: '1rem' }}>{featured.title}</div>
               <p className="svc-text" style={{ marginBottom: '1.5rem' }}>{featured.desc}</p>
