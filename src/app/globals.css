@@ -967,6 +967,7 @@ nav { overflow: visible !important; }
   nav, nav.scrolled {
     position: relative !important;
     top: auto !important;
+    margin-bottom: -140px !important;
     background: transparent !important;
     backdrop-filter: none !important;
     border-bottom: none !important;
@@ -1040,7 +1041,6 @@ nav { overflow: visible !important; }
 
   /* ── Hero ── */
   .hero {
-    margin-top: -140px;
     padding: 160px 0 3rem;
     min-height: auto;
     align-items: flex-start !important;
