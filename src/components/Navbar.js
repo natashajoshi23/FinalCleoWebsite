@@ -254,6 +254,8 @@ export default function Navbar() {
             { href: '/health-services', label: 'Health' },
             { href: '/projects', label: 'Projects' },
             { href: '/blogs', label: 'Insights' },
+            { href: '/team', label: 'Our Team' },
+            { href: '/social-responsibility', label: 'Social Responsibility' },
           ].map(({ href, label }, i) => (
             <Link key={href} href={href} onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push(href) }} style={{
               display: 'block',
@@ -264,59 +266,13 @@ export default function Navbar() {
               textTransform: 'uppercase',
               textDecoration: 'none',
               touchAction: 'manipulation',
-              color: pathname === href ? gold : (hoveredLink === `m-${href}` ? gold : drawerLinkColor(false)),
+              color: pathname === href ? gold : drawerLinkColor(false),
               borderBottom: drawerDivider,
-              transition: `color 0.2s, padding-left 0.2s, opacity 0.35s ease ${i * 0.06}s, transform 0.35s cubic-bezier(0.4,0,0.2,1) ${i * 0.06}s`,
-              paddingLeft: hoveredLink === `m-${href}` ? '2rem' : '1.5rem',
+              transition: `opacity 0.35s ease ${i * 0.06}s, transform 0.35s cubic-bezier(0.4,0,0.2,1) ${i * 0.06}s`,
               opacity: menuOpen ? 1 : 0,
               transform: menuOpen ? 'translateX(0)' : 'translateX(40px)',
-            }}
-            onMouseEnter={() => setHoveredLink(`m-${href}`)}
-            onMouseLeave={() => setHoveredLink(null)}
-            >{label}</Link>
+            }}>{label}</Link>
           ))}
-
-          {/* About dropdown */}
-          <div style={{ borderBottom: drawerDivider }}>
-            <button
-              onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-              onMouseEnter={() => setHoveredLink('m-about')}
-              onMouseLeave={() => setHoveredLink(null)}
-              style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '1.1rem 1.5rem',
-                fontSize: '0.85rem',
-                fontWeight: isAboutActive ? 700 : 500,
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                color: isAboutActive ? gold : (hoveredLink === 'm-about' ? gold : drawerLinkColor(false)),
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                textAlign: 'left',
-                transition: `color 0.2s, opacity 0.35s ease 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1) 0.3s`,
-                opacity: menuOpen ? 1 : 0,
-                transform: menuOpen ? 'translateX(0)' : 'translateX(40px)',
-              }}
-            >
-              About
-              <span style={{
-                transition: 'transform 0.2s',
-                transform: mobileAboutOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                fontSize: '0.7rem',
-                opacity: 0.6,
-              }}>▾</span>
-            </button>
-            {mobileAboutOpen && (
-              <div style={{ background: drawerSubBg }}>
-                <Link href="/team" onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push('/team') }} style={{ display: 'block', padding: '0.85rem 2.5rem', fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'none', touchAction: 'manipulation', color: pathname === '/team' ? gold : (hoveredLink === 'm-team' ? gold : drawerLinkColor(false)), borderTop: drawerSubDivider, transition: 'color 0.2s' }} onMouseEnter={() => setHoveredLink('m-team')} onMouseLeave={() => setHoveredLink(null)}>Our Team</Link>
-                <Link href="/social-responsibility" onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push('/social-responsibility') }} style={{ display: 'block', padding: '0.85rem 2.5rem', fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'none', touchAction: 'manipulation', color: pathname === '/social-responsibility' ? gold : (hoveredLink === 'm-social' ? gold : drawerLinkColor(false)), borderTop: drawerSubDivider, transition: 'color 0.2s' }} onMouseEnter={() => setHoveredLink('m-social')} onMouseLeave={() => setHoveredLink(null)}>Social Responsibility</Link>
-              </div>
-            )}
-          </div>
 
           <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: 'auto',
             opacity: menuOpen ? 1 : 0, transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
