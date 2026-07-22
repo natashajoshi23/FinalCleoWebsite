@@ -1130,12 +1130,11 @@ nav { overflow: visible !important; }
 
   /* ── Footer ── */
   footer { padding: 2rem 1.25rem 11rem; }
-  .ft-top { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; margin-bottom: 2rem; }
-  .ft-top > div:first-child { grid-column: 1 / -1; }
+  .ft-top { grid-template-columns: 1fr 1fr 1fr !important; gap: 1rem !important; margin-bottom: 2rem; }
+  .ft-top > div:first-child { display: none !important; }
   .ft-bottom { flex-direction: column; gap: 0.6rem; text-align: center; }
   .ft-bottom span, .ft-bottom-links { font-size: 0.95rem; }
   .ft-bottom-links a, .ft-dot { font-size: 0.95rem; }
-  footer .ft-inner > .ft-top > div:first-child { text-align: center; }
 
   /* ── Inner page grids ── */
   .two-col-grid, .ap-grid, .offices-grid,
