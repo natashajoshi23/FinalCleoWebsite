@@ -241,7 +241,7 @@ export default function Navbar() {
       />
 
       {/* Slide-in sidebar drawer */}
-      <div className="mobile-sidebar" style={{
+      <div className="mobile-sidebar" onTouchMove={e => e.preventDefault()} style={{
           position: 'fixed',
           top: 0, right: 0, bottom: 0,
           width: '100vw',
