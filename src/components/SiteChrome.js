@@ -23,8 +23,8 @@ export default function SiteChrome({ children }) {
         <main id="main">{children}</main>
         <Footer />
       </div>
-      <Script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js" strategy="afterInteractive" />
-      <Script src="https://files.bpcontent.cloud/2026/07/08/02/20260708024014-16ILJVFW.js" strategy="afterInteractive" />
+      <Script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js" strategy="lazyOnload" />
+      <Script src="https://files.bpcontent.cloud/2026/07/08/02/20260708024014-16ILJVFW.js" strategy="lazyOnload" />
     </>
   )
 }
