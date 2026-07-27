@@ -17,7 +17,7 @@ export default function RebrandPopup() {
     if (window.location.pathname.startsWith('/studio')) return
     const seen = sessionStorage.getItem('rebrand-seen')
     if (!seen) {
-      const timer = setTimeout(() => setShow(true), 150)
+      const timer = setTimeout(() => setShow(true), 8000)
       return () => clearTimeout(timer)
     }
   }, [])

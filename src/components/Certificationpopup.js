@@ -32,7 +32,7 @@ export default function CertificationPopup() {
     if (seen) {
       setShowBadge(true)
     } else {
-      const timer = setTimeout(() => setShow(true), 4000)
+      const timer = setTimeout(() => setShow(true), 9000)
       return () => clearTimeout(timer)
     }
   }, [])
