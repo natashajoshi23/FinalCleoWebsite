@@ -276,8 +276,6 @@ export default function Navbar() {
             { href: '/health-services', label: 'Health' },
             { href: '/projects', label: 'Projects' },
             { href: '/blogs', label: 'Insights' },
-            { href: '/team', label: 'Our Team' },
-            { href: '/social-responsibility', label: 'Social Responsibility' },
           ].map(({ href, label }, i) => (
             <Link key={href} href={href} onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push(href) }} style={{
               display: 'block',
@@ -295,6 +293,41 @@ export default function Navbar() {
               transform: menuOpen ? 'translateX(0)' : 'translateX(40px)',
             }}>{label}</Link>
           ))}
+
+          {/* About dropdown */}
+          <div style={{
+            borderBottom: drawerDivider,
+            opacity: menuOpen ? 1 : 0,
+            transform: menuOpen ? 'translateX(0)' : 'translateX(40px)',
+            transition: `opacity 0.35s ease ${5 * 0.06}s, transform 0.35s cubic-bezier(0.4,0,0.2,1) ${5 * 0.06}s`,
+          }}>
+            <button onClick={() => setMobileAboutOpen(!mobileAboutOpen)} style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              width: '100%', padding: '1.1rem 1.5rem',
+              fontSize: '0.85rem', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase',
+              background: 'none', border: 'none', cursor: 'pointer', touchAction: 'manipulation',
+              color: isAboutActive ? gold : drawerLinkColor(false),
+            }}>
+              About
+              <span style={{ fontSize: '0.7rem', transition: 'transform 0.2s', transform: mobileAboutOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+            </button>
+            {mobileAboutOpen && (
+              <div style={{ background: drawerSubBg }}>
+                {[
+                  { href: '/team', label: 'Our Team' },
+                  { href: '/social-responsibility', label: 'Social Responsibility' },
+                ].map(({ href, label }) => (
+                  <Link key={href} href={href} onClick={(e) => { e.preventDefault(); setMenuOpen(false); router.push(href) }} style={{
+                    display: 'block', padding: '0.9rem 1.5rem 0.9rem 2.25rem',
+                    fontSize: '0.8rem', letterSpacing: '0.16em', textTransform: 'uppercase',
+                    textDecoration: 'none', touchAction: 'manipulation',
+                    color: pathname === href ? gold : drawerLinkColor(false),
+                    borderTop: drawerSubDivider,
+                  }}>{label}</Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: 'auto',
             opacity: menuOpen ? 1 : 0, transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
