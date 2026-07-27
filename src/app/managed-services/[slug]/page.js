@@ -390,6 +390,7 @@ export default async function ServicePage({ params }) {
 
   return (
     <>
+      <link rel="preload" as="image" href={svc.img} fetchPriority="high" />
       <PageBanner eyebrow="Managed Services" title={svc.banner} num="" bgImage={svc.img} bgPosition={svc.bgPosition} bgScale={svc.bgScale} bgOpacity={svc.bgOpacity} />
       <div className="pg-body" style={{ maxWidth: '900px' }}>
         <h2 className="ms-subtitle" style={{ fontFamily: 'var(--serif)', fontSize: '1.6rem', fontWeight: 700, color: 'var(--gold)', marginBottom: '2.5rem', fontStyle: 'italic', lineHeight: 1.3 }}>{svc.subtitle}</h2>

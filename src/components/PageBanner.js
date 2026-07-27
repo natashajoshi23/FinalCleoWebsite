@@ -11,7 +11,7 @@ export default function PageBanner({ eyebrow, title, num, bgImage, bgPosition = 
     <div className="inner-banner" style={{ position: 'relative', overflow: 'hidden' }}>
       {bgImage && (
         <>
-          <img src={bgImage} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: bgPosition, opacity: bgOpacity, filter: 'sepia(15%) saturate(110%)', transform: `scale(${bgScale})`, transformOrigin: 'center center' }} />
+          <img src={bgImage} alt="" fetchPriority="high" width="1400" height="800" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: bgPosition, opacity: bgOpacity, filter: 'sepia(15%) saturate(110%)', transform: `scale(${bgScale})`, transformOrigin: 'center center' }} />
           <div style={{ position: 'absolute', inset: 0, background: overlay, pointerEvents: 'none' }} />
         </>
       )}

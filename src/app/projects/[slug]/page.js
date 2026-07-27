@@ -276,6 +276,7 @@ export default function ProjectPage({ params }) {
 
   return (
     <>
+      <link rel="preload" as="image" href={proj.img} fetchPriority="high" />
       <PageBanner eyebrow="Our Projects" title={proj.banner} num="" bgImage={proj.img} bgScale={proj.bgScale} bgPosition={proj.bgPosition} />
       <div className="pg-body" style={{ maxWidth: '900px' }}>
 
