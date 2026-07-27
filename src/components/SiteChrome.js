@@ -1,13 +1,11 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import Script from 'next/script'
-import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollProgress from '@/components/ScrollProgress'
-
-const CertificationPopup = dynamic(() => import('@/components/Certificationpopup'), { ssr: false })
-const RebrandPopup = dynamic(() => import('@/components/RebrandPopup'), { ssr: false })
+import CertificationPopup from '@/components/Certificationpopup'
+import RebrandPopup from '@/components/RebrandPopup'
 
 export default function SiteChrome({ children }) {
   const pathname = usePathname()
