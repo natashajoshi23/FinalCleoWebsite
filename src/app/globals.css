@@ -396,10 +396,10 @@ nav.nav-inner.scrolled{background:rgba(0,18,41,0.92);backdrop-filter:blur(16px)}
 .btn-ghost-btn:hover{border-color:var(--gold);color:var(--gold)}
 
 /* FOOTER */
-footer{background:var(--ink2);padding:5rem 3rem 2rem;position:relative}
+footer{background:var(--ink2);padding:3rem 3rem 2rem;position:relative}
 footer::before{content:'';position:absolute;top:0;left:3rem;right:3rem;height:1px;background:linear-gradient(90deg,transparent,rgba(200,153,31,0.4),transparent)}
 .ft-inner{max-width:1200px;margin:0 auto}
-.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:5rem}
+.ft-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
 .ft-brand-name{font-family:var(--script);font-size:1.6rem;color:var(--gold);margin-bottom:0.4rem}
 .ft-brand-tag{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--mist);margin-bottom:1.25rem}
 .ft-desc{font-size:0.85rem;line-height:1.82;color:var(--mist)}
