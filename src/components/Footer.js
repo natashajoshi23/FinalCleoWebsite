@@ -11,8 +11,8 @@ export default function Footer() {
         <div className="ft-inner">
           <div className="ft-top">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-            <Image src="/images/logo-dark.webp" alt="Cleo Consulting" width={180} height={80} className="footer-logo-dark" style={{ height: '160px', width: 'auto', objectFit: 'contain', display: 'block', margin: '2.4rem auto 1rem' }} />
-            <Image src="/images/logo-light.webp" alt="Cleo Consulting" width={180} height={80} className="footer-logo-light" style={{ height: '200px', width: 'auto', objectFit: 'contain', display: 'block', margin: '2rem auto 1rem' }} />
+            <Image src="/images/logo-dark.webp" alt="Cleo Consulting" width={180} height={80} className="footer-logo-dark" style={{ height: '90px', width: 'auto', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+            <Image src="/images/logo-light.webp" alt="Cleo Consulting" width={180} height={80} className="footer-logo-light" style={{ height: '110px', width: 'auto', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
             </div>
             <div>
               <div className="ft-col-title">Company</div>
