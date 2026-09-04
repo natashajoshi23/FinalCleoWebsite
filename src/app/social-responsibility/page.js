@@ -1,6 +1,17 @@
 import PageBanner from '@/components/PageBanner'
+import { pageMetadata } from '@/sanity/lib/pageSeo'
 // import CTABand from '@/components/CTABand'
-export const metadata = { title: 'Social Responsibility — Cleo Consulting' }
+export const revalidate = 60
+
+export async function generateMetadata() {
+  return pageMetadata('social-responsibility', {
+    title: 'Social Responsibility — Cleo Consulting',
+    description:
+      'How Cleo Consulting gives back — our commitments to our communities, our people and responsible business practice.',
+    path: '/social-responsibility',
+    image: '/images/social-responsibility.webp',
+  })
+}
 export default function CSR() {
   return (
     <>

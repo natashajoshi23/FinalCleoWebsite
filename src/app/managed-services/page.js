@@ -1,6 +1,17 @@
 import PageBanner from '@/components/PageBanner'
 import Link from 'next/link'
-export const metadata = { title: 'Managed Services — Cleo Consulting' }
+import { pageMetadata } from '@/sanity/lib/pageSeo'
+export const revalidate = 60
+
+export async function generateMetadata() {
+  return pageMetadata('managed-services', {
+    title: 'Managed Services — Cleo Consulting',
+    description:
+      'IT consulting, staff augmentation and permanent recruitment — cloud, networking, cybersecurity, AI, machine learning, Salesforce, ServiceNow and more.',
+    path: '/managed-services',
+    image: '/images/code-php.webp',
+  })
+}
 
 const featured = { title: 'Information Technology', desc: 'From helpdesk to enterprise architects — we place the right people, fast. IT is where Cleo began, and it remains the foundation of everything we do.', img: '/images/code-php.webp', slug: 'information-technology' }
 

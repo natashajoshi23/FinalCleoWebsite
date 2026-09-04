@@ -1,6 +1,17 @@
 import PageBanner from '@/components/PageBanner'
 import Link from 'next/link'
-export const metadata = { title: 'Health Services — Cleo Consulting' }
+import { pageMetadata } from '@/sanity/lib/pageSeo'
+export const revalidate = 60
+
+export async function generateMetadata() {
+  return pageMetadata('health-services', {
+    title: 'Health Services — Cleo Consulting',
+    description:
+      'Direct placement of RNs, LPNs and CNAs across North America. Partnered with Nersify across 300+ hospitals and 20,000+ healthcare professionals.',
+    path: '/health-services',
+    image: '/images/healthservices.webp',
+  })
+}
 export default function HealthServices() {
   return (
     <>

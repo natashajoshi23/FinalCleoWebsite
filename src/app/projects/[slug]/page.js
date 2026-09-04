@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import PageBanner from '@/components/PageBanner'
+import { toMetaDescription } from '@/sanity/lib/pageSeo'
 
 const projects = {
   'cisco-network-solutions': {
@@ -269,10 +270,43 @@ export function generateStaticParams() {
   return allSlugs.map(slug => ({ slug }))
 }
 
-export default function ProjectPage({ params }) {
-  const proj = projects[params.slug]
-  if (!proj) return <div className="pg-body"><h1>Slug received: {params.slug}</h1></div>
-  const otherProjects = allSlugs.filter(s => s !== params.slug).slice(0, 4)
+// Each project page describes itself from its own intro copy, so the 11 pages
+// no longer share one generic description in search results.
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const proj = projects[slug]
+  if (!proj) return { title: 'Project not found — Cleo Consulting', robots: { index: false } }
+
+  const intro = proj.sections?.[0]?.text || ''
+  const description = toMetaDescription(intro)
+  const title = `${proj.title} — Cleo Consulting`
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/projects/${slug}` },
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      url: `/projects/${slug}`,
+      siteName: 'Cleo Consulting',
+      images: proj.img ? [{ url: proj.img }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: proj.img ? [proj.img] : undefined,
+    },
+  }
+}
+
+export default async function ProjectPage({ params }) {
+  const { slug } = await params
+  const proj = projects[slug]
+  if (!proj) return <div className="pg-body"><h1>Slug received: {slug}</h1></div>
+  const otherProjects = allSlugs.filter(s => s !== slug).slice(0, 4)
 
   return (
     <>

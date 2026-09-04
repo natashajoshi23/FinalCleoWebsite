@@ -1,8 +1,17 @@
 import PageBanner from '@/components/PageBanner'
 import Link from 'next/link'
 import { client } from '@/sanity/lib/client'
+import { pageMetadata } from '@/sanity/lib/pageSeo'
 
-export const metadata = { title: 'Insights — Cleo Consulting' }
+export async function generateMetadata() {
+  return pageMetadata('blogs', {
+    title: 'Insights — Cleo Consulting',
+    description:
+      'Articles and guidance from Cleo Consulting on IT networking, cloud integration, cybersecurity and hiring technical talent.',
+    path: '/blogs',
+    image: '/images/business-newspaper.webp',
+  })
+}
 
 // Re-query Sanity at most once per 60s so newly published posts appear automatically
 export const revalidate = 60

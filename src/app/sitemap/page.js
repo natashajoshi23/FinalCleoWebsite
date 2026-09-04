@@ -1,6 +1,16 @@
 import Link from 'next/link'
 import PageBanner from '@/components/PageBanner'
-export const metadata = { title: 'Sitemap — Cleo Consulting' }
+import { pageMetadata } from '@/sanity/lib/pageSeo'
+export const revalidate = 60
+
+export async function generateMetadata() {
+  return pageMetadata('sitemap', {
+    title: 'Sitemap — Cleo Consulting',
+    description:
+      'Every page on the Cleo Consulting website, organised in one place.',
+    path: '/sitemap',
+  })
+}
 const links = [
   { section: 'Main', pages: [
     { label: 'Home', href: '/' },

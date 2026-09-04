@@ -10,6 +10,7 @@ export const postType = defineType({
     defineField({
       name: 'title',
       type: 'string',
+      group: 'content',
     }),
     defineField({
       name: 'slug',
@@ -17,11 +18,13 @@ export const postType = defineType({
       options: {
         source: 'title',
       },
+      group: 'content',
     }),
     defineField({
       name: 'author',
       type: 'reference',
       to: {type: 'author'},
+      group: 'content',
     }),
     defineField({
       name: 'mainImage',
@@ -35,21 +38,35 @@ export const postType = defineType({
           type: 'string',
           title: 'Alternative text',
         })
-      ]
+      ],
+      group: 'content',
     }),
     defineField({
       name: 'categories',
       type: 'array',
       of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
+      group: 'content',
     }),
     defineField({
       name: 'publishedAt',
       type: 'datetime',
+      group: 'content',
     }),
     defineField({
       name: 'body',
       type: 'blockContent',
+      group: 'content',
     }),
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
+      group: 'seo',
+    }),
+  ],
+  groups: [
+    {name: 'content', title: 'Content', default: true},
+    {name: 'seo', title: 'SEO'},
   ],
   preview: {
     select: {

@@ -1,8 +1,19 @@
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
+import { pageMetadata } from '@/sanity/lib/pageSeo'
 import ContactClient from './ContactClient'
 
 export const dynamic = 'force-dynamic'
+
+export async function generateMetadata() {
+  return pageMetadata('contact', {
+    title: 'Contact Us — Cleo Consulting',
+    description:
+      'Get in touch with Cleo Consulting. Offices in Grand Island NY, Burlington Ontario and Bangalore — call +1 866-390-6604 or send us a message.',
+    path: '/contact',
+    image: '/images/office-ny.webp',
+  })
+}
 
 const fallbackOffices = [
   { country: 'USA', city: 'New York', lines: '1879 Whitehaven Road, Suite C\nGrand Island, NY 14072', phone: '+1 866-390-6604', email: 'usa@cleoconsult.com', imageUrl: '/images/office-ny.webp', imagePos: 'center center' },

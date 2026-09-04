@@ -2,6 +2,7 @@ import Link from 'next/link'
 import PageBanner from '@/components/PageBanner'
 import { client } from '@/sanity/lib/client'
 import { PortableText } from '@portabletext/react'
+import { toMetaDescription } from '@/sanity/lib/pageSeo'
 
 async function getPost(slug) {
   return client.fetch(`
@@ -9,7 +10,12 @@ async function getPost(slug) {
       title,
       publishedAt,
       "img": mainImage.asset->url + "?w=1200&q=70&auto=format&fit=max",
-      body
+      body,
+      seo,
+      "shareImg": coalesce(seo.ogImage.asset->url, mainImage.asset->url) + "?w=1200&h=630&q=75&auto=format&fit=crop",
+      // Fallback description: first ~155 characters of the body, used when
+      // no SEO description has been written in the Studio
+      "autoDescription": pt::text(body)
     }
   `, { slug })
 }
@@ -19,12 +25,48 @@ export async function generateStaticParams() {
   return slugs.map(slug => ({ slug }))
 }
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const post = await getPost(slug)
+  if (!post) return { title: 'Blog not found — Cleo Consulting' }
+
+  const seo = post.seo || {}
+  const title = seo.metaTitle || post.title
+  const description =
+    seo.metaDescription || toMetaDescription(post.autoDescription)
+  const url = `/blogs/${slug}`
+
+  return {
+    title,
+    description,
+    keywords: seo.keywords?.length ? seo.keywords : undefined,
+    alternates: { canonical: url },
+    robots: seo.noIndex ? { index: false, follow: false } : undefined,
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      url,
+      siteName: 'Cleo Consulting',
+      publishedTime: post.publishedAt,
+      images: post.shareImg ? [{ url: post.shareImg, width: 1200, height: 630, alt: title }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: post.shareImg ? [post.shareImg] : undefined,
+    },
+  }
+}
+
 // Re-query Sanity at most once per 60s, and render slugs created after build on demand
 export const revalidate = 60
 export const dynamicParams = true
 
 export default async function BlogPage({ params }) {
-  const post = await getPost(params.slug)
+  const { slug } = await params
+  const post = await getPost(slug)
   if (!post) return (
     <div className="pg-body">
       <h1>Blog not found</h1>

@@ -66,7 +66,17 @@
 //   )
 // }
 import PageBanner from '@/components/PageBanner'
-export const metadata = { title: 'Privacy Policy — Cleo Consulting' }
+import { pageMetadata } from '@/sanity/lib/pageSeo'
+export const revalidate = 60
+
+export async function generateMetadata() {
+  return pageMetadata('privacy-policy', {
+    title: 'Privacy Policy — Cleo Consulting',
+    description:
+      'How Cleo Consulting Inc. collects, uses, discloses and protects your personal information when you use our website.',
+    path: '/privacy-policy',
+  })
+}
 
 const sections = [
   {

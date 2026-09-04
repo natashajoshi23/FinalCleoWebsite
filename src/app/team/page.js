@@ -2,9 +2,18 @@ import PageBanner from '@/components/PageBanner'
 import CTABand from '@/components/CTABand'
 import { client } from '@/sanity/client'
 import { urlFor } from '@/sanity/lib/image'
+import { pageMetadata } from '@/sanity/lib/pageSeo'
 
 export const revalidate = 60
-export const metadata = { title: 'Our Team — Cleo Consulting' }
+export async function generateMetadata() {
+  return pageMetadata('team', {
+    title: 'Our Team — Cleo Consulting',
+    description:
+      'Meet the partners and recruiters behind Cleo Consulting — 200+ years of combined experience in IT consulting and recruitment across USA, Canada and India.',
+    path: '/team',
+    image: '/images/team-fistbump.webp',
+  })
+}
 
 async function getMembers() {
   try {

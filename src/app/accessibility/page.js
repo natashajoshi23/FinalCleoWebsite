@@ -1,5 +1,15 @@
 import PageBanner from '@/components/PageBanner'
-export const metadata = { title: 'Accessibility Statement — Cleo Consulting' }
+import { pageMetadata } from '@/sanity/lib/pageSeo'
+export const revalidate = 60
+
+export async function generateMetadata() {
+  return pageMetadata('accessibility', {
+    title: 'Accessibility Statement — Cleo Consulting',
+    description:
+      'Cleo Consulting’s commitment to WCAG 2.1 Level AA — how we keep our website usable for everyone, including people with disabilities.',
+    path: '/accessibility',
+  })
+}
 
 const sections = [
   {

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import PageBanner from '@/components/PageBanner'
+import { toMetaDescription } from '@/sanity/lib/pageSeo'
 
 const services = {
   'artificial-intelligence': {
@@ -380,6 +381,40 @@ const allSlugs = Object.keys(services)
 
 export function generateStaticParams() {
   return allSlugs.map(slug => ({ slug }))
+}
+
+// Each service page describes itself from its own subtitle and intro copy, so
+// the 17 pages no longer share one generic description in search results.
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const svc = services[slug]
+  if (!svc) return { title: 'Service not found — Cleo Consulting', robots: { index: false } }
+
+  // Subtitles are punchy but short ("Turning Data Into Decisions"), so lead with
+  // the subtitle and top up from the intro copy to reach a usable length.
+  const intro = [svc.subtitle, svc.sections?.[0]?.text].filter(Boolean).join('. ')
+  const description = toMetaDescription(intro)
+  const title = `${svc.title} — Cleo Consulting`
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/managed-services/${slug}` },
+    openGraph: {
+      type: 'website',
+      title,
+      description,
+      url: `/managed-services/${slug}`,
+      siteName: 'Cleo Consulting',
+      images: svc.img ? [{ url: svc.img }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: svc.img ? [svc.img] : undefined,
+    },
+  }
 }
 
 export default async function ServicePage({ params }) {

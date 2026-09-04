@@ -1,7 +1,30 @@
+import { SearchIcon } from '@sanity/icons'
+import { SEO_PAGES, pageSeoDocId } from './pages'
+
 export const structure = (S) =>
   S.list()
     .title('Cleo Consulting')
     .items([
+      // One fixed entry per page of the site. Opening an entry creates its
+      // document on first save, so editors never create these by hand.
+      S.listItem().title('Page SEO').icon(SearchIcon).child(
+        S.list()
+          .title('Page SEO')
+          .items(
+            SEO_PAGES.map((page) =>
+              S.listItem()
+                .title(page.title)
+                .id(page.id)
+                .child(
+                  S.document()
+                    .schemaType('pageSeo')
+                    .documentId(pageSeoDocId(page.id))
+                    .title(page.title)
+                )
+            )
+          )
+      ),
+      S.divider(),
       S.listItem().title('Team Members').schemaType('teamMember').child(
         S.documentTypeList('teamMember').title('Team Members').defaultOrdering([{ field: 'order', direction: 'asc' }])
       ),

@@ -4,18 +4,35 @@ import { ThemeProvider } from '@/components/ThemeContext'
 import SiteChrome from '@/components/SiteChrome'
 import ScrollToTop from '@/components/ScrollToTop'
 import Script from 'next/script'
+import { pageMetadata } from '@/sanity/lib/pageSeo'
 
 const bebasNeue = Bebas_Neue({ weight: '400', subsets: ['latin'], variable: '--nf-display', display: 'swap' })
 const fraunces = Fraunces({ style: ['normal', 'italic'], weight: ['300', '700'], subsets: ['latin'], variable: '--nf-serif', display: 'swap' })
 const dmSans = DM_Sans({ style: ['normal', 'italic'], weight: ['300', '400', '600'], subsets: ['latin'], variable: '--nf-body', display: 'swap' })
 const dancingScript = Dancing_Script({ weight: ['600'], subsets: ['latin'], variable: '--nf-script', display: 'swap' })
 
-export const metadata = {
-  title: 'Cleo Consulting — We Sniff Out the Best Talent',
-  description: 'IT Consulting and Recruitment firm operating in USA, Canada and India.',
-  icons: {
-    icon: '/icon.png',
-  },
+// The home page (app/page.js) is a client component and can't export metadata
+// itself, so its tags live here on the root layout. These also act as the
+// site-wide default for any page that doesn't set its own.
+export const revalidate = 60
+
+export async function generateMetadata() {
+  const home = await pageMetadata('home', {
+    title: 'Cleo Consulting — We Sniff Out the Best Talent',
+    description:
+      'IT Consulting and Recruitment firm operating in USA, Canada and India — 200+ years of combined experience placing talent across IT, Finance and Engineering.',
+    path: '/',
+    image: '/images/city-skyscrapers.webp',
+  })
+
+  return {
+    ...home,
+    // Lets pages return relative canonical/Open Graph URLs and have Next resolve them to absolute
+    metadataBase: new URL('https://www.cleoconsult.com'),
+    icons: {
+      icon: '/icon.png',
+    },
+  }
 }
 
 export const viewport = {
