@@ -377,7 +377,8 @@ const listingSlugs = [
   'business-admin', 'sales-hr', 'executive-search',
 ]
 
-const allSlugs = Object.keys(services)
+// Exported so sitemap.js derives its URLs from this same list and can't drift
+export const allSlugs = Object.keys(services)
 
 export function generateStaticParams() {
   return allSlugs.map(slug => ({ slug }))

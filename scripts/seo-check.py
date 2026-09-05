@@ -127,6 +127,26 @@ def check(base, path):
     return problems, title, desc
 
 
+def check_sitemap(base, paths):
+    """sitemap.xml must list every route — a missing page is slower to index."""
+    code, xml = fetch(f"{base}/sitemap.xml")
+    if code != 200:
+        return [f"sitemap.xml returned http {code}"]
+
+    listed = set()
+    for loc in re.findall(r"<loc>(.*?)</loc>", xml):
+        path = re.sub(r"^https?://[^/]+", "", loc)
+        listed.add(path or "/")
+
+    expected = {("/" + p) if p else "/" for p in paths}
+    problems = []
+    for p in sorted(expected - listed):
+        problems.append(f"missing from sitemap.xml: {p}")
+    for p in sorted(listed - expected):
+        problems.append(f"in sitemap.xml but not a route: {p}")
+    return problems
+
+
 def main():
     base = (
         sys.argv[1]
@@ -157,12 +177,17 @@ def main():
     for k, v in dup_descs.items():
         print(f"  DUPLICATE description {k[:50]!r} on {len(v)} pages: {', '.join(v[:4])}")
 
+    sitemap_problems = check_sitemap(base, paths)
+    for p in sitemap_problems:
+        print(f"  SITEMAP {p}")
+
     print("-" * 62)
     print(f"routes checked:  {len(paths)}")
     print(f"failures:        {failures}")
     print(f"duplicates:      {len(dup_titles)} titles, {len(dup_descs)} descriptions")
+    print(f"sitemap issues:  {len(sitemap_problems)}")
 
-    bad = failures + len(dup_titles) + len(dup_descs)
+    bad = failures + len(dup_titles) + len(dup_descs) + len(sitemap_problems)
     print("\nPASS" if bad == 0 else f"\nFAIL ({bad} problem(s))")
     return 1 if bad else 0
 

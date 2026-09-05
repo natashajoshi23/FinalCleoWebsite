@@ -264,7 +264,8 @@ const imgs = {
   'aem-development-services': '/images/ai-cube.webp',
 }
 
-const allSlugs = Object.keys(projects)
+// Exported so sitemap.js derives its URLs from this same list and can't drift
+export const allSlugs = Object.keys(projects)
 
 export function generateStaticParams() {
   return allSlugs.map(slug => ({ slug }))
