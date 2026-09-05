@@ -8,7 +8,11 @@
  * `pageMetadata('<id>', {...defaults})` from that page's generateMetadata.
  * Blog posts are NOT in this list — they carry their own SEO tab on each post.
  */
-export const pageSeoDocId = (pageId) => `pageSeo.${pageId}`
+// NOTE: no dot in this id. Sanity treats `.` as a path separator, and a public
+// dataset's read grant is `_id in path("*")` — which matches dot-free ids only.
+// An id like `pageSeo.home` is therefore private to anonymous readers (the same
+// mechanism that hides `drafts.*`), and the site reads without a token.
+export const pageSeoDocId = (pageId) => `pageSeo-${pageId}`
 
 export const SEO_PAGES = [
   {id: 'home', title: 'Home', path: '/'},
