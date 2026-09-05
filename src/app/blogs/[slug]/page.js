@@ -3,12 +3,15 @@ import PageBanner from '@/components/PageBanner'
 import { client } from '@/sanity/lib/client'
 import { PortableText } from '@portabletext/react'
 import { toMetaDescription } from '@/sanity/lib/pageSeo'
+import JsonLd, { blogPostingSchema } from '@/components/JsonLd'
 
 async function getPost(slug) {
   return client.fetch(`
     *[_type == "post" && slug.current == $slug][0] {
       title,
       publishedAt,
+      _updatedAt,
+      "authorName": author->name,
       "img": mainImage.asset->url + "?w=1200&q=70&auto=format&fit=max",
       body,
       seo,
@@ -76,6 +79,17 @@ export default async function BlogPage({ params }) {
 
   return (
     <>
+      <JsonLd
+        data={blogPostingSchema({
+          title: post.seo?.metaTitle || post.title,
+          description: post.seo?.metaDescription || toMetaDescription(post.autoDescription),
+          slug,
+          image: post.shareImg,
+          publishedAt: post.publishedAt,
+          updatedAt: post._updatedAt,
+          author: post.authorName,
+        })}
+      />
       <PageBanner eyebrow="Insights" title={post.title} num="" bgImage={post.img || '/images/digital-globe.webp'} />
       <div className="pg-body" style={{ maxWidth: '850px' }}>
         <div className="blog-post-date" style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '1.5rem' }}>

@@ -5,6 +5,7 @@ import SiteChrome from '@/components/SiteChrome'
 import ScrollToTop from '@/components/ScrollToTop'
 import Script from 'next/script'
 import { pageMetadata } from '@/sanity/lib/pageSeo'
+import JsonLd, { organizationSchema } from '@/components/JsonLd'
 
 const bebasNeue = Bebas_Neue({ weight: '400', subsets: ['latin'], variable: '--nf-display', display: 'swap' })
 const fraunces = Fraunces({ style: ['normal', 'italic'], weight: ['300', '700'], subsets: ['latin'], variable: '--nf-serif', display: 'swap' })
@@ -52,6 +53,8 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         {/* Runs synchronously before first paint — prevents flash of dark mode when user prefers light */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})()` }} />
+        {/* Describes the company to search engines — see components/JsonLd.js */}
+        <JsonLd data={organizationSchema} />
       </head>
       <body>
         <ThemeProvider>
