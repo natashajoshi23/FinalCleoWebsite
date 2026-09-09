@@ -23,9 +23,11 @@ export const blockContentType = defineType({
       // set corresponds with HTML tags, but you can set any title or value
       // you want, and decide how you want to deal with it where you want to
       // use your content.
+      // H1 is deliberately not offered: the page title is already the <h1>, and
+      // a second one on the page competes with it for the topic signal. Section
+      // headings start at H2, which is also what the .pg-body CSS styles.
       styles: [
         {title: 'Normal', value: 'normal'},
-        {title: 'H1', value: 'h1'},
         {title: 'H2', value: 'h2'},
         {title: 'H3', value: 'h3'},
         {title: 'H4', value: 'h4'},

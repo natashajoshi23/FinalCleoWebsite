@@ -8,13 +8,26 @@ const SITE_NAME = 'Cleo Consulting'
 const DEFAULT_OG_IMAGE = '/images/city-skyscrapers.webp'
 
 /**
- * Turn a chunk of body copy into a usable meta description: collapse the
- * newlines and runs of spaces that come out of Portable Text, then trim to
- * ~155 characters on a word boundary rather than mid-word.
+ * Collapse newlines and runs of spaces into single spaces, and trim.
+ *
+ * Applies to values typed in the Studio as well as generated ones: pasting
+ * into a textarea very often leaves a trailing newline, which otherwise ends
+ * up inside the meta tag verbatim. Never truncates — an editor's own wording
+ * is left at whatever length they chose.
  */
-export function toMetaDescription(text, limit = 155) {
+export function cleanMetaText(text) {
   if (!text) return undefined
   const clean = text.replace(/\s+/g, ' ').trim()
+  return clean || undefined
+}
+
+/**
+ * Turn a chunk of body copy into a usable meta description: clean it, then
+ * trim to ~155 characters on a word boundary rather than mid-word. For
+ * generated fallbacks; editor-written text goes through cleanMetaText instead.
+ */
+export function toMetaDescription(text, limit = 155) {
+  const clean = cleanMetaText(text)
   if (!clean) return undefined
   if (clean.length <= limit) return clean
   const cut = clean.slice(0, limit)
@@ -52,8 +65,8 @@ async function getPageSeo(pageId) {
 export async function pageMetadata(pageId, defaults = {}) {
   const seo = (await getPageSeo(pageId)) || {}
 
-  const title = seo.metaTitle || defaults.title
-  const description = seo.metaDescription || defaults.description
+  const title = cleanMetaText(seo.metaTitle) || defaults.title
+  const description = cleanMetaText(seo.metaDescription) || defaults.description
   const image = seo.ogImage
     ? urlFor(seo.ogImage).width(1200).height(630).fit('crop').auto('format').url()
     : defaults.image || DEFAULT_OG_IMAGE

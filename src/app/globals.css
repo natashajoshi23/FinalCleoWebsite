@@ -859,6 +859,18 @@ textarea:focus-visible,
   margin-bottom: 0.5rem;
 }
 
+/* Safety net for legacy content only — H1 is no longer offered in the Studio,
+   since the page title is already the <h1>. Kept so any existing post that
+   still has one doesn't fall back to the body font. */
+.pg-body h1 {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--paper);
+  margin-top: 3rem;
+  margin-bottom: 0rem;
+}
+
 .pg-body h2 {
   font-family: var(--serif);
   font-size: 1.5rem;
@@ -874,6 +886,18 @@ textarea:focus-visible,
   font-weight: 700;
   color: var(--paper);
   margin-top: 1rem;
+  margin-bottom: 0rem;
+}
+
+/* H4 is offered in the Studio and used across several posts, but had no rule —
+   these headings were rendering identically to body copy (same font, size and
+   colour), leaving those posts with no visible heading hierarchy. */
+.pg-body h4 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--paper);
+  margin-top: 1.75rem;
   margin-bottom: 0rem;
 }
 

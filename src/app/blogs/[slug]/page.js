@@ -2,7 +2,7 @@ import Link from 'next/link'
 import PageBanner from '@/components/PageBanner'
 import { client } from '@/sanity/lib/client'
 import { PortableText } from '@portabletext/react'
-import { toMetaDescription } from '@/sanity/lib/pageSeo'
+import { toMetaDescription, cleanMetaText } from '@/sanity/lib/pageSeo'
 import JsonLd, { blogPostingSchema } from '@/components/JsonLd'
 
 async function getPost(slug) {
@@ -34,9 +34,9 @@ export async function generateMetadata({ params }) {
   if (!post) return { title: 'Blog not found — Cleo Consulting' }
 
   const seo = post.seo || {}
-  const title = seo.metaTitle || post.title
+  const title = cleanMetaText(seo.metaTitle) || post.title
   const description =
-    seo.metaDescription || toMetaDescription(post.autoDescription)
+    cleanMetaText(seo.metaDescription) || toMetaDescription(post.autoDescription)
   const url = `/blogs/${slug}`
 
   return {
@@ -81,8 +81,8 @@ export default async function BlogPage({ params }) {
     <>
       <JsonLd
         data={blogPostingSchema({
-          title: post.seo?.metaTitle || post.title,
-          description: post.seo?.metaDescription || toMetaDescription(post.autoDescription),
+          title: cleanMetaText(post.seo?.metaTitle) || post.title,
+          description: cleanMetaText(post.seo?.metaDescription) || toMetaDescription(post.autoDescription),
           slug,
           image: post.shareImg,
           publishedAt: post.publishedAt,
