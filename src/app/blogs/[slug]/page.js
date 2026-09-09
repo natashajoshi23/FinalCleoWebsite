@@ -96,7 +96,7 @@ export default async function BlogPage({ params }) {
           {new Date(post.publishedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}
         </div>
         <h2 style={{ fontFamily: 'var(--serif)', fontSize: '2rem', fontWeight: 700, color: 'var(--paper)', lineHeight: 1.3, marginBottom: '2.5rem' }}>{post.title}</h2>
-        <div style={{ fontSize: '0.95rem', color: 'var(--fog)', lineHeight: 1.9 }}>
+        <div className="blog-body" style={{ fontSize: '0.95rem', color: 'var(--fog)', lineHeight: 1.9 }}>
           <PortableText value={post.body} />
         </div>
         <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid var(--ghost)' }}>
